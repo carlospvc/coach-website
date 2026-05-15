@@ -29,6 +29,7 @@ const currentPath = Astro.url.pathname;
     <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
 
@@ -78,5 +79,17 @@ const currentPath = Astro.url.pathname;
       </div>
     </footer>
 
+  <script>
+    // Redirect to /admin after Netlify Identity login (handles invite & recovery tokens)
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', (user: any) => {
+        if (!user) {
+          window.netlifyIdentity.on('login', () => {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+  </script>
   </body>
 </html>
