@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import siteData from '../content/site/main.json';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const { hero, about } = siteData;
+---
+
+<Layout title="Business Coach — Home">
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10"
+         style="background: radial-gradient(ellipse at 60% 0%, #fef3c7 0%, #fff7ed 45%, #ffffff 100%)">
+    </div>
+    <div class="max-w-5xl mx-auto px-6 pt-24 pb-28 flex flex-col items-start gap-6">
+      <span class="text-xs font-semibold tracking-widest uppercase text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">
+        ICF Certified Coach
+      </span>
+      <h1 class="text-5xl md:text-6xl font-bold leading-tight max-w-2xl text-neutral-900">
+        {hero.headline}
+      </h1>
+      <p class="text-xl text-neutral-600 max-w-xl leading-relaxed">
+        {hero.subheadline}
+      </p>
+      <div class="flex flex-wrap gap-4 mt-2">
+        <a
+          href={hero.cta_href}
+          class="px-6 py-3 rounded-xl font-semibold text-white shadow-sm hover:opacity-90 transition-opacity"
+          style="background: var(--color-brand)"
+        >
+          {hero.cta_label}
+        </a>
+        <a
+          href="/services"
+          class="px-6 py-3 rounded-xl font-semibold text-neutral-700 bg-white border border-neutral-200 hover:border-neutral-300 transition-colors"
+        >
+          See how I work →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="max-w-5xl mx-auto px-6 py-20">
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold text-neutral-900">How I can help</h2>
+      <p class="text-neutral-500 mt-2">Programmes designed for depth, not volume.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      {services.map(service => (
+        <div class="p-6 rounded-2xl border border-neutral-100 bg-white shadow-sm hover:shadow-md transition-shadow">
+          <h3 class="font-semibold text-neutral-900 mb-1">{service.data.title}</h3>
+          <p class="text-sm text-amber-700 font-medium mb-3">{service.data.tagline}</p>
+          <p class="text-sm text-neutral-500 leading-relaxed">{service.data.description}</p>
+        </div>
+      ))}
+    </div>
+    <div class="mt-8 text-center">
+      <a href="/services" class="text-sm font-semibold text-amber-700 hover:text-amber-800">
+        View all programmes →
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT PREVIEW -->
+  <section class="bg-neutral-50 border-y border-neutral-100">
+    <div class="max-w-5xl mx-auto px-6 py-20 flex flex-col md:flex-row gap-12 items-center">
+      <div class="w-40 h-40 rounded-full bg-neutral-200 flex-shrink-0 overflow-hidden">
+        <div class="w-full h-full flex items-center justify-center text-5xl text-neutral-400">👤</div>
+      </div>
+      <div class="max-w-xl">
+        <h2 class="text-3xl font-bold text-neutral-900 mb-4">{about.heading}</h2>
+        <p class="text-neutral-600 leading-relaxed">{about.body.split('\n')[0]}</p>
+        <a href="/about" class="inline-block mt-6 text-sm font-semibold text-amber-700 hover:text-amber-800">
+          More about me →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="max-w-5xl mx-auto px-6 py-24 text-center">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-4">Ready to have a real conversation?</h2>
+    <p class="text-neutral-500 mb-8 max-w-md mx-auto">
+      A 30-minute discovery call is free, no commitment. Let's see if we're the right fit.
+    </p>
+    <a
+      href="/contact"
+      class="inline-block px-8 py-4 rounded-xl font-semibold text-white shadow-sm hover:opacity-90 transition-opacity text-lg"
+      style="background: var(--color-brand)"
+    >
+      Book your free call
+    </a>
+  </section>
+
+</Layout>

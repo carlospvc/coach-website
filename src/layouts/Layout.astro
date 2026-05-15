@@ -1,0 +1,82 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Business Coach',
+  description = 'Executive & leadership coaching for professionals who want to lead with clarity and purpose.',
+} = Astro.props;
+
+const navLinks = [
+  { href: '/',         label: 'Home'     },
+  { href: '/about',    label: 'About'    },
+  { href: '/services', label: 'Services' },
+  { href: '/contact',  label: 'Contact'  },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+
+    <!-- NAV -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-neutral-100">
+      <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="font-semibold text-lg" style="color: var(--color-brand)">
+          Coaching
+        </a>
+        <nav class="hidden md:flex items-center gap-8">
+          {navLinks.map(link => (
+            <a
+              href={link.href}
+              class={`text-sm font-medium transition-colors hover:text-amber-700
+                ${currentPath === link.href
+                  ? 'text-amber-700'
+                  : 'text-neutral-600'}`}
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="/contact"
+            class="text-sm font-semibold px-4 py-2 rounded-lg text-white transition-colors"
+            style="background: var(--color-brand)"
+          >
+            Book a call
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-neutral-100 mt-24">
+      <div class="max-w-5xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-500">
+        <p>&copy; {new Date().getFullYear()} Coaching. All rights reserved.</p>
+        <nav class="flex gap-6">
+          {navLinks.map(link => (
+            <a href={link.href} class="hover:text-neutral-800 transition-colors">{link.label}</a>
+          ))}
+        </nav>
+      </div>
+    </footer>
+
+  </body>
+</html>
