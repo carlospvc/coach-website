@@ -1,98 +1,796 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-import siteData from '../content/site/main.json';
-
-const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
-const { hero, about } = siteData;
+// Jasmine Truong — Executive Leadership Coach Homepage
+// Design: v5-behance (Kasia Siwosz / cosmopolitan B&W aesthetic)
 ---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jasmine Truong — Executive Leadership Coach. PhD, CPCC, ACC. Zürich · Worldwide." />
+  <title>Jasmine Truong — Executive Leadership Coach</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" />
+  <link rel="preload" as="image" href="/images/jasmine-serious.jpg" />
+  <link rel="preload" as="image" href="/images/jasmine-looking-up.jpg" />
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    /* ── Design tokens ─────────────────────────────────────── */
+    :root {
+      --ink:       #191917;
+      --paper:     #ffffff;
+      --soft:      #f3f3f3;
+      --mute:      #8a8a86;
+      --mute-dark: #6b6b67;
+      --rule:      rgba(25,25,23,.12);
+      --rule-dark: rgba(255,255,255,.14);
+    }
 
-<Layout title="Business Coach — Home">
+    /* ── Reset & base ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Manrope", "Outfit", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      font-weight: 400;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; }
 
-  <!-- HERO -->
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0 -z-10"
-         style="background: radial-gradient(ellipse at 60% 0%, #fef3c7 0%, #fff7ed 45%, #ffffff 100%)">
-    </div>
-    <div class="max-w-5xl mx-auto px-6 pt-24 pb-28 flex flex-col items-start gap-6">
-      <span class="text-xs font-semibold tracking-widest uppercase text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">
-        ICF Certified Coach
-      </span>
-      <h1 class="text-5xl md:text-6xl font-bold leading-tight max-w-2xl text-neutral-900">
-        {hero.headline}
-      </h1>
-      <p class="text-xl text-neutral-600 max-w-xl leading-relaxed">
-        {hero.subheadline}
-      </p>
-      <div class="flex flex-wrap gap-4 mt-2">
-        <a
-          href={hero.cta_href}
-          class="px-6 py-3 rounded-xl font-semibold text-white shadow-sm hover:opacity-90 transition-opacity"
-          style="background: var(--color-brand)"
-        >
-          {hero.cta_label}
-        </a>
-        <a
-          href="/services"
-          class="px-6 py-3 rounded-xl font-semibold text-neutral-700 bg-white border border-neutral-200 hover:border-neutral-300 transition-colors"
-        >
-          See how I work →
-        </a>
+    /* ── Layout ────────────────────────────────────────────── */
+    .container { max-width: 1320px; margin: 0 auto; padding: 0 48px; }
+    section { padding: 140px 0; }
+
+    /* ── Micro / utilities ─────────────────────────────────── */
+    .micro {
+      font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--mute); font-weight: 500;
+    }
+
+    /* ── NAV ───────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 30;
+      background: rgba(25,25,23,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule-dark);
+      color: var(--paper);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px; max-width: 1500px; margin: 0 auto;
+    }
+    .brand { font-weight: 800; font-size: 17px; letter-spacing: -.01em; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { font-size: 13px; color: rgba(255,255,255,.65); transition: color .15s; }
+    .nav-links a:hover { color: var(--paper); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer; }
+    .nav-cta .pill {
+      padding: 8px 14px; border: 1px solid rgba(255,255,255,.3);
+      border-radius: 999px; transition: all .15s;
+    }
+    .nav-cta:hover .pill { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+
+    /* ── HERO ──────────────────────────────────────────────── */
+    .hero {
+      position: relative; background: var(--ink); color: var(--paper);
+      overflow: hidden; min-height: 720px; padding: 40px 0 0; isolation: isolate;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; opacity: .35; pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(25,25,23,.45) 0%, rgba(25,25,23,.8) 70%, var(--ink) 100%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 80px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 60px);
+    }
+    .hero-stage {
+      position: relative; height: 660px; padding: 0 24px;
+      max-width: 100%; margin: 0; z-index: 2;
+    }
+    .hero-wordmark {
+      position: absolute; left: 24px; right: 24px; bottom: 90px;
+      font-weight: 800; font-size: clamp(96px, 14vw, 175px);
+      line-height: .9; letter-spacing: -.05em;
+      white-space: nowrap; text-align: center;
+      color: var(--paper); pointer-events: none;
+      z-index: 3; mix-blend-mode: difference;
+    }
+    .hero-coaching {
+      position: absolute; left: 53%; bottom: 36px;
+      font-weight: 500; font-size: clamp(32px, 4.5vw, 60px);
+      line-height: 1; letter-spacing: -.015em;
+      text-align: left; color: rgba(255,255,255,.42);
+      z-index: 3; pointer-events: none;
+    }
+    .hero-photo {
+      position: absolute; top: 20px; left: 53%;
+      width: 440px; aspect-ratio: 3/4; max-height: 580px;
+      z-index: 2; background: var(--soft); overflow: hidden;
+    }
+    .hero-photo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%;
+      filter: grayscale(1) contrast(1.05) brightness(1);
+    }
+
+    /* ── PULL QUOTE ────────────────────────────────────────── */
+    .pull { background: var(--ink); color: var(--paper); }
+    .pull-inner { max-width: 1000px; text-align: center; margin: 0 auto; }
+    .pull .qm {
+      font-size: 80px; font-weight: 600; line-height: 0;
+      color: var(--paper); display: block; margin-bottom: 56px;
+    }
+    .pull blockquote {
+      font-weight: 400; font-size: 56px; letter-spacing: -.02em;
+      line-height: 1.12; margin: 0 0 40px;
+    }
+    .pull blockquote strong { font-weight: 800; }
+    .pull .attr { font-size: 13px; color: rgba(255,255,255,.55); letter-spacing: .04em; }
+
+    /* ── WHAT I DO + QUESTIONS ─────────────────────────────── */
+    .what-questions { background: var(--paper); }
+    .what-block { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .what-block .left .label {
+      font-weight: 800; font-size: clamp(56px, 6vw, 88px);
+      line-height: .96; letter-spacing: -.035em; text-transform: uppercase; margin: 0 0 28px;
+    }
+    .what-block .left p { font-size: 16px; color: var(--mute-dark); line-height: 1.6; max-width: 460px; }
+    .what-block .left p strong { color: var(--ink); font-weight: 700; }
+    .what-block .right h2 {
+      font-weight: 400; font-size: 38px; line-height: 1.2;
+      letter-spacing: -.015em; margin: 0 0 24px;
+    }
+    .what-block .right h2 strong { font-weight: 800; }
+    .what-block .right p { font-size: 15.5px; line-height: 1.65; color: var(--mute-dark); max-width: 560px; }
+
+    .questions-merged {
+      margin-top: 120px; padding-top: 80px; border-top: 1px solid var(--rule);
+    }
+    .q-head {
+      display: flex; justify-content: space-between; align-items: end;
+      margin-bottom: 64px; gap: 40px;
+    }
+    .q-head h3 {
+      font-weight: 300; font-size: 36px; letter-spacing: -.015em;
+      line-height: 1.15; max-width: 580px;
+    }
+    .pager { display: flex; gap: 14px; align-items: center; }
+    .pager .count { font-size: 14px; color: var(--mute-dark); letter-spacing: .04em; }
+    .pager .progress { width: 100px; height: 1px; background: var(--rule); overflow: hidden; }
+    .pager .progress span {
+      display: block; height: 100%; background: var(--ink);
+      transition: transform .6s cubic-bezier(.4,0,.2,1);
+      transform-origin: left;
+    }
+    .q-stage { position: relative; min-height: 360px; padding-left: 56px; max-width: 1100px; }
+    .q-bullet {
+      position: absolute; left: 0; top: 32px;
+      width: 14px; height: 14px; border-radius: 50%; background: var(--ink);
+    }
+    .q-text {
+      font-weight: 800; font-size: clamp(56px, 7.5vw, 108px);
+      line-height: .98; letter-spacing: -.035em; text-transform: uppercase;
+      margin: 0 0 32px; transition: opacity .45s, transform .45s;
+    }
+    .q-sub {
+      font-size: 17px; color: var(--mute-dark); max-width: 540px;
+      line-height: 1.55; transition: opacity .45s .1s, transform .45s .1s;
+    }
+    .q-fade-out .q-text, .q-fade-out .q-sub { opacity: 0; transform: translateY(16px); }
+    .q-fade-in .q-text, .q-fade-in .q-sub { opacity: 1; transform: translateY(0); }
+    .q-cta { margin-top: 64px; padding-left: 56px; display: flex; align-items: center; gap: 20px; }
+    .q-cta .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 24px; background: var(--ink); color: var(--paper);
+      font-size: 14px; font-family: inherit; letter-spacing: .02em;
+      border: 0; cursor: pointer; transition: background .15s;
+    }
+    .q-cta .btn:hover { background: #2a2a26; }
+    .q-cta .note { color: var(--mute-dark); font-size: 14px; }
+
+    /* ── SERVICES ──────────────────────────────────────────── */
+    .services { background: var(--ink); color: var(--paper); }
+    .services-head {
+      display: grid; grid-template-columns: 100px 1fr;
+      gap: 48px; margin-bottom: 64px; align-items: end;
+    }
+    .services-head .ix {
+      font-size: 64px; font-weight: 300; line-height: 1;
+      letter-spacing: -.025em; color: rgba(255,255,255,.4);
+    }
+    .services-head h2 {
+      font-weight: 400; font-size: 56px; line-height: 1;
+      letter-spacing: -.025em; max-width: 800px;
+    }
+    .services-head h2 strong { font-weight: 800; }
+    .services-head .lead {
+      font-size: 16px; color: rgba(255,255,255,.6);
+      max-width: 480px; margin: 24px 0 0; line-height: 1.55;
+    }
+    .service {
+      display: grid; grid-template-columns: 100px 1.2fr 1.8fr 120px;
+      gap: 48px; padding: 40px 0;
+      border-top: 1px solid var(--rule-dark);
+      align-items: start; transition: padding-left .25s; cursor: pointer;
+    }
+    .service:hover { padding-left: 16px; background: rgba(255,255,255,.02); }
+    .service:last-child { border-bottom: 1px solid var(--rule-dark); }
+    .service .sno { font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+    .service .stitle { font-size: 28px; font-weight: 600; line-height: 1.1; letter-spacing: -.015em; }
+    .service .smeta {
+      font-size: 12px; color: rgba(255,255,255,.5); margin-top: 10px;
+      letter-spacing: .06em; text-transform: uppercase;
+    }
+    .service p { font-size: 15.5px; line-height: 1.6; color: rgba(255,255,255,.75); margin: 0 0 16px; }
+    .service ul { list-style: none; columns: 2; column-gap: 24px; }
+    .service ul li {
+      padding: 6px 0; font-size: 13px; color: rgba(255,255,255,.65);
+      display: flex; gap: 10px; align-items: center;
+    }
+    .service ul li::before { content: "—"; color: rgba(255,255,255,.4); }
+    .service .arrow {
+      justify-self: end; align-self: center; font-size: 20px;
+      width: 52px; height: 52px; border: 1px solid rgba(255,255,255,.3);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .service:hover .arrow { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+
+    /* ── TESTIMONIALS ──────────────────────────────────────── */
+    .testimonials { background: var(--soft); }
+    .testimonials-head { margin-bottom: 64px; max-width: 880px; }
+    .testimonials-head h2 {
+      font-weight: 400; font-size: 48px; line-height: 1.1;
+      letter-spacing: -.02em; margin: 16px 0 0;
+    }
+    .testimonials-head h2 strong { font-weight: 800; }
+    .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .testi {
+      padding: 40px; border: 1px solid var(--rule);
+      margin: -1px 0 0 -1px; background: var(--paper);
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .testi .qmark { font-size: 36px; font-weight: 800; line-height: 0; color: var(--ink); margin-top: 16px; }
+    .testi blockquote {
+      font-size: 22px; line-height: 1.35; letter-spacing: -.012em; font-weight: 400;
+    }
+    .testi .author {
+      display: flex; align-items: center; gap: 14px;
+      padding-top: 24px; border-top: 1px solid var(--rule); margin-top: auto;
+    }
+    .testi .avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--ink); color: var(--paper);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 13px; letter-spacing: .02em; flex-shrink: 0;
+    }
+    .testi .author .name strong { display: block; font-size: 14px; font-weight: 600; }
+    .testi .author .name span { font-size: 13px; color: var(--mute-dark); }
+
+    /* ── WHO AM I ──────────────────────────────────────────── */
+    .aboutme { background: var(--paper); }
+    .aboutme-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 80px; align-items: center; }
+    .aboutme-photo { aspect-ratio: 4/5; overflow: hidden; background: var(--soft); }
+    .aboutme-photo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%;
+      filter: grayscale(1) contrast(1.02);
+    }
+    .aboutme h2 {
+      font-weight: 800; font-size: clamp(80px, 9vw, 132px);
+      line-height: .92; letter-spacing: -.04em;
+      margin: 24px 0 32px; text-transform: uppercase;
+    }
+    .aboutme p { font-size: 17px; line-height: 1.65; margin: 0 0 18px; max-width: 520px; }
+    .aboutme p strong { font-weight: 700; }
+    .aboutme .mute { color: var(--mute-dark); }
+    .aboutme .lesson {
+      margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--rule);
+      display: flex; gap: 14px; align-items: baseline;
+    }
+    .aboutme .lesson .micro { color: var(--mute); flex-shrink: 0; }
+    .aboutme .lesson p { font-size: 18px; max-width: none; font-weight: 500; margin: 0; }
+    .creds-row {
+      display: flex; gap: 28px; margin-top: 32px;
+      padding-top: 24px; border-top: 1px solid var(--rule);
+    }
+    .creds-row div .lbl {
+      font-size: 11px; color: var(--mute); letter-spacing: .12em;
+      text-transform: uppercase; margin-bottom: 6px; font-weight: 500;
+    }
+    .creds-row div .val { font-size: 15px; font-weight: 700; }
+
+    /* ── CONTACT ───────────────────────────────────────────── */
+    .contact { background: var(--ink); color: var(--paper); padding: 140px 0 0; }
+    .contact .head h2 {
+      font-weight: 400; font-size: 56px; line-height: 1.05;
+      letter-spacing: -.02em; margin: 16px 0 64px; max-width: 720px;
+    }
+    .contact .head h2 strong { font-weight: 800; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1.1fr 1.4fr;
+      gap: 80px; align-items: start; padding-bottom: 100px;
+    }
+    .contact-left p {
+      font-size: 16px; line-height: 1.6; color: rgba(255,255,255,.75);
+      max-width: 380px; margin: 0 0 32px;
+    }
+    .contact-creds {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px 32px; padding-top: 28px;
+      border-top: 1px solid var(--rule-dark); max-width: 400px;
+    }
+    .contact-creds div .lbl {
+      font-size: 11px; color: rgba(255,255,255,.5); letter-spacing: .12em;
+      text-transform: uppercase; margin-bottom: 6px; font-weight: 500;
+    }
+    .contact-creds div .val { font-size: 14px; font-weight: 700; }
+    .form { display: flex; flex-direction: column; gap: 22px; }
+    .form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .field { display: flex; flex-direction: column; gap: 8px; }
+    .field label {
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,.5); font-weight: 500;
+    }
+    .field input, .field select, .field textarea {
+      background: transparent; border: 0;
+      border-bottom: 1px solid rgba(255,255,255,.25);
+      padding: 8px 0 12px; color: var(--paper);
+      font-family: inherit; font-size: 17px; outline: none;
+      transition: border-color .2s;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--paper); }
+    .field textarea { resize: vertical; min-height: 60px; }
+    .field select option { background: var(--ink); color: var(--paper); }
+    .submit {
+      background: var(--paper); color: var(--ink); border: 0;
+      padding: 18px 28px; font-weight: 700; font-size: 13px;
+      letter-spacing: .1em; text-transform: uppercase; font-family: inherit;
+      cursor: pointer; transition: all .15s; align-self: flex-start; margin-top: 12px;
+    }
+    .submit:hover { background: var(--soft); }
+    .submitted-msg { padding: 40px 0; }
+    .submitted-msg .recv { font-size: 13px; color: rgba(255,255,255,.5); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; }
+    .submitted-msg .thanks { font-weight: 800; font-size: 32px; letter-spacing: -.01em; text-transform: uppercase; line-height: 1.2; }
+
+    /* ── FOOTER ────────────────────────────────────────────── */
+    .foot-mark { background: var(--ink); color: var(--paper); padding: 64px 48px 24px; }
+    .foot-mark .big {
+      font-weight: 800; font-size: clamp(80px, 14vw, 220px);
+      letter-spacing: -.045em; line-height: .9;
+    }
+    .foot-meta {
+      background: var(--ink); color: var(--paper);
+      padding: 24px 48px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; color: rgba(255,255,255,.5);
+      border-top: 1px solid var(--rule-dark); margin: 24px 48px 0;
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 1000px) {
+      .container { padding: 0 24px; }
+      .nav-inner { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero-photo { width: 260px; left: 50%; }
+      .hero-wordmark { font-size: 60px; }
+      section { padding: 80px 0; }
+      .contact { padding-top: 80px; }
+      .what-block { grid-template-columns: 1fr; gap: 32px; }
+      .services-head { grid-template-columns: 1fr; gap: 16px; }
+      .aboutme-grid { grid-template-columns: 1fr; gap: 32px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+      .q-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .q-stage { padding-left: 28px; }
+      .q-cta { padding-left: 28px; flex-direction: column; align-items: flex-start; }
+      .service { grid-template-columns: 60px 1fr; gap: 16px; padding: 28px 0; }
+      .service .arrow { display: none; }
+      .service ul { columns: 1; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .form .row { grid-template-columns: 1fr; }
+      .pull blockquote { font-size: 36px; }
+      .foot-mark { padding: 48px 24px 16px; }
+      .foot-meta { margin: 16px 24px 0; padding: 16px 0 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <span class="brand">JASMINE TRUONG</span>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#questions">Is this for you?</a>
+        <a href="#services">Coaching</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#aboutme">Who am I</a>
       </div>
-    </div>
-  </section>
-
-  <!-- SERVICES PREVIEW -->
-  <section class="max-w-5xl mx-auto px-6 py-20">
-    <div class="mb-12">
-      <h2 class="text-3xl font-bold text-neutral-900">How I can help</h2>
-      <p class="text-neutral-500 mt-2">Programmes designed for depth, not volume.</p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-6">
-      {services.map(service => (
-        <div class="p-6 rounded-2xl border border-neutral-100 bg-white shadow-sm hover:shadow-md transition-shadow">
-          <h3 class="font-semibold text-neutral-900 mb-1">{service.data.title}</h3>
-          <p class="text-sm text-amber-700 font-medium mb-3">{service.data.tagline}</p>
-          <p class="text-sm text-neutral-500 leading-relaxed">{service.data.description}</p>
-        </div>
-      ))}
-    </div>
-    <div class="mt-8 text-center">
-      <a href="/services" class="text-sm font-semibold text-amber-700 hover:text-amber-800">
-        View all programmes →
+      <a href="#contact" class="nav-cta">
+        <span class="pill">Book a free call →</span>
       </a>
     </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="about" style="padding:40px 0 0;">
+    <div class="hero-bg"></div>
+    <div class="hero-stage">
+      <div class="hero-photo">
+        <img src="/images/jasmine-serious.jpg" alt="Jasmine Truong" />
+      </div>
+      <div class="hero-wordmark">Jasmine Truong</div>
+      <div class="hero-coaching">Coaching</div>
+    </div>
   </section>
 
-  <!-- ABOUT PREVIEW -->
-  <section class="bg-neutral-50 border-y border-neutral-100">
-    <div class="max-w-5xl mx-auto px-6 py-20 flex flex-col md:flex-row gap-12 items-center">
-      <div class="w-40 h-40 rounded-full bg-neutral-200 flex-shrink-0 overflow-hidden">
-        <div class="w-full h-full flex items-center justify-center text-5xl text-neutral-400">👤</div>
-      </div>
-      <div class="max-w-xl">
-        <h2 class="text-3xl font-bold text-neutral-900 mb-4">{about.heading}</h2>
-        <p class="text-neutral-600 leading-relaxed">{about.body.split('\n')[0]}</p>
-        <a href="/about" class="inline-block mt-6 text-sm font-semibold text-amber-700 hover:text-amber-800">
-          More about me →
-        </a>
+  <!-- PULL QUOTE -->
+  <section class="pull">
+    <div class="container">
+      <div class="pull-inner">
+        <span class="qm">"</span>
+        <blockquote>
+          Leadership <strong>begins with presence</strong>, and becomes <strong>real in practice.</strong>
+        </blockquote>
+        <p class="attr">— A working principle</p>
       </div>
     </div>
   </section>
 
-  <!-- CTA BANNER -->
-  <section class="max-w-5xl mx-auto px-6 py-24 text-center">
-    <h2 class="text-3xl font-bold text-neutral-900 mb-4">Ready to have a real conversation?</h2>
-    <p class="text-neutral-500 mb-8 max-w-md mx-auto">
-      A 30-minute discovery call is free, no commitment. Let's see if we're the right fit.
-    </p>
-    <a
-      href="/contact"
-      class="inline-block px-8 py-4 rounded-xl font-semibold text-white shadow-sm hover:opacity-90 transition-opacity text-lg"
-      style="background: var(--color-brand)"
-    >
-      Book your free call
-    </a>
+  <!-- WHAT I DO + QUESTIONS -->
+  <section class="what-questions" id="questions">
+    <div class="container">
+
+      <!-- What I Do -->
+      <div class="what-block">
+        <div class="left">
+          <div class="label">What I Do</div>
+          <p>I don't teach you how to win. You've mastered that already. <strong>What you need is a trusted partner to help you move beyond the version of success you've already outgrown.</strong></p>
+        </div>
+        <div class="right">
+          <h2>The work is <strong>introspective by necessity</strong>, and <strong>results-oriented by design</strong>. The two aren't in tension — they're the same arc, walked patiently.</h2>
+          <p>Before strategy, we get honest about what you actually want — and what you've been telling yourself you should want. From there, clarity inside changes what's possible outside: cleaner decisions, real conversations, a steadier presence at the top of your team.</p>
+        </div>
+      </div>
+
+      <!-- Rotating Questions -->
+      <div class="questions-merged">
+        <div class="q-head">
+          <h3>Is this right for you?</h3>
+          <div class="pager">
+            <span class="count" id="q-count">01 / 03</span>
+            <div class="progress"><span id="q-bar" style="transform: scaleX(0.333)"></span></div>
+          </div>
+        </div>
+
+        <div class="q-stage q-fade-in" id="q-stage">
+          <div class="q-bullet"></div>
+          <p class="q-text" id="q-text">Do you feel you have to wear a mask to lead?</p>
+          <p class="q-sub" id="q-sub">High-functioning. Trusted. Quietly exhausted by the version of you that's showing up to work.</p>
+        </div>
+
+        <div class="q-cta">
+          <a href="#contact" class="btn">If yes — let's talk →</a>
+          <span class="note">Or scroll on and read the rest.</span>
+        </div>
+      </div>
+
+    </div>
   </section>
 
-</Layout>
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-head">
+        <div class="ix">03</div>
+        <div>
+          <h2>Three paths in. <strong>One foundation.</strong></h2>
+          <p class="lead">Each engagement is designed around what you're actually navigating — not a template, not a formula.</p>
+        </div>
+      </div>
+
+      <div class="service">
+        <div class="sno">/01</div>
+        <div>
+          <div class="stitle">1:1 Coaching</div>
+          <div class="smeta">6–12 months · Weekly · By application</div>
+        </div>
+        <div>
+          <p>A confidential thinking partnership for senior leaders. We meet weekly for six to twelve months — long enough for the inner work to translate into the way you actually lead.</p>
+          <ul>
+            <li>Weekly 90-min sessions</li>
+            <li>Async support between</li>
+            <li>Stakeholder interviews</li>
+            <li>Tailored frameworks</li>
+          </ul>
+        </div>
+        <div class="arrow">→</div>
+      </div>
+
+      <div class="service">
+        <div class="sno">/02</div>
+        <div>
+          <div class="stitle">Team Coaching</div>
+          <div class="smeta">Executive teams · 6–18 months</div>
+        </div>
+        <div>
+          <p>For teams whose individual talent hasn't yet become collective intelligence. We work in rhythm with your operating cadence, not on top of it.</p>
+          <ul>
+            <li>Team assessment</li>
+            <li>Quarterly offsites</li>
+            <li>Inter-meeting coaching</li>
+            <li>Conflict facilitation</li>
+          </ul>
+        </div>
+        <div class="arrow">→</div>
+      </div>
+
+      <div class="service">
+        <div class="sno">/03</div>
+        <div>
+          <div class="stitle">Leadership Workshops</div>
+          <div class="smeta">Half-day to two-day intensives</div>
+        </div>
+        <div>
+          <p>Research-grounded sessions for emerging and senior leaders, custom-built around the questions your organization is actually wrestling with.</p>
+          <ul>
+            <li>Custom curriculum</li>
+            <li>8–24 leader cohorts</li>
+            <li>Pre-work + follow-through</li>
+            <li>Virtual or in-person</li>
+          </ul>
+        </div>
+        <div class="arrow">→</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="testimonials-head">
+        <h2>What clients say <strong>after</strong> the work has settled in.</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi">
+          <div class="qmark">"</div>
+          <blockquote>Jasmine helped me see the leader I had been avoiding becoming. Six months later, my board calls me a different CEO.</blockquote>
+          <div class="author">
+            <div class="avatar">AR</div>
+            <div class="name">
+              <strong>Anika Reyes</strong>
+              <span>CEO, Halverson Industries</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi">
+          <div class="qmark">"</div>
+          <blockquote>The rare coach who holds the strategic and the personal in the same breath — and knows which one the moment is asking for.</blockquote>
+          <div class="author">
+            <div class="avatar">MY</div>
+            <div class="name">
+              <strong>Marcus Yeoh</strong>
+              <span>COO, Northbright Health</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi">
+          <div class="qmark">"</div>
+          <blockquote>Our exec team finally has a shared language for the hard conversations. Jasmine made that possible without scripting them for us.</blockquote>
+          <div class="author">
+            <div class="avatar">PA</div>
+            <div class="name">
+              <strong>Priya Anand</strong>
+              <span>CPO, Lattice Bio</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi">
+          <div class="qmark">"</div>
+          <blockquote>I came in wanting better answers. I left having learned to live with better questions — and that has changed how I lead.</blockquote>
+          <div class="author">
+            <div class="avatar">DB</div>
+            <div class="name">
+              <strong>Daniel Brookes</strong>
+              <span>EVP Strategy, Pellingham Group</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO AM I -->
+  <section class="aboutme" id="aboutme">
+    <div class="container">
+      <div class="aboutme-grid">
+        <div class="aboutme-photo">
+          <img src="/images/jasmine-looking-up.jpg" alt="Jasmine Truong" />
+        </div>
+        <div>
+          <span class="micro">PhD · CPCC · ACC</span>
+          <h2>Who am I.</h2>
+          <p class="mute">I'm a PhD-credentialed executive coach who has spent the last twelve years inside organizations — watching brilliant leaders quietly come apart at the top of their careers.</p>
+          <p class="mute">Not because they lacked talent. Because no one had ever asked them what <strong>they</strong> actually wanted, separately from what the role demanded.</p>
+          <p class="mute">I built my practice around that gap. The work is grounded in organizational psychology, attachment theory, and a stubborn faith that the leader you're trying to become is already in the room.</p>
+          <div class="lesson">
+            <span class="micro">Lesson carried forward</span>
+            <p>You don't need someone to teach you how to win. You need a partner who can help you move beyond the version of success you've already outgrown.</p>
+          </div>
+          <div class="creds-row">
+            <div>
+              <div class="lbl">Education</div>
+              <div class="val">PhD, Org. Psychology</div>
+            </div>
+            <div>
+              <div class="lbl">Credentials</div>
+              <div class="val">CPCC · ACC</div>
+            </div>
+            <div>
+              <div class="lbl">Based</div>
+              <div class="val">Zürich · Worldwide</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact" style="padding:140px 0 0;">
+    <div class="container">
+      <div class="head">
+        <h2>No pressure. <strong>Just clarity.</strong></h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-left">
+          <p>Every engagement opens with an unhurried call. No agenda, no obligation — just space to find out whether the work we'd do together is the work you actually want done.</p>
+          <div class="contact-creds">
+            <div>
+              <div class="lbl">Location</div>
+              <div class="val">Zürich, Switzerland</div>
+            </div>
+            <div>
+              <div class="lbl">Availability</div>
+              <div class="val">By application</div>
+            </div>
+            <div>
+              <div class="lbl">Format</div>
+              <div class="val">Remote · In-person</div>
+            </div>
+            <div>
+              <div class="lbl">Languages</div>
+              <div class="val">EN · FR · DE</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div id="form-wrap">
+            <form class="form" id="contact-form" name="contact" method="POST" data-netlify="true">
+              <input type="hidden" name="form-name" value="contact" />
+              <div class="row">
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" required placeholder="Your name" />
+                </div>
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" required placeholder="you@example.com" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="field">
+                  <label for="role">Role</label>
+                  <input id="role" name="role" type="text" placeholder="CEO, COO, VP…" />
+                </div>
+                <div class="field">
+                  <label for="org">Organisation</label>
+                  <input id="org" name="organization" type="text" placeholder="Company name" />
+                </div>
+              </div>
+              <div class="field">
+                <label for="interest">I'm interested in</label>
+                <select id="interest" name="interest">
+                  <option value="">Select…</option>
+                  <option>1:1 Coaching</option>
+                  <option>Team Coaching</option>
+                  <option>Leadership Workshops</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="message">What brings you here?</label>
+                <textarea id="message" name="message" required placeholder="A sentence or two is enough."></textarea>
+              </div>
+              <button type="submit" class="submit">Start the conversation →</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER WORDMARK -->
+  <div class="foot-mark" style="background:var(--ink); color:var(--paper);">
+    <div class="big">JASMINE TRUONG</div>
+  </div>
+  <div class="foot-meta">
+    <span>© Jasmine Truong Coaching · 2026 · All rights reserved</span>
+    <span>Zürich · Worldwide · By application</span>
+  </div>
+
+  <!-- JS: rotating questions + form -->
+  <script>
+    // ── Rotating questions ──────────────────────────────────
+    const questions = [
+      {
+        q: 'Do you feel you have to wear a mask to lead?',
+        sub: 'High-functioning. Trusted. Quietly exhausted by the version of you that\'s showing up to work.'
+      },
+      {
+        q: 'Are you leading from your true self?',
+        sub: 'Or from a role you stepped into a long time ago and never quite stopped performing?'
+      },
+      {
+        q: 'What would change if you stopped performing?',
+        sub: 'For your team. Your decisions. The relationships you keep meaning to repair — and you.'
+      }
+    ];
+
+    let qIdx = 0;
+    let transitioning = false;
+
+    const stage   = document.getElementById('q-stage');
+    const qText   = document.getElementById('q-text');
+    const qSub    = document.getElementById('q-sub');
+    const qCount  = document.getElementById('q-count');
+    const qBar    = document.getElementById('q-bar');
+
+    function updatePager(idx) {
+      qCount.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(questions.length).padStart(2, '0');
+      qBar.style.transform = 'scaleX(' + ((idx + 1) / questions.length) + ')';
+    }
+
+    function advance() {
+      if (transitioning) return;
+      transitioning = true;
+      stage.classList.remove('q-fade-in');
+      stage.classList.add('q-fade-out');
+      setTimeout(() => {
+        qIdx = (qIdx + 1) % questions.length;
+        qText.textContent = questions[qIdx].q;
+        qSub.textContent  = questions[qIdx].sub;
+        updatePager(qIdx);
+        stage.classList.remove('q-fade-out');
+        stage.classList.add('q-fade-in');
+        transitioning = false;
+      }, 380);
+    }
+
+    updatePager(0);
+    setInterval(advance, 4800);
+
+    // ── Contact form ────────────────────────────────────────
+    const form = document.getElementById('contact-form');
+    const wrap = document.getElementById('form-wrap');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        try {
+          await fetch('/', { method: 'POST', body: data });
+        } catch (_) {}
+        wrap.innerHTML = `
+          <div class="submitted-msg">
+            <div class="recv">Received</div>
+            <div class="thanks">Thank you.<br>I'll reply within two business days.</div>
+          </div>`;
+      });
+    }
+  </script>
+
+</body>
+</html>
