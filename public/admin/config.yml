@@ -30,9 +30,9 @@ collections:
         file: "src/content/site/the-how.json"
         fields:
           - { label: "The How — Section heading (displayed large, e.g. THE HOW)", name: "label", widget: "string" }
-          - { label: "The How — Left column text", name: "block1", widget: "markdown" }
+          - { label: "The How — Left column text", name: "block1", widget: "markdown", required: false }
           - { label: "The How — Right column: main statement (large display)", name: "block2", widget: "markdown" }
-          - { label: "The How — Right column: supporting paragraph", name: "block3", widget: "markdown" }
+          - { label: "The How — Right column: supporting paragraph", name: "block3", widget: "markdown", required: false }
 
   # ── 3. QUESTIONS (Is this right for you?) ─────────────────────────────────
   - name: "questions"
