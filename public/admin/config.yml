@@ -144,3 +144,15 @@ collections:
           - { label: "Footer — Wordmark (large name displayed at the bottom)", name: "wordmark", widget: "string" }
           - { label: "Footer — Copyright line", name: "copyright", widget: "string" }
           - { label: "Footer — Tagline (right side, e.g. Zürich · Worldwide · By application)", name: "tagline", widget: "string" }
+
+  # ── 9. PRIVACY POLICY ──────────────────────────────────────────────────────
+  - name: "privacy"
+    label: "Privacy Policy"
+    files:
+      - name: "privacy"
+        label: "Privacy Policy"
+        file: "src/content/site/privacy.json"
+        fields:
+          - { label: "Privacy Policy — Page title", name: "title", widget: "string" }
+          - { label: "Privacy Policy — Last updated (e.g. May 2026)", name: "updated", widget: "string" }
+          - { label: "Privacy Policy — Body text (use ## for section headings, leave a blank line between paragraphs)", name: "body", widget: "markdown" }

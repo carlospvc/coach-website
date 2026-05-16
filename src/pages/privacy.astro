@@ -1,5 +1,20 @@
 ---
 import footerData from '../content/site/footer.json';
+import privacyData from '../content/site/privacy.json';
+
+function renderBody(text: string) {
+  return (text ?? '')
+    .split(/\n\n+/)
+    .filter((p: string) => p.trim())
+    .map((p: string) => {
+      const trimmed = p.trim();
+      if (trimmed.startsWith('## ')) {
+        return `<h2>${trimmed.slice(3)}</h2>`;
+      }
+      return `<p>${trimmed.replace(/\*\*(.*?)\*\*/gs, '<strong>$1</strong>')}</p>`;
+    })
+    .join('');
+}
 ---
 <!doctype html>
 <html lang="en">
@@ -98,27 +113,9 @@ import footerData from '../content/site/footer.json';
   </nav>
 
   <main class="privacy">
-    <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: May 2026</p>
-
-    <h2>Who I am</h2>
-    <p>This website is operated by Jasmine Truong, executive leadership coach, based in Zürich, Switzerland. You can reach me at <a href="mailto:jasmine@jtruong.com">jasmine@jtruong.com</a>.</p>
-
-    <h2>What data I collect and why</h2>
-    <p>When you fill out the contact form on this website, I collect your name and email address. I use this information solely to respond to your inquiry.</p>
-    <p>I do not use your data for marketing purposes, share it with third parties, or store it beyond what is necessary to respond to you.</p>
-
-    <h2>Who processes your data</h2>
-    <p>This website is hosted on Netlify (Netlify, Inc.), which processes form submissions on my behalf. Netlify stores form data on servers located in the European Union. You can read Netlify's privacy policy at <a href="https://www.netlify.com/privacy" target="_blank" rel="noopener">netlify.com/privacy</a>.</p>
-
-    <h2>Your rights</h2>
-    <p>Under the GDPR, you have the right to access, correct, or request deletion of any personal data I hold about you. To exercise these rights, contact me at <a href="mailto:jasmine@jtruong.com">jasmine@jtruong.com</a> and I will respond within 30 days.</p>
-
-    <h2>Cookies and tracking</h2>
-    <p>This website does not use cookies, analytics tools, or any form of tracking.</p>
-
-    <h2>Contact</h2>
-    <p>For any questions about this privacy policy, contact me at <a href="mailto:jasmine@jtruong.com">jasmine@jtruong.com</a>.</p>
+    <h1>{privacyData.title}</h1>
+    <p class="updated">Last updated: {privacyData.updated}</p>
+    <div set:html={renderBody(privacyData.body)}></div>
   </main>
 
   <div class="foot-mark">
