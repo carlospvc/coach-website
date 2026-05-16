@@ -49,8 +49,19 @@ collections:
             field: { label: "Question text", name: "question", widget: "string" }
 
   # ── 4. SERVICES ────────────────────────────────────────────────────────────
+  - name: "services-section"
+    label: "Services — Section heading"
+    files:
+      - name: "services-section"
+        label: "Services — Section heading"
+        file: "src/content/site/services-section.json"
+        fields:
+          - { label: "Services — Heading: normal weight part (e.g. Four paths in.)", name: "heading_plain", widget: "string" }
+          - { label: "Services — Heading: bold part (e.g. One foundation.)", name: "heading_bold", widget: "string" }
+          - { label: "Services — Lead paragraph (shown below heading)", name: "lead", widget: "string" }
+
   - name: "services"
-    label: "Services"
+    label: "Services — Individual services"
     label_singular: "Service"
     folder: "src/content/services"
     create: true
@@ -102,6 +113,7 @@ collections:
         label: "Who am I"
         file: "src/content/site/aboutme.json"
         fields:
+          - { label: "Who am I — Section heading (e.g. Who I am.)", name: "heading", widget: "string" }
           - { label: "Who am I — Bio (separate paragraphs with a blank line)", name: "bio", widget: "markdown" }
 
   # ── 7. CONTACT ─────────────────────────────────────────────────────────────

@@ -10,6 +10,7 @@ import aboutme_section from '../content/site/aboutme.json';
 import contact_section from '../content/site/contact.json';
 import footerData      from '../content/site/footer.json';
 import accredsSectionData from '../content/site/accreditations-section.json';
+import servicesSection   from '../content/site/services-section.json';
 
 const accreditations = (await getCollection('accreditations')).sort((a: any, b: any) => a.data.order - b.data.order);
 
@@ -798,8 +799,8 @@ function initials(name: string) {
       <div class="services-head">
         <div class="ix">04</div>
         <div>
-          <h2>Four paths in. <strong>One foundation.</strong></h2>
-          <p class="lead">Each engagement is designed around what you're actually navigating — not a template, not a formula.</p>
+          <h2>{servicesSection.heading_plain} <strong>{servicesSection.heading_bold}</strong></h2>
+          <p class="lead">{servicesSection.lead}</p>
         </div>
       </div>
 
@@ -864,7 +865,7 @@ function initials(name: string) {
           <img src="/images/jasmine-looking-up.jpg" alt="Jasmine Truong" />
         </div>
         <div>
-          <h2>Who I am.</h2>
+          <h2>{aboutme_section.heading}</h2>
           <div set:html={bioParagraphs(aboutme_section.bio)}></div>
         </div>
       </div>
