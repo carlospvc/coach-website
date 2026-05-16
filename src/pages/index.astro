@@ -2,9 +2,13 @@
 // Jasmine Truong — Executive Leadership Coach Homepage
 // Design: v5-behance (Kasia Siwosz / cosmopolitan B&W aesthetic)
 import { getCollection } from 'astro:content';
-import siteData from '../content/site/main.json';
-
-const { the_how: theHow, questions_section: questionsSection, testimonials_section, aboutme_section, contact_section, hero } = siteData;
+import hero           from '../content/site/hero.json';
+import theHow         from '../content/site/the-how.json';
+import questionsSection from '../content/site/questions.json';
+import testimonialsSection from '../content/site/testimonials-section.json';
+import aboutme_section from '../content/site/aboutme.json';
+import contact_section from '../content/site/contact.json';
+import footerData      from '../content/site/footer.json';
 
 const servicesRaw = await getCollection('services');
 const services = servicesRaw
@@ -585,7 +589,7 @@ function initials(name: string) {
   <section class="testimonials" id="testimonials">
     <div class="container">
       <div class="testimonials-head">
-        <h2>{testimonials_section.heading}</h2>
+        <h2>{testimonialsSection.heading}</h2>
       </div>
       <div class="testi-grid">
         {testimonials.map((t: any) => (
@@ -718,11 +722,11 @@ function initials(name: string) {
 
   <!-- FOOTER WORDMARK -->
   <div class="foot-mark" style="background:var(--ink); color:var(--paper);">
-    <div class="big">JASMINE TRUONG</div>
+    <div class="big">{footerData.wordmark}</div>
   </div>
   <div class="foot-meta">
-    <span>© Jasmine Truong Coaching · 2026 · All rights reserved</span>
-    <span>Zürich · Worldwide · By application</span>
+    <span>{footerData.copyright}</span>
+    <span>{footerData.tagline}</span>
   </div>
 
   <!-- JS: rotating questions + form -->

@@ -2,89 +2,83 @@ backend:
   name: git-gateway
   branch: main
 
-# For local development: uncomment the line below and run `npx decap-server`
-# local_backend: true
+# local_backend: true  # uncomment + run `npx decap-server` for local dev
 
 media_folder: "public/images"
 public_folder: "/images"
 
 collections:
 
-  - name: "site"
-    label: "Site Content"
+  # ── 1. HERO ────────────────────────────────────────────────────────────────
+  - name: "hero"
+    label: "Hero"
     files:
-      - name: "main"
-        label: "Main Content"
-        file: "src/content/site/main.json"
+      - name: "hero"
+        label: "Hero"
+        file: "src/content/site/hero.json"
         fields:
-          - label: "Hero section"
-            name: "hero"
-            widget: "object"
-            fields:
-              - { label: "Hero — Tagline (use **word** for bold)", name: "tagline", widget: "string" }
-              - { label: "Hero — Button text", name: "cta_label", widget: "string" }
-              - { label: "Hero — Button link", name: "cta_href", widget: "string" }
+          - { label: "Hero — Tagline (use **word** to make a word bold)", name: "tagline", widget: "string" }
+          - { label: "Hero — Button text", name: "cta_label", widget: "string" }
+          - { label: "Hero — Button link (e.g. #contact)", name: "cta_href", widget: "string" }
 
-          - label: "The How section"
-            name: "the_how"
-            widget: "object"
-            fields:
-              - { label: "The How — Section heading (e.g. THE HOW)", name: "label", widget: "string" }
-              - { label: "The How — Left column text", name: "block1", widget: "text" }
-              - { label: "The How — Right column: main statement (displayed large)", name: "block2", widget: "text" }
-              - { label: "The How — Right column: supporting paragraph", name: "block3", widget: "text" }
+  # ── 2. THE HOW ─────────────────────────────────────────────────────────────
+  - name: "the-how"
+    label: "The How"
+    files:
+      - name: "the-how"
+        label: "The How"
+        file: "src/content/site/the-how.json"
+        fields:
+          - { label: "The How — Section heading (displayed large, e.g. THE HOW)", name: "label", widget: "string" }
+          - { label: "The How — Left column text", name: "block1", widget: "text" }
+          - { label: "The How — Right column: main statement (large display)", name: "block2", widget: "text" }
+          - { label: "The How — Right column: supporting paragraph", name: "block3", widget: "text" }
 
-          - label: "Questions section (Is this right for you?)"
-            name: "questions_section"
-            widget: "object"
-            fields:
-              - { label: "Questions — Section heading (displayed above rotating questions)", name: "heading", widget: "string" }
-              - label: "Questions — Rotating questions (one shown at a time, in order)"
-                name: "questions"
-                widget: "list"
-                field: { label: "Question text", name: "question", widget: "string" }
+  # ── 3. QUESTIONS (Is this right for you?) ─────────────────────────────────
+  - name: "questions"
+    label: "Is this right for you?"
+    files:
+      - name: "questions"
+        label: "Is this right for you?"
+        file: "src/content/site/questions.json"
+        fields:
+          - { label: "Questions — Section heading (displayed above the rotating questions)", name: "heading", widget: "string" }
+          - label: "Questions — Rotating questions (displayed one at a time, in order)"
+            name: "questions"
+            widget: "list"
+            field: { label: "Question text", name: "question", widget: "string" }
 
-          - label: "Testimonials section"
-            name: "testimonials_section"
-            widget: "object"
-            fields:
-              - { label: "Testimonials — Section heading", name: "heading", widget: "string" }
+  # ── 4. SERVICES ────────────────────────────────────────────────────────────
+  - name: "services"
+    label: "Services"
+    label_singular: "Service"
+    folder: "src/content/services"
+    create: true
+    extension: "json"
+    format: "json"
+    identifier_field: "title"
+    fields:
+      - { label: "Service — Title (e.g. 1:1 Coaching)", name: "title", widget: "string" }
+      - { label: "Service — Tagline (short phrase displayed below title)", name: "tagline", widget: "string" }
+      - { label: "Service — Description paragraph", name: "description", widget: "text" }
+      - label: "Service — Detail bullet points (displayed below description)"
+        name: "details"
+        widget: "list"
+        field: { label: "Bullet point text", name: "item", widget: "string" }
+      - { label: "Service — Display order (1 = first, 2 = second, etc.)", name: "order", widget: "number", default: 1 }
 
-          - label: "Who am I section"
-            name: "aboutme_section"
-            widget: "object"
-            fields:
-              - { label: "Who am I — Credentials line (e.g. PhD · CPCC · ACC)", name: "credentials_label", widget: "string" }
-              - { label: "Who am I — Bio paragraph 1", name: "bio_para1", widget: "text" }
-              - { label: "Who am I — Bio paragraph 2", name: "bio_para2", widget: "text" }
-              - { label: "Who am I — Bio paragraph 3", name: "bio_para3", widget: "text" }
-              - { label: "Who am I — Lesson label (small caps above quote)", name: "lesson_label", widget: "string" }
-              - { label: "Who am I — Lesson quote text", name: "lesson_text", widget: "text" }
-              - { label: "Who am I — Education label", name: "cred_education_label", widget: "string" }
-              - { label: "Who am I — Education value", name: "cred_education_value", widget: "string" }
-              - { label: "Who am I — Credentials label", name: "cred_credentials_label", widget: "string" }
-              - { label: "Who am I — Credentials value", name: "cred_credentials_value", widget: "string" }
-              - { label: "Who am I — Based label", name: "cred_based_label", widget: "string" }
-              - { label: "Who am I — Based value", name: "cred_based_value", widget: "string" }
-
-          - label: "Contact section"
-            name: "contact_section"
-            widget: "object"
-            fields:
-              - { label: "Contact — Heading (normal weight)", name: "heading_plain", widget: "string" }
-              - { label: "Contact — Heading (bold part)", name: "heading_bold", widget: "string" }
-              - { label: "Contact — Introductory paragraph", name: "intro", widget: "text" }
-              - { label: "Contact — Location label", name: "detail_location_label", widget: "string" }
-              - { label: "Contact — Location value", name: "detail_location_value", widget: "string" }
-              - { label: "Contact — Availability label", name: "detail_availability_label", widget: "string" }
-              - { label: "Contact — Availability value", name: "detail_availability_value", widget: "string" }
-              - { label: "Contact — Format label", name: "detail_format_label", widget: "string" }
-              - { label: "Contact — Format value", name: "detail_format_value", widget: "string" }
-              - { label: "Contact — Languages label", name: "detail_languages_label", widget: "string" }
-              - { label: "Contact — Languages value", name: "detail_languages_value", widget: "string" }
+  # ── 5. TESTIMONIALS ────────────────────────────────────────────────────────
+  - name: "testimonials-heading"
+    label: "Testimonials — Section heading"
+    files:
+      - name: "testimonials-section"
+        label: "Testimonials — Section heading"
+        file: "src/content/site/testimonials-section.json"
+        fields:
+          - { label: "Testimonials — Section heading", name: "heading", widget: "string" }
 
   - name: "testimonials"
-    label: "Testimonials"
+    label: "Testimonials — Quotes"
     label_singular: "Testimonial"
     folder: "src/content/testimonials"
     create: true
@@ -96,26 +90,62 @@ collections:
       - { label: "Testimonial — First and last name", name: "name", widget: "string" }
       - { label: "Testimonial — Position / Role (e.g. CEO)", name: "position", widget: "string" }
       - { label: "Testimonial — Company / Organisation", name: "company", widget: "string" }
-      - { label: "Testimonial — Display order (1 = top left, 2 = top right, etc.)", name: "order", widget: "number", default: 1 }
+      - { label: "Testimonial — Display order (1 = top left, 2 = top right, 3 = bottom left, 4 = bottom right)", name: "order", widget: "number", default: 1 }
 
-  - name: "services"
-    label: "Services"
-    label_singular: "Service"
-    folder: "src/content/services"
-    create: true
-    extension: "json"
-    format: "json"
-    identifier_field: "title"
-    fields:
-      - { label: "Service — Title (e.g. 1:1 Coaching)", name: "title", widget: "string" }
-      - { label: "Service — Tagline (short phrase below title)", name: "tagline", widget: "string" }
-      - { label: "Service — Description paragraph", name: "description", widget: "text" }
-      - label: "Service — Detail bullet points"
-        name: "details"
-        widget: "list"
-        field: { label: "Bullet point text", name: "item", widget: "string" }
-      - { label: "Service — Display order (1 = first)", name: "order", widget: "number", default: 1 }
+  # ── 6. WHO AM I ────────────────────────────────────────────────────────────
+  - name: "who-am-i"
+    label: "Who am I"
+    files:
+      - name: "who-am-i"
+        label: "Who am I"
+        file: "src/content/site/aboutme.json"
+        fields:
+          - { label: "Who am I — Credentials line (e.g. PhD · CPCC · ACC)", name: "credentials_label", widget: "string" }
+          - { label: "Who am I — Bio paragraph 1", name: "bio_para1", widget: "text" }
+          - { label: "Who am I — Bio paragraph 2", name: "bio_para2", widget: "text" }
+          - { label: "Who am I — Bio paragraph 3", name: "bio_para3", widget: "text" }
+          - { label: "Who am I — Lesson label (small text above quote, e.g. Lesson carried forward)", name: "lesson_label", widget: "string" }
+          - { label: "Who am I — Lesson quote text", name: "lesson_text", widget: "text" }
+          - { label: "Who am I — Credential row: Education label", name: "cred_education_label", widget: "string" }
+          - { label: "Who am I — Credential row: Education value (e.g. PhD, Org. Psychology)", name: "cred_education_value", widget: "string" }
+          - { label: "Who am I — Credential row: Credentials label", name: "cred_credentials_label", widget: "string" }
+          - { label: "Who am I — Credential row: Credentials value (e.g. CPCC · ACC)", name: "cred_credentials_value", widget: "string" }
+          - { label: "Who am I — Credential row: Based label", name: "cred_based_label", widget: "string" }
+          - { label: "Who am I — Credential row: Based value (e.g. Zürich · Worldwide)", name: "cred_based_value", widget: "string" }
 
+  # ── 7. CONTACT ─────────────────────────────────────────────────────────────
+  - name: "contact"
+    label: "Contact"
+    files:
+      - name: "contact"
+        label: "Contact"
+        file: "src/content/site/contact.json"
+        fields:
+          - { label: "Contact — Heading: normal weight part (e.g. No pressure.)", name: "heading_plain", widget: "string" }
+          - { label: "Contact — Heading: bold part (e.g. Just clarity.)", name: "heading_bold", widget: "string" }
+          - { label: "Contact — Introductory paragraph", name: "intro", widget: "text" }
+          - { label: "Contact — Location label", name: "detail_location_label", widget: "string" }
+          - { label: "Contact — Location value", name: "detail_location_value", widget: "string" }
+          - { label: "Contact — Availability label", name: "detail_availability_label", widget: "string" }
+          - { label: "Contact — Availability value", name: "detail_availability_value", widget: "string" }
+          - { label: "Contact — Format label", name: "detail_format_label", widget: "string" }
+          - { label: "Contact — Format value (e.g. Remote · In-person)", name: "detail_format_value", widget: "string" }
+          - { label: "Contact — Languages label", name: "detail_languages_label", widget: "string" }
+          - { label: "Contact — Languages value (e.g. EN · FR · DE)", name: "detail_languages_value", widget: "string" }
+
+  # ── 8. FOOTER ──────────────────────────────────────────────────────────────
+  - name: "footer"
+    label: "Footer"
+    files:
+      - name: "footer"
+        label: "Footer"
+        file: "src/content/site/footer.json"
+        fields:
+          - { label: "Footer — Wordmark (large name displayed at the bottom)", name: "wordmark", widget: "string" }
+          - { label: "Footer — Copyright line", name: "copyright", widget: "string" }
+          - { label: "Footer — Tagline (right side, e.g. Zürich · Worldwide · By application)", name: "tagline", widget: "string" }
+
+  # ── BLOG (hidden until needed) ─────────────────────────────────────────────
   - name: "blog"
     label: "Blog Posts"
     label_singular: "Post"
@@ -126,5 +156,5 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publication date", name: "pubDate", widget: "datetime" }
       - { label: "Short description (for previews)", name: "description", widget: "string" }
-      - { label: "Draft (unpublished)", name: "draft", widget: "boolean", default: true }
+      - { label: "Draft (tick = unpublished)", name: "draft", widget: "boolean", default: true }
       - { label: "Body content", name: "body", widget: "markdown" }
