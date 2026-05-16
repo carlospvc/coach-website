@@ -10,7 +10,6 @@ public_folder: "/images"
 
 collections:
 
-  # ── Site content ───────────────────────────────────────────────────────────
   - name: "site"
     label: "Site Content"
     files:
@@ -18,51 +17,87 @@ collections:
         label: "Main Content"
         file: "src/content/site/main.json"
         fields:
-          - label: "Hero"
+          - label: "Hero section"
             name: "hero"
             widget: "object"
             fields:
-              - { label: "Headline", name: "headline", widget: "string" }
-              - { label: "CTA Label", name: "cta_label", widget: "string" }
-              - { label: "CTA Link",  name: "cta_href",  widget: "string" }
+              - { label: "Hero — Tagline (use **word** for bold)", name: "tagline", widget: "string" }
+              - { label: "Hero — Button text", name: "cta_label", widget: "string" }
+              - { label: "Hero — Button link", name: "cta_href", widget: "string" }
 
-          - label: "The How"
+          - label: "The How section"
             name: "the_how"
             widget: "object"
             fields:
-              - { label: "Section label (heading)", name: "label",  widget: "string" }
-              - { label: "Text block 1 (left column)", name: "block1", widget: "text" }
-              - { label: "Text block 2 (right — bold quote)", name: "block2", widget: "text" }
-              - { label: "Text block 3 (right — body)", name: "block3", widget: "text" }
+              - { label: "The How — Section heading (e.g. THE HOW)", name: "label", widget: "string" }
+              - { label: "The How — Left column text", name: "block1", widget: "text" }
+              - { label: "The How — Right column: main statement (displayed large)", name: "block2", widget: "text" }
+              - { label: "The How — Right column: supporting paragraph", name: "block3", widget: "text" }
 
-          - label: "Questions section"
+          - label: "Questions section (Is this right for you?)"
             name: "questions_section"
             widget: "object"
             fields:
-              - { label: "Section heading", name: "heading", widget: "string" }
-              - label: "Questions"
+              - { label: "Questions — Section heading (displayed above rotating questions)", name: "heading", widget: "string" }
+              - label: "Questions — Rotating questions (one shown at a time, in order)"
                 name: "questions"
                 widget: "list"
-                field: { label: "Question", name: "question", widget: "string" }
+                field: { label: "Question text", name: "question", widget: "string" }
 
-          - label: "About (Who am I)"
-            name: "about"
+          - label: "Testimonials section"
+            name: "testimonials_section"
             widget: "object"
             fields:
-              - { label: "Heading", name: "heading", widget: "string" }
-              - { label: "Bio",     name: "body",    widget: "text" }
-              - { label: "Photo",   name: "image",   widget: "image", required: false }
+              - { label: "Testimonials — Section heading", name: "heading", widget: "string" }
 
-          - label: "Contact"
-            name: "contact"
+          - label: "Who am I section"
+            name: "aboutme_section"
             widget: "object"
             fields:
-              - { label: "Email",       name: "email",    widget: "string" }
-              - { label: "Phone",       name: "phone",    widget: "string", required: false }
-              - { label: "Location",    name: "location", widget: "string", required: false }
-              - { label: "Calendly URL",name: "calendly", widget: "string", required: false }
+              - { label: "Who am I — Credentials line (e.g. PhD · CPCC · ACC)", name: "credentials_label", widget: "string" }
+              - { label: "Who am I — Bio paragraph 1", name: "bio_para1", widget: "text" }
+              - { label: "Who am I — Bio paragraph 2", name: "bio_para2", widget: "text" }
+              - { label: "Who am I — Bio paragraph 3", name: "bio_para3", widget: "text" }
+              - { label: "Who am I — Lesson label (small caps above quote)", name: "lesson_label", widget: "string" }
+              - { label: "Who am I — Lesson quote text", name: "lesson_text", widget: "text" }
+              - { label: "Who am I — Education label", name: "cred_education_label", widget: "string" }
+              - { label: "Who am I — Education value", name: "cred_education_value", widget: "string" }
+              - { label: "Who am I — Credentials label", name: "cred_credentials_label", widget: "string" }
+              - { label: "Who am I — Credentials value", name: "cred_credentials_value", widget: "string" }
+              - { label: "Who am I — Based label", name: "cred_based_label", widget: "string" }
+              - { label: "Who am I — Based value", name: "cred_based_value", widget: "string" }
 
-  # ── Services ────────────────────────────────────────────────────────────────
+          - label: "Contact section"
+            name: "contact_section"
+            widget: "object"
+            fields:
+              - { label: "Contact — Heading (normal weight)", name: "heading_plain", widget: "string" }
+              - { label: "Contact — Heading (bold part)", name: "heading_bold", widget: "string" }
+              - { label: "Contact — Introductory paragraph", name: "intro", widget: "text" }
+              - { label: "Contact — Location label", name: "detail_location_label", widget: "string" }
+              - { label: "Contact — Location value", name: "detail_location_value", widget: "string" }
+              - { label: "Contact — Availability label", name: "detail_availability_label", widget: "string" }
+              - { label: "Contact — Availability value", name: "detail_availability_value", widget: "string" }
+              - { label: "Contact — Format label", name: "detail_format_label", widget: "string" }
+              - { label: "Contact — Format value", name: "detail_format_value", widget: "string" }
+              - { label: "Contact — Languages label", name: "detail_languages_label", widget: "string" }
+              - { label: "Contact — Languages value", name: "detail_languages_value", widget: "string" }
+
+  - name: "testimonials"
+    label: "Testimonials"
+    label_singular: "Testimonial"
+    folder: "src/content/testimonials"
+    create: true
+    extension: "json"
+    format: "json"
+    identifier_field: "name"
+    fields:
+      - { label: "Testimonial — Quote text (what the person said)", name: "quote", widget: "text" }
+      - { label: "Testimonial — First and last name", name: "name", widget: "string" }
+      - { label: "Testimonial — Position / Role (e.g. CEO)", name: "position", widget: "string" }
+      - { label: "Testimonial — Company / Organisation", name: "company", widget: "string" }
+      - { label: "Testimonial — Display order (1 = top left, 2 = top right, etc.)", name: "order", widget: "number", default: 1 }
+
   - name: "services"
     label: "Services"
     label_singular: "Service"
@@ -72,16 +107,15 @@ collections:
     format: "json"
     identifier_field: "title"
     fields:
-      - { label: "Title",       name: "title",       widget: "string" }
-      - { label: "Tagline",     name: "tagline",     widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - label: "Details (bullet points)"
+      - { label: "Service — Title (e.g. 1:1 Coaching)", name: "title", widget: "string" }
+      - { label: "Service — Tagline (short phrase below title)", name: "tagline", widget: "string" }
+      - { label: "Service — Description paragraph", name: "description", widget: "text" }
+      - label: "Service — Detail bullet points"
         name: "details"
         widget: "list"
-        field: { label: "Item", name: "item", widget: "string" }
-      - { label: "Order (1 = first)", name: "order", widget: "number", default: 1 }
+        field: { label: "Bullet point text", name: "item", widget: "string" }
+      - { label: "Service — Display order (1 = first)", name: "order", widget: "number", default: 1 }
 
-  # ── Blog ────────────────────────────────────────────────────────────────────
   - name: "blog"
     label: "Blog Posts"
     label_singular: "Post"
@@ -89,8 +123,8 @@ collections:
     create: true
     extension: "md"
     fields:
-      - { label: "Title",       name: "title",       widget: "string" }
-      - { label: "Date",        name: "pubDate",     widget: "datetime" }
-      - { label: "Description", name: "description", widget: "string" }
-      - { label: "Draft",       name: "draft",       widget: "boolean", default: true }
-      - { label: "Body",        name: "body",        widget: "markdown" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publication date", name: "pubDate", widget: "datetime" }
+      - { label: "Short description (for previews)", name: "description", widget: "string" }
+      - { label: "Draft (unpublished)", name: "draft", widget: "boolean", default: true }
+      - { label: "Body content", name: "body", widget: "markdown" }

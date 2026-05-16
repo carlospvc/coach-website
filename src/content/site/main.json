@@ -1,7 +1,7 @@
 {
   "hero": {
-    "headline": "Leadership begins with presence, and becomes real in practice.",
-    "cta_label": "Book a free discovery call",
+    "tagline": "Leadership **begins with presence**, and becomes **real in practice**.",
+    "cta_label": "Book a free call →",
     "cta_href": "#contact"
   },
   "the_how": {
@@ -18,6 +18,36 @@
       "What if leading isn't about being superhuman but fully human?",
       "What if choosing to be real increases both results and well-being?"
     ]
+  },
+  "testimonials_section": {
+    "heading": "What clients say after the work has settled in."
+  },
+  "aboutme_section": {
+    "credentials_label": "PhD · CPCC · ACC",
+    "bio_para1": "I'm a PhD-credentialed executive coach who has spent the last twelve years inside organizations — watching brilliant leaders quietly come apart at the top of their careers.",
+    "bio_para2": "Not because they lacked talent. Because no one had ever asked them what they actually wanted, separately from what the role demanded.",
+    "bio_para3": "I built my practice around that gap. The work is grounded in organizational psychology, attachment theory, and a stubborn faith that the leader you're trying to become is already in the room.",
+    "lesson_label": "Lesson carried forward",
+    "lesson_text": "You don't need someone to teach you how to win. You need a partner who can help you move beyond the version of success you've already outgrown.",
+    "cred_education_label": "Education",
+    "cred_education_value": "PhD, Org. Psychology",
+    "cred_credentials_label": "Credentials",
+    "cred_credentials_value": "CPCC · ACC",
+    "cred_based_label": "Based",
+    "cred_based_value": "Zürich · Worldwide"
+  },
+  "contact_section": {
+    "heading_plain": "No pressure.",
+    "heading_bold": "Just clarity.",
+    "intro": "Every engagement opens with an unhurried call. No agenda, no obligation — just space to find out whether the work we'd do together is the work you actually want done.",
+    "detail_location_label": "Location",
+    "detail_location_value": "Zürich, Switzerland",
+    "detail_availability_label": "Availability",
+    "detail_availability_value": "By application",
+    "detail_format_label": "Format",
+    "detail_format_value": "Remote · In-person",
+    "detail_languages_label": "Languages",
+    "detail_languages_value": "EN · FR · DE"
   },
   "about": {
     "heading": "Hi, I'm Jasmine Truong",

@@ -4,12 +4,23 @@
 import { getCollection } from 'astro:content';
 import siteData from '../content/site/main.json';
 
-const theHow = siteData.the_how;
-const questionsSection = siteData.questions_section;
+const { the_how: theHow, questions_section: questionsSection, testimonials_section, aboutme_section, contact_section, hero } = siteData;
 
 const servicesRaw = await getCollection('services');
 const services = servicesRaw
   .sort((a: any, b: any) => (a.data.order ?? 0) - (b.data.order ?? 0));
+
+const testimonialsRaw = await getCollection('testimonials');
+const testimonials = testimonialsRaw
+  .sort((a: any, b: any) => (a.data.order ?? 0) - (b.data.order ?? 0));
+
+function boldMd(text: string) {
+  return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+}
+
+function initials(name: string) {
+  return name.split(' ').map((w: string) => w[0]).join('');
+}
 ---
 <!doctype html>
 <html lang="en">
@@ -465,8 +476,8 @@ const services = servicesRaw
         <a href="#testimonials">Testimonials</a>
         <a href="#aboutme">Who am I</a>
       </div>
-      <a href="#contact" class="nav-cta">
-        <span class="pill">Book a free call →</span>
+      <a href={hero.cta_href} class="nav-cta">
+        <span class="pill">{hero.cta_label}</span>
       </a>
     </div>
   </nav>
@@ -487,14 +498,12 @@ const services = servicesRaw
         <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#aboutme">Who am I</a></li>
       </ul>
-      <a class="cta" href="#contact">Book a free call →</a>
+      <a class="cta" href={hero.cta_href}>{hero.cta_label}</a>
     </nav>
 
     <div class="hero-stack">
       <h1 class="hero-name">Jasmine Truong</h1>
-      <p class="hero-tagline">
-        Leadership <strong>begins with presence</strong>, and becomes <strong>real in practice</strong>.
-      </p>
+      <p class="hero-tagline" set:html={boldMd(hero.tagline)}></p>
     </div>
   </section>
 
@@ -576,53 +585,22 @@ const services = servicesRaw
   <section class="testimonials" id="testimonials">
     <div class="container">
       <div class="testimonials-head">
-        <h2>What clients say <strong>after</strong> the work has settled in.</h2>
+        <h2>{testimonials_section.heading}</h2>
       </div>
       <div class="testi-grid">
-        <div class="testi">
-          <div class="qmark">"</div>
-          <blockquote>Jasmine helped me see the leader I had been avoiding becoming. Six months later, my board calls me a different CEO.</blockquote>
-          <div class="author">
-            <div class="avatar">AR</div>
-            <div class="name">
-              <strong>Anika Reyes</strong>
-              <span>CEO, Halverson Industries</span>
+        {testimonials.map((t: any) => (
+          <div class="testi">
+            <div class="qmark">"</div>
+            <blockquote>{t.data.quote}</blockquote>
+            <div class="author">
+              <div class="avatar">{initials(t.data.name)}</div>
+              <div class="name">
+                <strong>{t.data.name}</strong>
+                <span>{t.data.position}, {t.data.company}</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="testi">
-          <div class="qmark">"</div>
-          <blockquote>The rare coach who holds the strategic and the personal in the same breath — and knows which one the moment is asking for.</blockquote>
-          <div class="author">
-            <div class="avatar">MY</div>
-            <div class="name">
-              <strong>Marcus Yeoh</strong>
-              <span>COO, Northbright Health</span>
-            </div>
-          </div>
-        </div>
-        <div class="testi">
-          <div class="qmark">"</div>
-          <blockquote>Our exec team finally has a shared language for the hard conversations. Jasmine made that possible without scripting them for us.</blockquote>
-          <div class="author">
-            <div class="avatar">PA</div>
-            <div class="name">
-              <strong>Priya Anand</strong>
-              <span>CPO, Lattice Bio</span>
-            </div>
-          </div>
-        </div>
-        <div class="testi">
-          <div class="qmark">"</div>
-          <blockquote>I came in wanting better answers. I left having learned to live with better questions — and that has changed how I lead.</blockquote>
-          <div class="author">
-            <div class="avatar">DB</div>
-            <div class="name">
-              <strong>Daniel Brookes</strong>
-              <span>EVP Strategy, Pellingham Group</span>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
@@ -635,27 +613,27 @@ const services = servicesRaw
           <img src="/images/jasmine-looking-up.jpg" alt="Jasmine Truong" />
         </div>
         <div>
-          <span class="micro">PhD · CPCC · ACC</span>
+          <span class="micro">{aboutme_section.credentials_label}</span>
           <h2>Who am I.</h2>
-          <p class="mute">I'm a PhD-credentialed executive coach who has spent the last twelve years inside organizations — watching brilliant leaders quietly come apart at the top of their careers.</p>
-          <p class="mute">Not because they lacked talent. Because no one had ever asked them what <strong>they</strong> actually wanted, separately from what the role demanded.</p>
-          <p class="mute">I built my practice around that gap. The work is grounded in organizational psychology, attachment theory, and a stubborn faith that the leader you're trying to become is already in the room.</p>
+          <p class="mute">{aboutme_section.bio_para1}</p>
+          <p class="mute">{aboutme_section.bio_para2}</p>
+          <p class="mute">{aboutme_section.bio_para3}</p>
           <div class="lesson">
-            <span class="micro">Lesson carried forward</span>
-            <p>You don't need someone to teach you how to win. You need a partner who can help you move beyond the version of success you've already outgrown.</p>
+            <span class="micro">{aboutme_section.lesson_label}</span>
+            <p>{aboutme_section.lesson_text}</p>
           </div>
           <div class="creds-row">
             <div>
-              <div class="lbl">Education</div>
-              <div class="val">PhD, Org. Psychology</div>
+              <div class="lbl">{aboutme_section.cred_education_label}</div>
+              <div class="val">{aboutme_section.cred_education_value}</div>
             </div>
             <div>
-              <div class="lbl">Credentials</div>
-              <div class="val">CPCC · ACC</div>
+              <div class="lbl">{aboutme_section.cred_credentials_label}</div>
+              <div class="val">{aboutme_section.cred_credentials_value}</div>
             </div>
             <div>
-              <div class="lbl">Based</div>
-              <div class="val">Zürich · Worldwide</div>
+              <div class="lbl">{aboutme_section.cred_based_label}</div>
+              <div class="val">{aboutme_section.cred_based_value}</div>
             </div>
           </div>
         </div>
@@ -667,27 +645,27 @@ const services = servicesRaw
   <section class="contact" id="contact" style="padding:140px 0 0;">
     <div class="container">
       <div class="head">
-        <h2>No pressure. <strong>Just clarity.</strong></h2>
+        <h2>{contact_section.heading_plain} <strong>{contact_section.heading_bold}</strong></h2>
       </div>
       <div class="contact-grid">
         <div class="contact-left">
-          <p>Every engagement opens with an unhurried call. No agenda, no obligation — just space to find out whether the work we'd do together is the work you actually want done.</p>
+          <p>{contact_section.intro}</p>
           <div class="contact-creds">
             <div>
-              <div class="lbl">Location</div>
-              <div class="val">Zürich, Switzerland</div>
+              <div class="lbl">{contact_section.detail_location_label}</div>
+              <div class="val">{contact_section.detail_location_value}</div>
             </div>
             <div>
-              <div class="lbl">Availability</div>
-              <div class="val">By application</div>
+              <div class="lbl">{contact_section.detail_availability_label}</div>
+              <div class="val">{contact_section.detail_availability_value}</div>
             </div>
             <div>
-              <div class="lbl">Format</div>
-              <div class="val">Remote · In-person</div>
+              <div class="lbl">{contact_section.detail_format_label}</div>
+              <div class="val">{contact_section.detail_format_value}</div>
             </div>
             <div>
-              <div class="lbl">Languages</div>
-              <div class="val">EN · FR · DE</div>
+              <div class="lbl">{contact_section.detail_languages_label}</div>
+              <div class="val">{contact_section.detail_languages_value}</div>
             </div>
           </div>
         </div>
