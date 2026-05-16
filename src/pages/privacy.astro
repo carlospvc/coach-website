@@ -1,0 +1,133 @@
+---
+import footerData from '../content/site/footer.json';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Jasmine Truong</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0d0d0d;
+      --paper: #faf8f5;
+      --soft: #f2ede6;
+      --mute-dark: #666;
+      --rule: rgba(0,0,0,.08);
+      --rule-dark: rgba(255,255,255,.1);
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    /* ── NAV ── */
+    .nav-bar {
+      padding: 20px 48px;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-bar a.home {
+      font-size: 13px; font-weight: 600; letter-spacing: .04em;
+      text-transform: uppercase; text-decoration: none; color: var(--ink);
+    }
+    .nav-bar a.home:hover { opacity: .6; }
+
+    /* ── CONTENT ── */
+    .privacy {
+      max-width: 680px;
+      margin: 80px auto 120px;
+      padding: 0 24px;
+    }
+    .privacy h1 {
+      font-size: 40px; font-weight: 800; letter-spacing: -.03em;
+      line-height: 1; margin-bottom: 8px;
+    }
+    .privacy .updated {
+      font-size: 13px; color: var(--mute-dark); margin-bottom: 56px;
+    }
+    .privacy h2 {
+      font-size: 13px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; margin: 40px 0 12px;
+      color: var(--mute-dark);
+    }
+    .privacy p {
+      font-size: 16px; line-height: 1.7; margin-bottom: 16px;
+      color: #333;
+    }
+    .privacy a { color: var(--ink); }
+    .privacy a:hover { opacity: .6; }
+
+    /* ── FOOTER ── */
+    .foot-mark {
+      background: var(--ink); color: var(--paper);
+      padding: 48px 48px 0;
+    }
+    .foot-mark .big {
+      font-weight: 800; font-size: clamp(32px, 5.5vw, 80px);
+      letter-spacing: -.045em; line-height: .9; white-space: nowrap;
+    }
+    .foot-meta {
+      background: var(--ink); color: rgba(255,255,255,.5);
+      padding: 24px 48px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px;
+      border-top: 1px solid var(--rule-dark); margin: 24px 48px 0;
+    }
+    .foot-meta a { color: rgba(255,255,255,.5); text-decoration: none; }
+    .foot-meta a:hover { color: rgba(255,255,255,.8); }
+
+    @media (max-width: 600px) {
+      .nav-bar { padding: 16px 24px; }
+      .foot-mark { padding: 40px 24px 0; }
+      .foot-meta { margin: 16px 24px 0; padding: 16px 0 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav-bar">
+    <a class="home" href="/">← Jasmine Truong</a>
+  </nav>
+
+  <main class="privacy">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: May 2026</p>
+
+    <h2>Who I am</h2>
+    <p>This website is operated by Jasmine Truong, executive leadership coach, based in Zürich, Switzerland. You can reach me at <a href="mailto:jasmine@jtruong.com">jasmine@jtruong.com</a>.</p>
+
+    <h2>What data I collect and why</h2>
+    <p>When you fill out the contact form on this website, I collect your name and email address. I use this information solely to respond to your inquiry.</p>
+    <p>I do not use your data for marketing purposes, share it with third parties, or store it beyond what is necessary to respond to you.</p>
+
+    <h2>Who processes your data</h2>
+    <p>This website is hosted on Netlify (Netlify, Inc.), which processes form submissions on my behalf. Netlify stores form data on servers located in the European Union. You can read Netlify's privacy policy at <a href="https://www.netlify.com/privacy" target="_blank" rel="noopener">netlify.com/privacy</a>.</p>
+
+    <h2>Your rights</h2>
+    <p>Under the GDPR, you have the right to access, correct, or request deletion of any personal data I hold about you. To exercise these rights, contact me at <a href="mailto:jasmine@jtruong.com">jasmine@jtruong.com</a> and I will respond within 30 days.</p>
+
+    <h2>Cookies and tracking</h2>
+    <p>This website does not use cookies, analytics tools, or any form of tracking.</p>
+
+    <h2>Contact</h2>
+    <p>For any questions about this privacy policy, contact me at <a href="mailto:jasmine@jtruong.com">jasmine@jtruong.com</a>.</p>
+  </main>
+
+  <div class="foot-mark">
+    <div class="big">{footerData.wordmark}</div>
+  </div>
+  <div class="foot-meta">
+    <span>{footerData.copyright}</span>
+    <a href="/privacy">Privacy Policy</a>
+  </div>
+
+</body>
+</html>

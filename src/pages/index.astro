@@ -753,7 +753,10 @@ function initials(name: string) {
   </div>
   <div class="foot-meta">
     <span>{footerData.copyright}</span>
-    <span>{footerData.tagline}</span>
+    <span style="display:flex; gap:24px; align-items:center;">
+      <a href="/privacy" style="color:inherit; text-decoration:none; opacity:.7;">Privacy Policy</a>
+      <span>{footerData.tagline}</span>
+    </span>
   </div>
 
   <!-- JS: rotating questions + form -->
