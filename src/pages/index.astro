@@ -198,7 +198,14 @@ function initials(name: string) {
     .hero-name {
       font-weight: 800; font-size: 128px;
       letter-spacing: -.05em; line-height: .9;
-      color: #aaa; mix-blend-mode: screen;
+      background-image: url('/images/jasmine-serious.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: brightness(1.6);
       margin: 0 0 26px;
     }
     .hero-tagline {
