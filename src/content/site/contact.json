@@ -1,13 +1,22 @@
 {
   "detail_languages_label": "Languages",
+  "detail_languages_label_de": "Sprachen",
   "heading_bold": "Just clarity.",
+  "heading_bold_de": "Nur Klarheit.",
   "intro": "Every engagement opens with an unhurried conversation. Space to find out whether the work we'd do together is the work you actually want done.",
+  "intro_de": "Jede Zusammenarbeit beginnt mit einem ungehetzten Gespräch. Raum, um herauszufinden, ob die Arbeit, die wir gemeinsam tun würden, die Arbeit ist, die du wirklich möchtest.",
   "heading_plain": "No pressure.",
+  "heading_plain_de": "Kein Druck.",
   "detail_location_value": "Zürich, Switzerland",
   "detail_format_value": "Remote · In-person",
+  "detail_format_value_de": "Online · Vor Ort",
   "detail_location_label": "Location",
+  "detail_location_label_de": "Standort",
   "detail_format_label": "Format",
+  "detail_format_label_de": "Format",
   "detail_availability_value": "By application",
+  "detail_availability_value_de": "Auf Anfrage",
   "detail_availability_label": "Availability",
+  "detail_availability_label_de": "Verfügbarkeit",
   "detail_languages_value": "EN · DE"
 }

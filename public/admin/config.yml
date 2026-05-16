@@ -17,8 +17,10 @@ collections:
         label: "Hero"
         file: "src/content/site/hero.json"
         fields:
-          - { label: "Hero — Tagline (use the Bold button to make words bold)", name: "tagline", widget: "markdown" }
-          - { label: "Hero — Button text", name: "cta_label", widget: "string" }
+          - { label: "Hero — Tagline EN (use the Bold button to make words bold)", name: "tagline", widget: "markdown" }
+          - { label: "Hero — Tagline DE", name: "tagline_de", widget: "markdown" }
+          - { label: "Hero — Button text EN", name: "cta_label", widget: "string" }
+          - { label: "Hero — Button text DE", name: "cta_label_de", widget: "string" }
           - { label: "Hero — Button link (e.g. #contact)", name: "cta_href", widget: "string" }
 
   # ── 2. THE HOW ─────────────────────────────────────────────────────────────
@@ -29,10 +31,14 @@ collections:
         label: "How I work"
         file: "src/content/site/the-how.json"
         fields:
-          - { label: "The How — Section heading (displayed large, e.g. THE HOW)", name: "label", widget: "string" }
-          - { label: "The How — Left column text", name: "block1", widget: "markdown", required: false }
-          - { label: "The How — Right column: main statement (large display)", name: "block2", widget: "markdown" }
-          - { label: "The How — Right column: supporting paragraph", name: "block3", widget: "markdown", required: false }
+          - { label: "The How — Section heading EN (displayed large, e.g. THE HOW)", name: "label", widget: "string" }
+          - { label: "The How — Section heading DE", name: "label_de", widget: "string" }
+          - { label: "The How — Left column text EN", name: "block1", widget: "markdown", required: false }
+          - { label: "The How — Left column text DE", name: "block1_de", widget: "markdown", required: false }
+          - { label: "The How — Right column: main statement EN (large display)", name: "block2", widget: "markdown" }
+          - { label: "The How — Right column: main statement DE", name: "block2_de", widget: "markdown" }
+          - { label: "The How — Right column: supporting paragraph EN", name: "block3", widget: "markdown", required: false }
+          - { label: "The How — Right column: supporting paragraph DE", name: "block3_de", widget: "markdown", required: false }
 
   # ── 3. QUESTIONS (Is this right for you?) ─────────────────────────────────
   - name: "questions"
@@ -42,11 +48,16 @@ collections:
         label: "Is this right for you?"
         file: "src/content/site/questions.json"
         fields:
-          - { label: "Questions — Section heading (displayed above the rotating questions)", name: "heading", widget: "markdown" }
-          - label: "Questions — Rotating questions (displayed one at a time, in order)"
+          - { label: "Questions — Section heading EN (displayed above the rotating questions)", name: "heading", widget: "markdown" }
+          - { label: "Questions — Section heading DE", name: "heading_de", widget: "markdown" }
+          - label: "Questions — Rotating questions EN (displayed one at a time, in order)"
             name: "questions"
             widget: "list"
             field: { label: "Question text", name: "question", widget: "string" }
+          - label: "Questions — Rotating questions DE"
+            name: "questions_de"
+            widget: "list"
+            field: { label: "Frage", name: "question", widget: "string" }
 
   # ── 4. SERVICES ────────────────────────────────────────────────────────────
   - name: "services-section"
@@ -56,9 +67,12 @@ collections:
         label: "Services — Section heading"
         file: "src/content/site/services-section.json"
         fields:
-          - { label: "Services — Heading: normal weight part (e.g. Four paths in.)", name: "heading_plain", widget: "string" }
-          - { label: "Services — Heading: bold part (e.g. One foundation.)", name: "heading_bold", widget: "string" }
-          - { label: "Services — Lead paragraph (shown below heading)", name: "lead", widget: "string" }
+          - { label: "Services — Heading: normal weight part EN (e.g. Four paths in.)", name: "heading_plain", widget: "string" }
+          - { label: "Services — Heading: normal weight part DE", name: "heading_plain_de", widget: "string" }
+          - { label: "Services — Heading: bold part EN (e.g. One foundation.)", name: "heading_bold", widget: "string" }
+          - { label: "Services — Heading: bold part DE", name: "heading_bold_de", widget: "string" }
+          - { label: "Services — Lead paragraph EN (shown below heading)", name: "lead", widget: "string" }
+          - { label: "Services — Lead paragraph DE", name: "lead_de", widget: "string" }
 
   - name: "services"
     label: "Services — Individual services"
@@ -69,9 +83,12 @@ collections:
     format: "json"
     identifier_field: "title"
     fields:
-      - { label: "Service — Title (e.g. 1:1 Coaching)", name: "title", widget: "string" }
-      - { label: "Service — Tagline (short phrase displayed below title)", name: "tagline", widget: "string" }
-      - { label: "Service — Description paragraph", name: "description", widget: "markdown" }
+      - { label: "Service — Title EN (e.g. 1:1 Coaching)", name: "title", widget: "string" }
+      - { label: "Service — Title DE", name: "title_de", widget: "string" }
+      - { label: "Service — Tagline EN (short phrase displayed below title)", name: "tagline", widget: "string" }
+      - { label: "Service — Tagline DE", name: "tagline_de", widget: "string" }
+      - { label: "Service — Description paragraph EN", name: "description", widget: "markdown" }
+      - { label: "Service — Description paragraph DE", name: "description_de", widget: "markdown" }
       - label: "Service — Detail bullet points (displayed below description)"
         name: "details"
         widget: "list"
@@ -86,7 +103,8 @@ collections:
         label: "Testimonials — Section heading"
         file: "src/content/site/testimonials-section.json"
         fields:
-          - { label: "Testimonials — Section heading", name: "heading", widget: "markdown" }
+          - { label: "Testimonials — Section heading EN", name: "heading", widget: "markdown" }
+          - { label: "Testimonials — Section heading DE", name: "heading_de", widget: "markdown" }
 
   - name: "testimonials"
     label: "Testimonials — Quotes"
@@ -113,8 +131,10 @@ collections:
         label: "Who am I"
         file: "src/content/site/aboutme.json"
         fields:
-          - { label: "Who am I — Section heading (e.g. Who I am.)", name: "heading", widget: "string" }
-          - { label: "Who am I — Bio (separate paragraphs with a blank line)", name: "bio", widget: "markdown" }
+          - { label: "Who am I — Section heading EN (e.g. Who I am.)", name: "heading", widget: "string" }
+          - { label: "Who am I — Section heading DE", name: "heading_de", widget: "string" }
+          - { label: "Who am I — Bio EN (separate paragraphs with a blank line)", name: "bio", widget: "markdown" }
+          - { label: "Who am I — Bio DE", name: "bio_de", widget: "markdown" }
 
   # ── 7. CONTACT ─────────────────────────────────────────────────────────────
   - name: "contact"
@@ -124,16 +144,25 @@ collections:
         label: "Contact"
         file: "src/content/site/contact.json"
         fields:
-          - { label: "Contact — Heading: normal weight part (e.g. No pressure.)", name: "heading_plain", widget: "string" }
-          - { label: "Contact — Heading: bold part (e.g. Just clarity.)", name: "heading_bold", widget: "string" }
-          - { label: "Contact — Introductory paragraph", name: "intro", widget: "markdown" }
-          - { label: "Contact — Location label", name: "detail_location_label", widget: "string" }
+          - { label: "Contact — Heading: normal weight part EN (e.g. No pressure.)", name: "heading_plain", widget: "string" }
+          - { label: "Contact — Heading: normal weight part DE", name: "heading_plain_de", widget: "string" }
+          - { label: "Contact — Heading: bold part EN (e.g. Just clarity.)", name: "heading_bold", widget: "string" }
+          - { label: "Contact — Heading: bold part DE", name: "heading_bold_de", widget: "string" }
+          - { label: "Contact — Introductory paragraph EN", name: "intro", widget: "markdown" }
+          - { label: "Contact — Introductory paragraph DE", name: "intro_de", widget: "markdown" }
+          - { label: "Contact — Location label EN", name: "detail_location_label", widget: "string" }
+          - { label: "Contact — Location label DE", name: "detail_location_label_de", widget: "string" }
           - { label: "Contact — Location value", name: "detail_location_value", widget: "string" }
-          - { label: "Contact — Availability label", name: "detail_availability_label", widget: "string" }
-          - { label: "Contact — Availability value", name: "detail_availability_value", widget: "string" }
-          - { label: "Contact — Format label", name: "detail_format_label", widget: "string" }
-          - { label: "Contact — Format value (e.g. Remote · In-person)", name: "detail_format_value", widget: "string" }
-          - { label: "Contact — Languages label", name: "detail_languages_label", widget: "string" }
+          - { label: "Contact — Availability label EN", name: "detail_availability_label", widget: "string" }
+          - { label: "Contact — Availability label DE", name: "detail_availability_label_de", widget: "string" }
+          - { label: "Contact — Availability value EN", name: "detail_availability_value", widget: "string" }
+          - { label: "Contact — Availability value DE", name: "detail_availability_value_de", widget: "string" }
+          - { label: "Contact — Format label EN", name: "detail_format_label", widget: "string" }
+          - { label: "Contact — Format label DE", name: "detail_format_label_de", widget: "string" }
+          - { label: "Contact — Format value EN (e.g. Remote · In-person)", name: "detail_format_value", widget: "string" }
+          - { label: "Contact — Format value DE", name: "detail_format_value_de", widget: "string" }
+          - { label: "Contact — Languages label EN", name: "detail_languages_label", widget: "string" }
+          - { label: "Contact — Languages label DE", name: "detail_languages_label_de", widget: "string" }
           - { label: "Contact — Languages value (e.g. EN · FR · DE)", name: "detail_languages_value", widget: "string" }
 
   # ── 8. FOOTER ──────────────────────────────────────────────────────────────
@@ -145,8 +174,10 @@ collections:
         file: "src/content/site/footer.json"
         fields:
           - { label: "Footer — Wordmark (large name displayed at the bottom)", name: "wordmark", widget: "string" }
-          - { label: "Footer — Copyright line", name: "copyright", widget: "string" }
-          - { label: "Footer — Tagline (right side, e.g. Zürich · Worldwide · By application)", name: "tagline", widget: "string" }
+          - { label: "Footer — Copyright line EN", name: "copyright", widget: "string" }
+          - { label: "Footer — Copyright line DE", name: "copyright_de", widget: "string" }
+          - { label: "Footer — Tagline EN (right side, e.g. Zürich · Worldwide · By application)", name: "tagline", widget: "string" }
+          - { label: "Footer — Tagline DE", name: "tagline_de", widget: "string" }
 
   # ── 9. ACCREDITATIONS ─────────────────────────────────────────────────────
   - name: "accreditations-heading"
@@ -156,7 +187,8 @@ collections:
         label: "Accreditations — Section heading"
         file: "src/content/site/accreditations-section.json"
         fields:
-          - { label: "Accreditations — Section heading (e.g. Trained & Certified)", name: "heading", widget: "string" }
+          - { label: "Accreditations — Section heading EN (e.g. Trained & Certified)", name: "heading", widget: "string" }
+          - { label: "Accreditations — Section heading DE", name: "heading_de", widget: "string" }
 
   - name: "accreditations"
     label: "Accreditations — Certifications"
@@ -181,6 +213,9 @@ collections:
         label: "Privacy Policy"
         file: "src/content/site/privacy.json"
         fields:
-          - { label: "Privacy Policy — Page title", name: "title", widget: "string" }
-          - { label: "Privacy Policy — Last updated (e.g. May 2026)", name: "updated", widget: "string" }
-          - { label: "Privacy Policy — Body text (use ## for section headings, leave a blank line between paragraphs)", name: "body", widget: "markdown" }
+          - { label: "Privacy Policy — Page title EN", name: "title", widget: "string" }
+          - { label: "Privacy Policy — Page title DE", name: "title_de", widget: "string" }
+          - { label: "Privacy Policy — Last updated EN (e.g. May 2026)", name: "updated", widget: "string" }
+          - { label: "Privacy Policy — Last updated DE (e.g. Mai 2026)", name: "updated_de", widget: "string" }
+          - { label: "Privacy Policy — Body text EN (use ## for section headings, leave a blank line between paragraphs)", name: "body", widget: "markdown" }
+          - { label: "Privacy Policy — Body text DE", name: "body_de", widget: "markdown" }

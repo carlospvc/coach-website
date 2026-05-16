@@ -1,16 +1,15 @@
 ---
-// Jasmine Truong — Executive Leadership Coach Homepage
-// Design: v5-behance (Kasia Siwosz / cosmopolitan B&W aesthetic)
+// Jasmine Truong — Executive Leadership Coach Homepage (German)
 import { getCollection } from 'astro:content';
-import hero           from '../content/site/hero.json';
-import theHow         from '../content/site/the-how.json';
-import questionsSection from '../content/site/questions.json';
-import testimonialsSection from '../content/site/testimonials-section.json';
-import aboutme_section from '../content/site/aboutme.json';
-import contact_section from '../content/site/contact.json';
-import footerData      from '../content/site/footer.json';
-import accredsSectionData from '../content/site/accreditations-section.json';
-import servicesSection   from '../content/site/services-section.json';
+import hero           from '../../content/site/hero.json';
+import theHow         from '../../content/site/the-how.json';
+import questionsSection from '../../content/site/questions.json';
+import testimonialsSection from '../../content/site/testimonials-section.json';
+import aboutme_section from '../../content/site/aboutme.json';
+import contact_section from '../../content/site/contact.json';
+import footerData      from '../../content/site/footer.json';
+import accredsSectionData from '../../content/site/accreditations-section.json';
+import servicesSection   from '../../content/site/services-section.json';
 
 const accreditations = (await getCollection('accreditations')).sort((a: any, b: any) => a.data.order - b.data.order);
 
@@ -51,16 +50,16 @@ function initials(name: string) {
 }
 ---
 <!doctype html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Jasmine Truong — Executive Leadership Coach. PhD, CPCC, ACC. Zürich · Worldwide." />
+  <meta name="description" content="Jasmine Truong — Executive Leadership Coach. PhD, CPCC, ACC. Zürich · Weltweit." />
   <title>Jasmine Truong — Executive Leadership Coach</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="canonical" href="https://jtruong.com/" />
-  <link rel="alternate" hreflang="en" href="https://jtruong.com/" />
+  <link rel="canonical" href="https://jtruong.com/de/" />
   <link rel="alternate" hreflang="de" href="https://jtruong.com/de/" />
+  <link rel="alternate" hreflang="en" href="https://jtruong.com/" />
   <link rel="alternate" hreflang="x-default" href="https://jtruong.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -520,6 +519,13 @@ function initials(name: string) {
 
     .mobile-cta { display: none; }
 
+    /* ── LANGUAGE SWITCHER ─────────────────────────────────── */
+    .lang-switch { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; letter-spacing: .08em; }
+    .lang-switch .lang { color: rgba(255,255,255,.45); text-decoration: none; transition: color .2s; }
+    .lang-switch .lang.active { color: var(--paper); }
+    .lang-switch .lang:hover { color: var(--paper); }
+    .lang-switch .lang-sep { color: rgba(255,255,255,.25); }
+
     /* ── RESPONSIVE ────────────────────────────────────────────
        Tablet  ≤ 1024px
        Mobile  ≤  680px
@@ -652,13 +658,6 @@ function initials(name: string) {
       .pull blockquote { font-size: 32px; }
     }
 
-    /* ── LANGUAGE SWITCHER ─────────────────────────────────── */
-    .lang-switch { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; letter-spacing: .08em; }
-    .lang-switch .lang { color: rgba(255,255,255,.45); text-decoration: none; transition: color .2s; }
-    .lang-switch .lang.active { color: var(--paper); }
-    .lang-switch .lang:hover { color: var(--paper); }
-    .lang-switch .lang-sep { color: rgba(255,255,255,.25); }
-
     /* ── LANDSCAPE MOBILE ──────────────────────────────────── */
     @media (orientation: landscape) and (max-width: 1023px) {
       /* Hero: shorter, name smaller, tighter stack */
@@ -725,21 +724,21 @@ function initials(name: string) {
   <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner">
-      <a href="/" class="nav-brand">Jasmine Truong</a>
+      <a href="/de/" class="nav-brand">Jasmine Truong</a>
       <div class="nav-links">
-        <a href="#the-how">How I work</a>
-        <a href="#services">Services</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#aboutme">Who I am</a>
+        <a href="#the-how">Meine Arbeitsweise</a>
+        <a href="#services">Angebote</a>
+        <a href="#testimonials">Stimmen</a>
+        <a href="#aboutme">Über mich</a>
       </div>
       <div style="display:flex; align-items:center; gap:20px; justify-self:end;">
         <a href={hero.cta_href} class="nav-cta">
-          <span class="pill">{hero.cta_label}</span>
+          <span class="pill">{hero.cta_label_de}</span>
         </a>
         <div class="lang-switch">
-          <span class="lang active">EN</span>
+          <a href="/" class="lang">EN</a>
           <span class="lang-sep">|</span>
-          <a href="/de/" class="lang">DE</a>
+          <span class="lang active">DE</span>
         </div>
       </div>
     </div>
@@ -747,7 +746,7 @@ function initials(name: string) {
 
   <!-- Mobile floating CTA (hidden on desktop via CSS) -->
   <a href="#contact" class="mobile-cta" style="display:none;">
-    <span class="pill">Book a free call →</span>
+    <span class="pill">{hero.cta_label_de}</span>
   </a>
 
   <!-- HERO -->
@@ -760,24 +759,24 @@ function initials(name: string) {
     <nav class="hero-nav">
       <div></div>
       <ul>
-        <li><a href="#the-how">How I work</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#aboutme">Who I am</a></li>
+        <li><a href="#the-how">Meine Arbeitsweise</a></li>
+        <li><a href="#services">Angebote</a></li>
+        <li><a href="#testimonials">Stimmen</a></li>
+        <li><a href="#aboutme">Über mich</a></li>
       </ul>
       <div style="display:flex; align-items:center; gap:16px; justify-self:end;">
-        <a class="cta" href={hero.cta_href}>{hero.cta_label}</a>
+        <a class="cta" href={hero.cta_href}>{hero.cta_label_de}</a>
         <div class="lang-switch">
-          <span class="lang active">EN</span>
+          <a href="/" class="lang">EN</a>
           <span class="lang-sep">|</span>
-          <a href="/de/" class="lang">DE</a>
+          <span class="lang active">DE</span>
         </div>
       </div>
     </nav>
 
     <div class="hero-stack">
       <h1 class="hero-name">Jasmine Truong</h1>
-      <p class="hero-tagline" set:html={boldMd(hero.tagline)}></p>
+      <p class="hero-tagline" set:html={boldMd(hero.tagline_de)}></p>
     </div>
   </section>
 
@@ -789,19 +788,19 @@ function initials(name: string) {
       <!-- The How -->
       <div class="what-block">
         <div class="left">
-          <div class="label">{theHow.label}</div>
-          <p set:html={boldMd(theHow.block1)}></p>
+          <div class="label">{theHow.label_de}</div>
+          <p set:html={boldMd(theHow.block1_de)}></p>
         </div>
         <div class="right">
-          <h2 set:html={boldMd(theHow.block2)}></h2>
-          <p set:html={boldMd(theHow.block3)}></p>
+          <h2 set:html={boldMd(theHow.block2_de)}></h2>
+          <p set:html={boldMd(theHow.block3_de)}></p>
         </div>
       </div>
 
       <!-- Rotating Questions -->
       <div class="questions-merged" id="questions">
         <div class="q-head">
-          <h3 set:html={boldMd(questionsSection.heading)}></h3>
+          <h3 set:html={boldMd(questionsSection.heading_de)}></h3>
           <div class="pager">
             <span class="count" id="q-count">01 / 04</span>
             <div class="progress"><span id="q-bar" style="transform: scaleX(0.25)"></span></div>
@@ -810,7 +809,7 @@ function initials(name: string) {
 
         <div class="q-stage q-fade-in" id="q-stage">
           <div class="q-bullet"></div>
-          <p class="q-text" id="q-text">{questionsSection.questions[0]}</p>
+          <p class="q-text" id="q-text">{questionsSection.questions_de[0]}</p>
         </div>
 
       </div>
@@ -824,8 +823,8 @@ function initials(name: string) {
       <div class="services-head">
         <div class="ix">04</div>
         <div>
-          <h2>{servicesSection.heading_plain} <strong>{servicesSection.heading_bold}</strong></h2>
-          <p class="lead">{servicesSection.lead}</p>
+          <h2>{servicesSection.heading_plain_de} <strong>{servicesSection.heading_bold_de}</strong></h2>
+          <p class="lead">{servicesSection.lead_de}</p>
         </div>
       </div>
 
@@ -833,11 +832,11 @@ function initials(name: string) {
         <div class="service">
           <div class="sno">/{String(i + 1).padStart(2, '0')}</div>
           <div>
-            <div class="stitle">{s.data.title}</div>
-            <div class="smeta">{s.data.tagline}</div>
+            <div class="stitle">{s.data.title_de ?? s.data.title}</div>
+            <div class="smeta">{s.data.tagline_de ?? s.data.tagline}</div>
           </div>
           <div>
-            <p set:html={boldMd(s.data.description)}></p>
+            <p set:html={boldMd(s.data.description_de ?? s.data.description)}></p>
             {s.data.details && s.data.details.length > 0 && (
               <ul>
                 {s.data.details.map((item: string) => (
@@ -851,11 +850,11 @@ function initials(name: string) {
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
+  <!-- TESTIMONIALS (same in English — not translated) -->
   <section class="testimonials" id="testimonials">
     <div class="container">
       <div class="testimonials-head">
-        <h2 set:html={boldMd(testimonialsSection.heading)}></h2>
+        <h2 set:html={boldMd(testimonialsSection.heading_de)}></h2>
       </div>
       <div class="testi-grid">
         {testimonials.map((t: any) => (
@@ -890,13 +889,13 @@ function initials(name: string) {
           <img src="/images/jasmine-looking-up.jpg" alt="Jasmine Truong" />
         </div>
         <div>
-          <h2>{aboutme_section.heading}</h2>
-          <div set:html={bioParagraphs(aboutme_section.bio)}></div>
+          <h2>{aboutme_section.heading_de}</h2>
+          <div set:html={bioParagraphs(aboutme_section.bio_de)}></div>
         </div>
       </div>
       <div class="accreds">
         <div class="accreds-head">
-          <h3>{accredsSectionData.heading}</h3>
+          <h3>{accredsSectionData.heading_de}</h3>
         </div>
         <div class="accreds-row">
           {accreditations.map((a: any) => (
@@ -920,59 +919,59 @@ function initials(name: string) {
   <section class="contact" id="contact" style="padding:140px 0 0;">
     <div class="container">
       <div class="head">
-        <h2>{contact_section.heading_plain} <strong>{contact_section.heading_bold}</strong></h2>
+        <h2>{contact_section.heading_plain_de} <strong>{contact_section.heading_bold_de}</strong></h2>
       </div>
       <div class="contact-grid">
         <div class="contact-left">
-          <p set:html={boldMd(contact_section.intro)}></p>
+          <p set:html={boldMd(contact_section.intro_de)}></p>
           <div class="contact-creds">
             <div>
-              <div class="lbl">{contact_section.detail_location_label}</div>
+              <div class="lbl">{contact_section.detail_location_label_de}</div>
               <div class="val">{contact_section.detail_location_value}</div>
             </div>
             <div>
-              <div class="lbl">{contact_section.detail_availability_label}</div>
-              <div class="val">{contact_section.detail_availability_value}</div>
+              <div class="lbl">{contact_section.detail_availability_label_de}</div>
+              <div class="val">{contact_section.detail_availability_value_de}</div>
             </div>
             <div>
-              <div class="lbl">{contact_section.detail_format_label}</div>
-              <div class="val">{contact_section.detail_format_value}</div>
+              <div class="lbl">{contact_section.detail_format_label_de}</div>
+              <div class="val">{contact_section.detail_format_value_de}</div>
             </div>
             <div>
-              <div class="lbl">{contact_section.detail_languages_label}</div>
+              <div class="lbl">{contact_section.detail_languages_label_de}</div>
               <div class="val">{contact_section.detail_languages_value}</div>
             </div>
           </div>
         </div>
         <div>
           <div id="form-wrap">
-            <form class="form" id="contact-form" name="contact" method="POST" data-netlify="true">
-              <input type="hidden" name="form-name" value="contact" />
+            <form class="form" id="contact-form" name="contact-de" method="POST" data-netlify="true">
+              <input type="hidden" name="form-name" value="contact-de" />
               <div class="row">
                 <div class="field">
                   <label for="name">Name</label>
-                  <input id="name" name="name" type="text" required placeholder="Your name" />
+                  <input id="name" name="name" type="text" required placeholder="Dein Name" />
                 </div>
                 <div class="field">
-                  <label for="email">Email</label>
-                  <input id="email" name="email" type="email" required placeholder="you@example.com" />
+                  <label for="email">E-Mail</label>
+                  <input id="email" name="email" type="email" required placeholder="du@beispiel.com" />
                 </div>
               </div>
               <div class="row">
                 <div class="field">
-                  <label for="role">Role</label>
+                  <label for="role">Rolle</label>
                   <input id="role" name="role" type="text" placeholder="CEO, COO, VP…" />
                 </div>
                 <div class="field">
                   <label for="org">Organisation</label>
-                  <input id="org" name="organization" type="text" placeholder="Company name" />
+                  <input id="org" name="organization" type="text" placeholder="Unternehmen" />
                 </div>
               </div>
               <div class="field">
-                <label for="message">What brings you here?</label>
-                <textarea id="message" name="message" required placeholder="A sentence or two is enough."></textarea>
+                <label for="message">Was bringt dich hierher?</label>
+                <textarea id="message" name="message" required placeholder="Ein oder zwei Sätze genügen."></textarea>
               </div>
-              <button type="submit" class="submit">Start the conversation →</button>
+              <button type="submit" class="submit">Gespräch beginnen →</button>
             </form>
           </div>
         </div>
@@ -986,16 +985,16 @@ function initials(name: string) {
       <div class="big">{footerData.wordmark}</div>
     </div>
     <div class="foot-meta">
-      <span>{footerData.copyright}</span>
+      <span>{footerData.copyright_de}</span>
       <span style="display:flex; gap:24px; align-items:center;">
-        <a href="/privacy" style="color:inherit; text-decoration:none; opacity:.7;">Privacy Policy</a>
-        <span>{footerData.tagline}</span>
+        <a href="/privacy" style="color:inherit; text-decoration:none; opacity:.7;">Datenschutz</a>
+        <span>{footerData.tagline_de}</span>
       </span>
     </div>
   </footer>
 
   <!-- JS: rotating questions + form -->
-  <script define:vars={{ questionsData: questionsSection.questions }}>
+  <script define:vars={{ questionsData: questionsSection.questions_de }}>
     // ── Sticky nav — show after hero ───────────────────────
     const stickyNav = document.querySelector('.nav');
     const hero = document.querySelector('.hero');
@@ -1055,8 +1054,8 @@ function initials(name: string) {
         } catch (_) {}
         wrap.innerHTML = `
           <div class="submitted-msg">
-            <div class="recv">Received</div>
-            <div class="thanks">Thank you.<br>I'll reply within two business days.</div>
+            <div class="recv">Erhalten</div>
+            <div class="thanks">Danke.<br>Ich melde mich innerhalb von zwei Werktagen.</div>
           </div>`;
       });
     }
