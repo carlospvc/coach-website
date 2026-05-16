@@ -103,8 +103,6 @@ collections:
         file: "src/content/site/aboutme.json"
         fields:
           - { label: "Who am I — Bio (separate paragraphs with a blank line)", name: "bio", widget: "markdown" }
-          - { label: "Who am I — Lesson label (small text above quote, e.g. Lesson carried forward)", name: "lesson_label", widget: "string" }
-          - { label: "Who am I — Lesson quote text", name: "lesson_text", widget: "markdown" }
 
   # ── 7. CONTACT ─────────────────────────────────────────────────────────────
   - name: "contact"

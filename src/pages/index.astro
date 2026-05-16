@@ -380,13 +380,7 @@ function initials(name: string) {
     .aboutme p { font-size: 17px; line-height: 1.65; margin: 0 0 18px; max-width: 520px; }
     .aboutme p :global(strong) { font-weight: 700; }
     .aboutme .mute { color: var(--mute-dark); }
-    .aboutme .lesson {
-      margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--rule);
-      display: flex; gap: 14px; align-items: baseline;
-    }
-    .aboutme .lesson .micro { color: var(--mute); flex-shrink: 0; }
-    .aboutme .lesson p { font-size: 18px; max-width: none; font-weight: 500; margin: 0; }
-    /* ── ACCREDITATIONS ───────────────────────────────────── */
+/* ── ACCREDITATIONS ───────────────────────────────────── */
     .accreds {
       margin-top: 80px;
       padding-top: 56px;
@@ -626,10 +620,8 @@ function initials(name: string) {
       }
       .aboutme h2 { font-size: clamp(56px, 14vw, 88px); margin: 20px 0 24px; }
       .aboutme p { font-size: 16px; }
-      .aboutme .lesson { margin-top: 24px; }
-      .aboutme .lesson p { font-size: 16px; }
 
-      /* Accreditations: 2 per row on mobile */
+/* Accreditations: 2 per row on mobile */
       .accred { flex: 0 0 50%; padding: 12px 8px; }
       .accred:nth-child(5n+1), .accred:nth-child(3n+1) { border-left: 1px solid var(--rule); }
       .accred:nth-child(odd) { border-left: 0; }
@@ -813,10 +805,6 @@ function initials(name: string) {
         <div>
           <h2>Who I am.</h2>
           <div set:html={bioParagraphs(aboutme_section.bio)}></div>
-          <div class="lesson">
-            <span class="micro">{aboutme_section.lesson_label}</span>
-            <p set:html={boldMd(aboutme_section.lesson_text)}></p>
-          </div>
         </div>
       </div>
       <div class="accreds">
