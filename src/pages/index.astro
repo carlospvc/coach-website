@@ -198,7 +198,7 @@ function initials(name: string) {
     .hero-name {
       font-weight: 800; font-size: 128px;
       letter-spacing: -.05em; line-height: .9;
-      color: #fff; opacity: .68;
+      color: var(--paper); mix-blend-mode: difference;
       margin: 0 0 26px;
     }
     .hero-tagline {
@@ -570,7 +570,7 @@ function initials(name: string) {
 
       /* The How */
       .what-block { grid-template-columns: 1fr; gap: 28px; }
-      .what-block .left { display: none; } /* hide empty left col on mobile */
+      .what-block .left p:empty { display: none; } /* block1 may be empty — hide blank p */
       .what-block .right h2 { font-size: clamp(28px, 7vw, 44px); }
 
       /* Questions */
