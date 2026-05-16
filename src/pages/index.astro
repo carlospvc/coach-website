@@ -29,6 +29,19 @@ function boldMd(text: string) {
     .trim();
 }
 
+function bioParagraphs(text: string) {
+  return (text ?? '')
+    .split(/\n\n+/)
+    .filter((p: string) => p.trim())
+    .map((p: string) => {
+      const inner = p.trim()
+        .replace(/\*\*(.*?)\*\*/gs, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/gs, '<em>$1</em>');
+      return `<p class="mute">${inner}</p>`;
+    })
+    .join('');
+}
+
 function initials(name: string) {
   return name.split(' ').map((w: string) => w[0]).join('');
 }
@@ -635,11 +648,7 @@ function initials(name: string) {
         <div>
           <span class="micro">{aboutme_section.credentials_label}</span>
           <h2>Who am I.</h2>
-          <p class="mute" set:html={boldMd(aboutme_section.bio_para1)}></p>
-          <p class="mute" set:html={boldMd(aboutme_section.bio_para2)}></p>
-          <p class="mute" set:html={boldMd(aboutme_section.bio_para3)}></p>
-          {aboutme_section.bio_para4 && <p class="mute" set:html={boldMd(aboutme_section.bio_para4)}></p>}
-          {aboutme_section.bio_para5 && <p class="mute" set:html={boldMd(aboutme_section.bio_para5)}></p>}
+          <div set:html={bioParagraphs(aboutme_section.bio)}></div>
           <div class="lesson">
             <span class="micro">{aboutme_section.lesson_label}</span>
             <p set:html={boldMd(aboutme_section.lesson_text)}></p>

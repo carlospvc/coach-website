@@ -103,11 +103,7 @@ collections:
         file: "src/content/site/aboutme.json"
         fields:
           - { label: "Who am I — Credentials line (e.g. PhD · CPCC · ACC)", name: "credentials_label", widget: "string" }
-          - { label: "Who am I — Bio paragraph 1", name: "bio_para1", widget: "markdown" }
-          - { label: "Who am I — Bio paragraph 2", name: "bio_para2", widget: "markdown" }
-          - { label: "Who am I — Bio paragraph 3", name: "bio_para3", widget: "markdown" }
-          - { label: "Who am I — Bio paragraph 4 (optional)", name: "bio_para4", widget: "markdown", required: false }
-          - { label: "Who am I — Bio paragraph 5 (optional)", name: "bio_para5", widget: "markdown", required: false }
+          - { label: "Who am I — Bio (separate paragraphs with a blank line)", name: "bio", widget: "markdown" }
           - { label: "Who am I — Lesson label (small text above quote, e.g. Lesson carried forward)", name: "lesson_label", widget: "string" }
           - { label: "Who am I — Lesson quote text", name: "lesson_text", widget: "markdown" }
           - { label: "Who am I — Credential row: Education label", name: "cred_education_label", widget: "string" }
