@@ -638,6 +638,8 @@ function initials(name: string) {
           <p class="mute" set:html={boldMd(aboutme_section.bio_para1)}></p>
           <p class="mute" set:html={boldMd(aboutme_section.bio_para2)}></p>
           <p class="mute" set:html={boldMd(aboutme_section.bio_para3)}></p>
+          {aboutme_section.bio_para4 && <p class="mute" set:html={boldMd(aboutme_section.bio_para4)}></p>}
+          {aboutme_section.bio_para5 && <p class="mute" set:html={boldMd(aboutme_section.bio_para5)}></p>}
           <div class="lesson">
             <span class="micro">{aboutme_section.lesson_label}</span>
             <p set:html={boldMd(aboutme_section.lesson_text)}></p>
