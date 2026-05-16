@@ -18,8 +18,14 @@ const testimonialsRaw = await getCollection('testimonials');
 const testimonials = testimonialsRaw
   .sort((a: any, b: any) => (a.data.order ?? 0) - (b.data.order ?? 0));
 
+// Converts markdown bold/italic to HTML. Also strips wrapping <p> tags
+// that some markdown editors add around single-line content.
 function boldMd(text: string) {
-  return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  return (text ?? '')
+    .replace(/\*\*(.*?)\*\*/gs, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/gs,   '<em>$1</em>')
+    .replace(/^<p>([\s\S]*?)<\/p>$/i, '$1')
+    .trim();
 }
 
 function initials(name: string) {
@@ -520,18 +526,18 @@ function initials(name: string) {
       <div class="what-block">
         <div class="left">
           <div class="label">{theHow.label}</div>
-          <p>{theHow.block1}</p>
+          <p set:html={boldMd(theHow.block1)}></p>
         </div>
         <div class="right">
-          <h2>{theHow.block2}</h2>
-          <p>{theHow.block3}</p>
+          <h2 set:html={boldMd(theHow.block2)}></h2>
+          <p set:html={boldMd(theHow.block3)}></p>
         </div>
       </div>
 
       <!-- Rotating Questions -->
       <div class="questions-merged" id="questions">
         <div class="q-head">
-          <h3>{questionsSection.heading}</h3>
+          <h3 set:html={boldMd(questionsSection.heading)}></h3>
           <div class="pager">
             <span class="count" id="q-count">01 / 04</span>
             <div class="progress"><span id="q-bar" style="transform: scaleX(0.25)"></span></div>
@@ -571,7 +577,7 @@ function initials(name: string) {
             <div class="smeta">{s.data.tagline}</div>
           </div>
           <div>
-            <p>{s.data.description}</p>
+            <p set:html={boldMd(s.data.description)}></p>
             {s.data.details && s.data.details.length > 0 && (
               <ul>
                 {s.data.details.map((item: string) => (
@@ -589,13 +595,13 @@ function initials(name: string) {
   <section class="testimonials" id="testimonials">
     <div class="container">
       <div class="testimonials-head">
-        <h2>{testimonialsSection.heading}</h2>
+        <h2 set:html={boldMd(testimonialsSection.heading)}></h2>
       </div>
       <div class="testi-grid">
         {testimonials.map((t: any) => (
           <div class="testi">
             <div class="qmark">"</div>
-            <blockquote>{t.data.quote}</blockquote>
+            <blockquote set:html={boldMd(t.data.quote)}></blockquote>
             <div class="author">
               <div class="avatar">{initials(t.data.name)}</div>
               <div class="name">
@@ -619,12 +625,12 @@ function initials(name: string) {
         <div>
           <span class="micro">{aboutme_section.credentials_label}</span>
           <h2>Who am I.</h2>
-          <p class="mute">{aboutme_section.bio_para1}</p>
-          <p class="mute">{aboutme_section.bio_para2}</p>
-          <p class="mute">{aboutme_section.bio_para3}</p>
+          <p class="mute" set:html={boldMd(aboutme_section.bio_para1)}></p>
+          <p class="mute" set:html={boldMd(aboutme_section.bio_para2)}></p>
+          <p class="mute" set:html={boldMd(aboutme_section.bio_para3)}></p>
           <div class="lesson">
             <span class="micro">{aboutme_section.lesson_label}</span>
-            <p>{aboutme_section.lesson_text}</p>
+            <p set:html={boldMd(aboutme_section.lesson_text)}></p>
           </div>
           <div class="creds-row">
             <div>
@@ -653,7 +659,7 @@ function initials(name: string) {
       </div>
       <div class="contact-grid">
         <div class="contact-left">
-          <p>{contact_section.intro}</p>
+          <p set:html={boldMd(contact_section.intro)}></p>
           <div class="contact-creds">
             <div>
               <div class="lbl">{contact_section.detail_location_label}</div>
