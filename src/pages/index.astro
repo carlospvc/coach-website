@@ -402,16 +402,16 @@ function initials(name: string) {
       color: var(--mute-dark);
     }
     .accreds-row {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 0; align-items: stretch;
+      display: flex; flex-wrap: wrap; justify-content: center;
     }
     .accred {
-      padding: 8px 24px 4px; border-left: 1px solid var(--rule);
+      flex: 0 0 20%; padding: 8px 24px 4px;
+      border-left: 1px solid var(--rule);
       display: flex; flex-direction: column; align-items: center;
       text-align: center; gap: 18px;
     }
-    .accred:first-child { border-left: 0; }
+    /* Remove left border for first item of each row of 5 */
+    .accred:nth-child(5n+1) { border-left: 0; }
     .accred .mark {
       width: 84px; height: 84px; border: 1px solid var(--ink);
       border-radius: 50%; display: flex; align-items: center;
@@ -545,9 +545,10 @@ function initials(name: string) {
       /* Who am I */
       .aboutme-grid { grid-template-columns: 1fr 1.2fr; gap: 48px; }
 
-      /* Accreditations: 3+2 on tablet */
-      .accreds-row { grid-template-columns: repeat(3, 1fr); }
-      .accred:nth-child(4) { border-left: 0; }
+      /* Accreditations: 3 per row on tablet */
+      .accred { flex: 0 0 33.333%; }
+      .accred:nth-child(5n+1) { border-left: 1px solid var(--rule); }
+      .accred:nth-child(3n+1) { border-left: 0; }
 
       /* Contact */
       .contact-grid { gap: 56px; }
@@ -628,9 +629,10 @@ function initials(name: string) {
       .aboutme .lesson { margin-top: 24px; }
       .aboutme .lesson p { font-size: 16px; }
 
-      /* Accreditations: 2-col */
-      .accreds-row { grid-template-columns: repeat(2, 1fr); gap: 28px 0; }
-      .accred { border-left: 0; padding: 12px 8px; }
+      /* Accreditations: 2 per row on mobile */
+      .accred { flex: 0 0 50%; padding: 12px 8px; }
+      .accred:nth-child(5n+1), .accred:nth-child(3n+1) { border-left: 1px solid var(--rule); }
+      .accred:nth-child(odd) { border-left: 0; }
       .accred:nth-child(even) { border-left: 1px solid var(--rule); }
       .accred .mark { width: 72px; height: 72px; }
 
