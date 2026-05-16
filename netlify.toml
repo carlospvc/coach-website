@@ -15,18 +15,10 @@
   environment = { NODE_ENV = "production" }
 
 # ── Security headers ────────────────────────────────────────────────────────
+# NOTE: In Netlify, when multiple rules match a path, the LAST rule wins.
+# So /* must come FIRST, then /admin/* overrides it for the admin panel.
 
-# Admin panel — permissive CSP (Decap CMS loads from unpkg.com + Netlify Identity)
-# Safe to open up: /admin is protected by Netlify Identity authentication
-[[headers]]
-  for = "/admin/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
-    Content-Security-Policy = "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:"
-
-# Public site — strict CSP
+# Public site — strict CSP (applies to everything)
 [[headers]]
   for = "/*"
   [headers.values]
@@ -36,3 +28,13 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://identity.netlify.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://media.licdn.com https://geographie.uibk.ac.at; font-src 'self'; connect-src 'self' https://identity.netlify.com https://api.netlify.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+
+# Admin panel — permissive CSP (overrides /* for /admin paths)
+# Safe: /admin is protected by Netlify Identity authentication
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    Content-Security-Policy = "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:"
