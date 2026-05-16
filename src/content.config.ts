@@ -24,14 +24,4 @@ const testimonials = defineCollection({
   }),
 });
 
-const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
-  schema: z.object({
-    title: z.string(),
-    pubDate: z.coerce.date(),
-    description: z.string(),
-    draft: z.boolean().default(false),
-  }),
-});
-
-export const collections = { services, testimonials, blog };
+export const collections = { services, testimonials };
