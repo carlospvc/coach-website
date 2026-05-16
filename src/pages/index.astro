@@ -16,6 +16,7 @@ const services = servicesRaw
 
 const testimonialsRaw = await getCollection('testimonials');
 const testimonials = testimonialsRaw
+  .filter((t: any) => t.data.published === true)
   .sort((a: any, b: any) => (a.data.order ?? 0) - (b.data.order ?? 0));
 
 // Converts markdown bold/italic to HTML. Also strips wrapping <p> tags
@@ -344,6 +345,12 @@ function initials(name: string) {
       display: flex; align-items: center; justify-content: center;
       font-weight: 700; font-size: 13px; letter-spacing: .02em; flex-shrink: 0;
     }
+    .testi .avatar-photo {
+      width: 40px; height: 40px; border-radius: 50%;
+      object-fit: cover; object-position: center top;
+      filter: grayscale(1) contrast(1.1);
+      flex-shrink: 0;
+    }
     .testi .author .name strong { display: block; font-size: 14px; font-weight: 600; }
     .testi .author .name span { font-size: 13px; color: var(--mute-dark); }
 
@@ -603,7 +610,10 @@ function initials(name: string) {
             <div class="qmark">"</div>
             <blockquote set:html={boldMd(t.data.quote)}></blockquote>
             <div class="author">
-              <div class="avatar">{initials(t.data.name)}</div>
+              {t.data.photo
+                ? <img class="avatar avatar-photo" src={t.data.photo} alt={t.data.name} />
+                : <div class="avatar">{initials(t.data.name)}</div>
+              }
               <div class="name">
                 <strong>{t.data.name}</strong>
                 <span>{t.data.position}, {t.data.company}</span>
