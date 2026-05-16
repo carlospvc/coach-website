@@ -102,16 +102,9 @@ collections:
         label: "Who am I"
         file: "src/content/site/aboutme.json"
         fields:
-          - { label: "Who am I — Credentials line (e.g. PhD · CPCC · ACC)", name: "credentials_label", widget: "string" }
           - { label: "Who am I — Bio (separate paragraphs with a blank line)", name: "bio", widget: "markdown" }
           - { label: "Who am I — Lesson label (small text above quote, e.g. Lesson carried forward)", name: "lesson_label", widget: "string" }
           - { label: "Who am I — Lesson quote text", name: "lesson_text", widget: "markdown" }
-          - { label: "Who am I — Credential row: Education label", name: "cred_education_label", widget: "string" }
-          - { label: "Who am I — Credential row: Education value (e.g. PhD, Org. Psychology)", name: "cred_education_value", widget: "string" }
-          - { label: "Who am I — Credential row: Credentials label", name: "cred_credentials_label", widget: "string" }
-          - { label: "Who am I — Credential row: Credentials value (e.g. CPCC · ACC)", name: "cred_credentials_value", widget: "string" }
-          - { label: "Who am I — Credential row: Based label", name: "cred_based_label", widget: "string" }
-          - { label: "Who am I — Credential row: Based value (e.g. Zürich · Worldwide)", name: "cred_based_value", widget: "string" }
 
   # ── 7. CONTACT ─────────────────────────────────────────────────────────────
   - name: "contact"
@@ -145,7 +138,32 @@ collections:
           - { label: "Footer — Copyright line", name: "copyright", widget: "string" }
           - { label: "Footer — Tagline (right side, e.g. Zürich · Worldwide · By application)", name: "tagline", widget: "string" }
 
-  # ── 9. PRIVACY POLICY ──────────────────────────────────────────────────────
+  # ── 9. ACCREDITATIONS ─────────────────────────────────────────────────────
+  - name: "accreditations-heading"
+    label: "Accreditations — Section heading"
+    files:
+      - name: "accreditations-section"
+        label: "Accreditations — Section heading"
+        file: "src/content/site/accreditations-section.json"
+        fields:
+          - { label: "Accreditations — Section heading (e.g. Trained & Certified)", name: "heading", widget: "string" }
+
+  - name: "accreditations"
+    label: "Accreditations — Certifications"
+    label_singular: "Accreditation"
+    folder: "src/content/accreditations"
+    create: true
+    extension: "json"
+    format: "json"
+    identifier_field: "name"
+    fields:
+      - { label: "Accreditation — Full name (e.g. Professional Certified Coach)", name: "name", widget: "string" }
+      - { label: "Accreditation — Initials shown in circle when no image (e.g. PCC)", name: "initials", widget: "string" }
+      - { label: "Accreditation — Issuing organisation", name: "issuer", widget: "string" }
+      - { label: "Accreditation — Logo / Badge (optional — upload a file or paste a URL. Leave empty to show initials)", name: "photo", widget: "image", required: false }
+      - { label: "Accreditation — Display order (1 = first)", name: "order", widget: "number", default: 1 }
+
+  # ── 10. PRIVACY POLICY ─────────────────────────────────────────────────────
   - name: "privacy"
     label: "Privacy Policy"
     files:

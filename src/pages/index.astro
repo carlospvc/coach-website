@@ -9,6 +9,9 @@ import testimonialsSection from '../content/site/testimonials-section.json';
 import aboutme_section from '../content/site/aboutme.json';
 import contact_section from '../content/site/contact.json';
 import footerData      from '../content/site/footer.json';
+import accredsSectionData from '../content/site/accreditations-section.json';
+
+const accreditations = (await getCollection('accreditations')).sort((a: any, b: any) => a.data.order - b.data.order);
 
 const servicesRaw = await getCollection('services');
 const services = servicesRaw
@@ -389,15 +392,71 @@ function initials(name: string) {
     }
     .aboutme .lesson .micro { color: var(--mute); flex-shrink: 0; }
     .aboutme .lesson p { font-size: 18px; max-width: none; font-weight: 500; margin: 0; }
-    .creds-row {
-      display: flex; gap: 28px; margin-top: 32px;
-      padding-top: 24px; border-top: 1px solid var(--rule);
+    /* ── ACCREDITATIONS ───────────────────────────────────── */
+    .accreds {
+      margin-top: 80px;
+      padding-top: 56px;
+      border-top: 1px solid var(--rule);
     }
-    .creds-row div .lbl {
-      font-size: 11px; color: var(--mute); letter-spacing: .12em;
-      text-transform: uppercase; margin-bottom: 6px; font-weight: 500;
+    .accreds-head {
+      display: flex; align-items: baseline; justify-content: center;
+      margin: 0 0 48px; gap: 24px;
     }
-    .creds-row div .val { font-size: 15px; font-weight: 700; }
+    .accreds-head h3 {
+      font-weight: 600; font-size: 13px; line-height: 1;
+      letter-spacing: .22em; margin: 0; text-transform: uppercase;
+      color: var(--mute-dark);
+    }
+    .accreds-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0; align-items: stretch;
+    }
+    .accred {
+      padding: 8px 24px 4px; border-left: 1px solid var(--rule);
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 18px;
+    }
+    .accred:first-child { border-left: 0; }
+    .accred .mark {
+      width: 84px; height: 84px; border: 1px solid var(--ink);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-weight: 800; letter-spacing: -.02em;
+      color: var(--ink); background: var(--paper);
+      transition: background .2s, color .2s; flex-shrink: 0;
+      font-size: 19px;
+    }
+    .accred .mark.size-l { font-size: 22px; }
+    .accred .mark.size-m { font-size: 19px; }
+    .accred .mark.size-s { font-size: 15px; letter-spacing: -.01em; }
+    .accred .mark-photo {
+      width: 84px; height: 84px; border-radius: 50%;
+      object-fit: contain; border: 1px solid var(--rule);
+      background: var(--paper); flex-shrink: 0;
+      transition: opacity .2s;
+    }
+    .accred:hover .mark { background: var(--ink); color: var(--paper); }
+    .accred:hover .mark-photo { opacity: .75; }
+    .accred .body {
+      display: flex; flex-direction: column; gap: 8px;
+      align-items: center; min-height: 84px;
+    }
+    .accred .aname {
+      font-size: 13px; font-weight: 700; line-height: 1.3;
+      letter-spacing: -.005em; text-transform: uppercase;
+      color: var(--ink); max-width: 180px;
+    }
+    .accred .issuer {
+      font-size: 10.5px; color: var(--mute-dark); letter-spacing: .14em;
+      text-transform: uppercase; font-weight: 500; line-height: 1.4; max-width: 180px;
+    }
+    @media (max-width: 1000px) {
+      .accreds { margin-top: 56px; padding-top: 40px; }
+      .accreds-head { margin-bottom: 32px; }
+      .accreds-row { grid-template-columns: repeat(2, 1fr); gap: 32px 0; }
+      .accred { border-left: 0; padding: 16px 12px; }
+      .accred:nth-child(even) { border-left: 1px solid var(--rule); }
+    }
 
     /* ── CONTACT ───────────────────────────────────────────── */
     .contact { background: var(--ink); color: var(--paper); padding: 140px 0 0; }
@@ -646,27 +705,31 @@ function initials(name: string) {
           <img src="/images/jasmine-looking-up.jpg" alt="Jasmine Truong" />
         </div>
         <div>
-          <span class="micro">{aboutme_section.credentials_label}</span>
           <h2>Who am I.</h2>
           <div set:html={bioParagraphs(aboutme_section.bio)}></div>
           <div class="lesson">
             <span class="micro">{aboutme_section.lesson_label}</span>
             <p set:html={boldMd(aboutme_section.lesson_text)}></p>
           </div>
-          <div class="creds-row">
-            <div>
-              <div class="lbl">{aboutme_section.cred_education_label}</div>
-              <div class="val">{aboutme_section.cred_education_value}</div>
+        </div>
+      </div>
+      <div class="accreds">
+        <div class="accreds-head">
+          <h3>{accredsSectionData.heading}</h3>
+        </div>
+        <div class="accreds-row">
+          {accreditations.map((a: any) => (
+            <div class="accred">
+              {a.data.photo
+                ? <img class="mark-photo" src={a.data.photo} alt={a.data.name} />
+                : <div class={`mark ${a.data.initials.length <= 3 ? 'size-l' : a.data.initials.length === 4 ? 'size-m' : 'size-s'}`}>{a.data.initials}</div>
+              }
+              <div class="body">
+                <div class="aname">{a.data.name}</div>
+                <div class="issuer">{a.data.issuer}</div>
+              </div>
             </div>
-            <div>
-              <div class="lbl">{aboutme_section.cred_credentials_label}</div>
-              <div class="val">{aboutme_section.cred_credentials_value}</div>
-            </div>
-            <div>
-              <div class="lbl">{aboutme_section.cred_based_label}</div>
-              <div class="val">{aboutme_section.cred_based_value}</div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

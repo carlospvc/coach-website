@@ -26,4 +26,15 @@ const testimonials = defineCollection({
   }),
 });
 
-export const collections = { services, testimonials };
+const accreditations = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/accreditations' }),
+  schema: z.object({
+    name: z.string(),
+    initials: z.string(),
+    issuer: z.string(),
+    photo: z.string().optional(),
+    order: z.number().default(1),
+  }),
+});
+
+export const collections = { services, testimonials, accreditations };
