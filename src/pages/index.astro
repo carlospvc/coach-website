@@ -1,6 +1,15 @@
 ---
 // Jasmine Truong — Executive Leadership Coach Homepage
 // Design: v5-behance (Kasia Siwosz / cosmopolitan B&W aesthetic)
+import { getCollection } from 'astro:content';
+import siteData from '../content/site/main.json';
+
+const theHow = siteData.the_how;
+const questionsSection = siteData.questions_section;
+
+const servicesRaw = await getCollection('services');
+const services = servicesRaw
+  .sort((a: any, b: any) => (a.data.order ?? 0) - (b.data.order ?? 0));
 ---
 <!doctype html>
 <html lang="en">
@@ -210,7 +219,7 @@
       transition: transform .6s cubic-bezier(.4,0,.2,1);
       transform-origin: left;
     }
-    .q-stage { position: relative; min-height: 360px; padding-left: 56px; max-width: 1100px; }
+    .q-stage { position: relative; padding-left: 56px; max-width: 1100px; padding-bottom: 48px; }
     .q-bullet {
       position: absolute; left: 0; top: 32px;
       width: 14px; height: 14px; border-radius: 50%; background: var(--ink);
@@ -220,12 +229,8 @@
       line-height: .98; letter-spacing: -.035em; text-transform: uppercase;
       margin: 0 0 32px; transition: opacity .45s, transform .45s;
     }
-    .q-sub {
-      font-size: 17px; color: var(--mute-dark); max-width: 540px;
-      line-height: 1.55; transition: opacity .45s .1s, transform .45s .1s;
-    }
-    .q-fade-out .q-text, .q-fade-out .q-sub { opacity: 0; transform: translateY(16px); }
-    .q-fade-in .q-text, .q-fade-in .q-sub { opacity: 1; transform: translateY(0); }
+    .q-fade-out .q-text { opacity: 0; transform: translateY(16px); }
+    .q-fade-in .q-text { opacity: 1; transform: translateY(0); }
     .q-cta { margin-top: 64px; padding-left: 56px; display: flex; align-items: center; gap: 20px; }
     .q-cta .btn {
       display: inline-flex; align-items: center; gap: 10px;
@@ -448,9 +453,9 @@
     <div class="nav-inner">
       <span class="brand">JASMINE TRUONG</span>
       <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#questions">Is this for you?</a>
-        <a href="#services">Coaching</a>
+        <a href="#the-how">The How</a>
+        <a href="#questions">Is this right for you?</a>
+        <a href="#services">Services</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#aboutme">Who am I</a>
       </div>
@@ -461,7 +466,7 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero" id="about">
+  <section class="hero">
     <div class="hero-photo">
       <img src="/images/jasmine-serious.jpg" alt="Jasmine Truong" />
     </div>
@@ -470,9 +475,9 @@
     <nav class="hero-nav">
       <div class="brand">JASMINE<br>TRUONG</div>
       <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#questions">Is this for you?</a></li>
-        <li><a href="#services">Coaching</a></li>
+        <li><a href="#the-how">The How</a></li>
+        <li><a href="#questions">Is this right for you?</a></li>
+        <li><a href="#services">Services</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#aboutme">Who am I</a></li>
       </ul>
@@ -488,36 +493,35 @@
   </section>
 
 
-  <!-- WHAT I DO + QUESTIONS -->
-  <section class="what-questions" id="questions">
+  <!-- THE HOW + QUESTIONS -->
+  <section class="what-questions" id="the-how">
     <div class="container">
 
-      <!-- What I Do -->
+      <!-- The How -->
       <div class="what-block">
         <div class="left">
-          <div class="label">What I Do</div>
-          <p>I don't teach you how to win. You've mastered that already. <strong>What you need is a trusted partner to help you move beyond the version of success you've already outgrown.</strong></p>
+          <div class="label">{theHow.label}</div>
+          <p>{theHow.block1}</p>
         </div>
         <div class="right">
-          <h2>The work is <strong>introspective by necessity</strong>, and <strong>results-oriented by design</strong>. The two aren't in tension — they're the same arc, walked patiently.</h2>
-          <p>Before strategy, we get honest about what you actually want — and what you've been telling yourself you should want. From there, clarity inside changes what's possible outside: cleaner decisions, real conversations, a steadier presence at the top of your team.</p>
+          <h2>{theHow.block2}</h2>
+          <p>{theHow.block3}</p>
         </div>
       </div>
 
       <!-- Rotating Questions -->
-      <div class="questions-merged">
+      <div class="questions-merged" id="questions">
         <div class="q-head">
-          <h3>Is this right for you?</h3>
+          <h3>{questionsSection.heading}</h3>
           <div class="pager">
-            <span class="count" id="q-count">01 / 03</span>
-            <div class="progress"><span id="q-bar" style="transform: scaleX(0.333)"></span></div>
+            <span class="count" id="q-count">01 / 04</span>
+            <div class="progress"><span id="q-bar" style="transform: scaleX(0.25)"></span></div>
           </div>
         </div>
 
         <div class="q-stage q-fade-in" id="q-stage">
           <div class="q-bullet"></div>
-          <p class="q-text" id="q-text">Do you feel you have to wear a mask to lead?</p>
-          <p class="q-sub" id="q-sub">High-functioning. Trusted. Quietly exhausted by the version of you that's showing up to work.</p>
+          <p class="q-text" id="q-text">{questionsSection.questions[0]}</p>
         </div>
 
         <div class="q-cta">
@@ -533,66 +537,33 @@
   <section class="services" id="services">
     <div class="container">
       <div class="services-head">
-        <div class="ix">03</div>
+        <div class="ix">04</div>
         <div>
-          <h2>Three paths in. <strong>One foundation.</strong></h2>
+          <h2>Four paths in. <strong>One foundation.</strong></h2>
           <p class="lead">Each engagement is designed around what you're actually navigating — not a template, not a formula.</p>
         </div>
       </div>
 
-      <div class="service">
-        <div class="sno">/01</div>
-        <div>
-          <div class="stitle">1:1 Coaching</div>
-          <div class="smeta">6–12 months · Weekly · By application</div>
+      {services.map((s: any, i: number) => (
+        <div class="service">
+          <div class="sno">/{String(i + 1).padStart(2, '0')}</div>
+          <div>
+            <div class="stitle">{s.data.title}</div>
+            <div class="smeta">{s.data.tagline}</div>
+          </div>
+          <div>
+            <p>{s.data.description}</p>
+            {s.data.details && s.data.details.length > 0 && (
+              <ul>
+                {s.data.details.map((item: string) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div class="arrow">→</div>
         </div>
-        <div>
-          <p>A confidential thinking partnership for senior leaders. We meet weekly for six to twelve months — long enough for the inner work to translate into the way you actually lead.</p>
-          <ul>
-            <li>Weekly 90-min sessions</li>
-            <li>Async support between</li>
-            <li>Stakeholder interviews</li>
-            <li>Tailored frameworks</li>
-          </ul>
-        </div>
-        <div class="arrow">→</div>
-      </div>
-
-      <div class="service">
-        <div class="sno">/02</div>
-        <div>
-          <div class="stitle">Team Coaching</div>
-          <div class="smeta">Executive teams · 6–18 months</div>
-        </div>
-        <div>
-          <p>For teams whose individual talent hasn't yet become collective intelligence. We work in rhythm with your operating cadence, not on top of it.</p>
-          <ul>
-            <li>Team assessment</li>
-            <li>Quarterly offsites</li>
-            <li>Inter-meeting coaching</li>
-            <li>Conflict facilitation</li>
-          </ul>
-        </div>
-        <div class="arrow">→</div>
-      </div>
-
-      <div class="service">
-        <div class="sno">/03</div>
-        <div>
-          <div class="stitle">Leadership Workshops</div>
-          <div class="smeta">Half-day to two-day intensives</div>
-        </div>
-        <div>
-          <p>Research-grounded sessions for emerging and senior leaders, custom-built around the questions your organization is actually wrestling with.</p>
-          <ul>
-            <li>Custom curriculum</li>
-            <li>8–24 leader cohorts</li>
-            <li>Pre-work + follow-through</li>
-            <li>Virtual or in-person</li>
-          </ul>
-        </div>
-        <div class="arrow">→</div>
-      </div>
+      ))}
     </div>
   </section>
 
@@ -745,7 +716,8 @@
                   <option value="">Select…</option>
                   <option>1:1 Coaching</option>
                   <option>Team Coaching</option>
-                  <option>Leadership Workshops</option>
+                  <option>Leadership Program</option>
+                  <option>Workshops</option>
                   <option>Not sure yet</option>
                 </select>
               </div>
@@ -771,7 +743,7 @@
   </div>
 
   <!-- JS: rotating questions + form -->
-  <script>
+  <script define:vars={{ questionsData: questionsSection.questions }}>
     // ── Sticky nav — show after hero ───────────────────────
     const stickyNav = document.querySelector('.nav');
     const hero = document.querySelector('.hero');
@@ -781,28 +753,14 @@
     }
     window.addEventListener('scroll', onScroll, { passive: true });
 
-    // ── Rotating questions ──────────────────────────────────
-    const questions = [
-      {
-        q: 'Do you feel you have to wear a mask to lead?',
-        sub: 'High-functioning. Trusted. Quietly exhausted by the version of you that\'s showing up to work.'
-      },
-      {
-        q: 'Are you leading from your true self?',
-        sub: 'Or from a role you stepped into a long time ago and never quite stopped performing?'
-      },
-      {
-        q: 'What would change if you stopped performing?',
-        sub: 'For your team. Your decisions. The relationships you keep meaning to repair — and you.'
-      }
-    ];
+    // ── Rotating questions (injected from CMS data) ────────
+    const questions = questionsData;
 
     let qIdx = 0;
     let transitioning = false;
 
     const stage   = document.getElementById('q-stage');
     const qText   = document.getElementById('q-text');
-    const qSub    = document.getElementById('q-sub');
     const qCount  = document.getElementById('q-count');
     const qBar    = document.getElementById('q-bar');
 
@@ -818,8 +776,7 @@
       stage.classList.add('q-fade-out');
       setTimeout(() => {
         qIdx = (qIdx + 1) % questions.length;
-        qText.textContent = questions[qIdx].q;
-        qSub.textContent  = questions[qIdx].sub;
+        qText.textContent = questions[qIdx];
         updatePager(qIdx);
         stage.classList.remove('q-fade-out');
         stage.classList.add('q-fade-in');

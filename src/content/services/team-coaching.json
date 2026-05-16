@@ -1,7 +1,12 @@
 {
   "title": "Team Coaching",
-  "tagline": "Build trust. Unlock collective intelligence.",
-  "description": "A structured 6-month programme for leadership teams of 6–15 people. We work on psychological safety, decision-making quality, and shared accountability — so your team performs at the level the organisation needs.",
-  "icon": "group",
+  "tagline": "Meet the team behind the roles.",
+  "description": "Real change in a team doesn't start with better processes or clearer goals. It starts with a moment when people begin to actually see and listen to each other. In our work together, we improve not just how the team works, but unlock the potential of what they're able to create together intentionally.",
+  "details": [
+    "Lorem ipsum dolor sit",
+    "Consectetur adipiscing",
+    "Sed do eiusmod tempor",
+    "Ut labore et dolore"
+  ],
   "order": 2
 }

@@ -10,7 +10,7 @@ public_folder: "/images"
 
 collections:
 
-  # ── Site content (hero, about, contact) ────────────────────────────────────
+  # ── Site content ───────────────────────────────────────────────────────────
   - name: "site"
     label: "Site Content"
     files:
@@ -22,25 +22,45 @@ collections:
             name: "hero"
             widget: "object"
             fields:
-              - { label: "Headline",    name: "headline",    widget: "string" }
-              - { label: "Subheadline", name: "subheadline", widget: "string" }
-              - { label: "CTA Label",   name: "cta_label",   widget: "string" }
-              - { label: "CTA Link",    name: "cta_href",    widget: "string" }
-          - label: "About"
+              - { label: "Headline", name: "headline", widget: "string" }
+              - { label: "CTA Label", name: "cta_label", widget: "string" }
+              - { label: "CTA Link",  name: "cta_href",  widget: "string" }
+
+          - label: "The How"
+            name: "the_how"
+            widget: "object"
+            fields:
+              - { label: "Section label (heading)", name: "label",  widget: "string" }
+              - { label: "Text block 1 (left column)", name: "block1", widget: "text" }
+              - { label: "Text block 2 (right — bold quote)", name: "block2", widget: "text" }
+              - { label: "Text block 3 (right — body)", name: "block3", widget: "text" }
+
+          - label: "Questions section"
+            name: "questions_section"
+            widget: "object"
+            fields:
+              - { label: "Section heading", name: "heading", widget: "string" }
+              - label: "Questions"
+                name: "questions"
+                widget: "list"
+                field: { label: "Question", name: "question", widget: "string" }
+
+          - label: "About (Who am I)"
             name: "about"
             widget: "object"
             fields:
               - { label: "Heading", name: "heading", widget: "string" }
               - { label: "Bio",     name: "body",    widget: "text" }
               - { label: "Photo",   name: "image",   widget: "image", required: false }
+
           - label: "Contact"
             name: "contact"
             widget: "object"
             fields:
-              - { label: "Email",    name: "email",    widget: "string" }
-              - { label: "Phone",    name: "phone",    widget: "string",  required: false }
-              - { label: "Location", name: "location", widget: "string",  required: false }
-              - { label: "Calendly URL", name: "calendly", widget: "string", required: false }
+              - { label: "Email",       name: "email",    widget: "string" }
+              - { label: "Phone",       name: "phone",    widget: "string", required: false }
+              - { label: "Location",    name: "location", widget: "string", required: false }
+              - { label: "Calendly URL",name: "calendly", widget: "string", required: false }
 
   # ── Services ────────────────────────────────────────────────────────────────
   - name: "services"
@@ -55,7 +75,11 @@ collections:
       - { label: "Title",       name: "title",       widget: "string" }
       - { label: "Tagline",     name: "tagline",     widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
-      - { label: "Order",       name: "order",       widget: "number", default: 0 }
+      - label: "Details (bullet points)"
+        name: "details"
+        widget: "list"
+        field: { label: "Item", name: "item", widget: "string" }
+      - { label: "Order (1 = first)", name: "order", widget: "number", default: 1 }
 
   # ── Blog ────────────────────────────────────────────────────────────────────
   - name: "blog"

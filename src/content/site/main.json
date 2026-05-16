@@ -1,14 +1,28 @@
 {
   "hero": {
-    "headline": "Clarity. Courage. Results.",
-    "subheadline": "I help business leaders navigate complexity, unlock potential, and lead with purpose.",
+    "headline": "Leadership begins with presence, and becomes real in practice.",
     "cta_label": "Book a free discovery call",
-    "cta_href": "/contact"
+    "cta_href": "#contact"
+  },
+  "the_how": {
+    "label": "THE HOW",
+    "block1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+    "block2": "Presence is where you connect to yourself, to others, and to what struggles to be said, heard, and felt. Practice is when you have the guts to take decisions that align with who you are and what you stand for.",
+    "block3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure."
+  },
+  "questions_section": {
+    "heading": "The way you lead and relate matters, not just for your results, but for how you shape culture and meaning.",
+    "questions": [
+      "What if you'd lead from who you really are?",
+      "What if leading doesn't cost parts of you that have been numbed?",
+      "What if leading isn't about being superhuman but fully human?",
+      "What if choosing to be real increases both results and well-being?"
+    ]
   },
   "about": {
     "heading": "Hi, I'm Jasmine Truong",
     "body": "I'm an ICF-certified professional coach with over a decade of experience working with executives, entrepreneurs, and leadership teams. My approach is relational, not transactional — I believe real transformation happens in the space between sessions, not just during them.\n\nI hold a PCC credential from the International Coaching Federation and specialise in leadership transitions, executive presence, and team dynamics.",
-    "image": "/images/coach-photo.jpg"
+    "image": "/images/jasmine-looking-up.jpg"
   },
   "contact": {
     "email": "hello@yourcoach.com",
