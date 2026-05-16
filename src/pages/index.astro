@@ -245,7 +245,7 @@ function initials(name: string) {
     .what-block .right p { font-size: 15.5px; line-height: 1.65; color: var(--mute-dark); max-width: 560px; }
 
     .questions-merged {
-      margin-top: 120px; padding-top: 80px; border-top: 1px solid var(--rule);
+      margin-top: 80px; padding-top: 56px; border-top: 1px solid var(--rule);
     }
     .q-head {
       display: flex; justify-content: space-between; align-items: end;
@@ -263,7 +263,7 @@ function initials(name: string) {
       transition: transform .6s cubic-bezier(.4,0,.2,1);
       transform-origin: left;
     }
-    .q-stage { position: relative; padding-left: 56px; max-width: 1100px; padding-bottom: 48px; }
+    .q-stage { position: relative; padding-left: 56px; max-width: 1100px; padding-bottom: 8px; }
     .q-bullet {
       position: absolute; left: 0; top: 32px;
       width: 14px; height: 14px; border-radius: 50%; background: var(--ink);
@@ -275,15 +275,6 @@ function initials(name: string) {
     }
     .q-fade-out .q-text { opacity: 0; transform: translateY(16px); }
     .q-fade-in .q-text { opacity: 1; transform: translateY(0); }
-    .q-cta { margin-top: 64px; padding-left: 56px; display: flex; align-items: center; gap: 20px; }
-    .q-cta .btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 24px; background: var(--ink); color: var(--paper);
-      font-size: 14px; font-family: inherit; letter-spacing: .02em;
-      border: 0; cursor: pointer; transition: background .15s;
-    }
-    .q-cta .btn:hover { background: #2a2a26; }
-    .q-cta .note { color: var(--mute-dark); font-size: 14px; }
 
     /* ── SERVICES ──────────────────────────────────────────── */
     .services { background: var(--ink); color: var(--paper); }
@@ -490,16 +481,15 @@ function initials(name: string) {
       font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
       color: rgba(255,255,255,.5); font-weight: 500;
     }
-    .field input, .field select, .field textarea {
+    .field input, .field textarea {
       background: transparent; border: 0;
       border-bottom: 1px solid rgba(255,255,255,.25);
       padding: 8px 0 12px; color: var(--paper);
       font-family: inherit; font-size: 17px; outline: none;
       transition: border-color .2s;
     }
-    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--paper); }
+    .field input:focus, .field textarea:focus { border-color: var(--paper); }
     .field textarea { resize: vertical; min-height: 60px; }
-    .field select option { background: var(--ink); color: var(--paper); }
     .submit {
       background: var(--paper); color: var(--ink); border: 0;
       padding: 18px 28px; font-weight: 700; font-size: 13px;
@@ -525,30 +515,146 @@ function initials(name: string) {
       border-top: 1px solid var(--rule-dark); margin: 24px 48px 0;
     }
 
-    /* ── RESPONSIVE ────────────────────────────────────────── */
-    @media (max-width: 1000px) {
-      .container { padding: 0 24px; }
-      .nav-inner { padding: 16px 24px; }
+    .mobile-cta { display: none; }
+
+    /* ── RESPONSIVE ────────────────────────────────────────────
+       Tablet  ≤ 1024px
+       Mobile  ≤  680px
+    ───────────────────────────────────────────────────────── */
+
+    /* — Tablet — */
+    @media (max-width: 1024px) {
+      .container { padding: 0 40px; }
+      .nav-inner { padding: 16px 40px; }
+      section { padding: 100px 0; }
+      .contact { padding-top: 100px; }
+
+      /* The How */
+      .what-block { grid-template-columns: 1fr 1.4fr; gap: 48px; }
+
+      /* Services */
+      .service { grid-template-columns: 72px 1.2fr 1fr; gap: 32px; }
+
+      /* Testimonials: keep 2-col but tighter */
+      .testi { padding: 28px; }
+      .testi blockquote { font-size: 14px; }
+
+      /* Who am I */
+      .aboutme-grid { grid-template-columns: 1fr 1.2fr; gap: 48px; }
+
+      /* Accreditations: 3+2 on tablet */
+      .accreds-row { grid-template-columns: repeat(3, 1fr); }
+      .accred:nth-child(4) { border-left: 0; }
+
+      /* Contact */
+      .contact-grid { gap: 56px; }
+      .contact .head h2 { font-size: 44px; }
+
+      /* Footer */
+      .foot-mark { padding: 56px 40px 20px; }
+      .foot-meta { margin: 20px 40px 0; padding: 20px 0 28px; }
+    }
+
+    /* — Mobile — */
+    @media (max-width: 680px) {
+      .container { padding: 0 20px; }
+      .nav-inner { padding: 14px 20px; }
       .nav-links { display: none; }
-      .hero-photo { width: 260px; left: 50%; }
-      .hero-wordmark { font-size: 60px; }
-      section { padding: 80px 0; }
-      .contact { padding-top: 80px; }
-      .what-block { grid-template-columns: 1fr; gap: 32px; }
-      .services-head { grid-template-columns: 1fr; gap: 16px; }
-      .aboutme-grid { grid-template-columns: 1fr; gap: 32px; }
-      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-      .q-head { flex-direction: column; align-items: flex-start; gap: 16px; }
-      .q-stage { padding-left: 28px; }
-      .q-cta { padding-left: 28px; flex-direction: column; align-items: flex-start; }
-      .service { grid-template-columns: 60px 1fr; gap: 16px; padding: 28px 0; }
-      .service .arrow { display: none; }
+      section { padding: 72px 0; }
+      .contact { padding-top: 72px; }
+
+      /* Hero */
+      .hero-photo { width: 220px; left: 50%; transform: translateX(-50%); opacity: .55; }
+      .hero-wordmark { font-size: 52px; }
+      .hero-stack { padding: 0 20px 56px; }
+
+      /* Mobile floating CTA — replaces hidden nav links */
+      .nav-cta { display: none; }
+      .mobile-cta {
+        display: flex !important;
+        position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+        z-index: 200;
+      }
+      .mobile-cta .pill {
+        background: var(--ink); color: var(--paper);
+        padding: 14px 28px; font-size: 12px; font-weight: 700;
+        letter-spacing: .1em; text-transform: uppercase;
+        border-radius: 100px;
+        box-shadow: 0 8px 32px rgba(0,0,0,.22);
+        white-space: nowrap;
+      }
+
+      /* The How */
+      .what-block { grid-template-columns: 1fr; gap: 28px; }
+      .what-block .left { display: none; } /* hide empty left col on mobile */
+      .what-block .right h2 { font-size: clamp(28px, 7vw, 44px); }
+
+      /* Questions */
+      .q-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .q-head h3 { font-size: 24px; }
+      .q-stage { padding-left: 24px; }
+      .q-text { font-size: clamp(32px, 9vw, 56px); }
+      .q-bullet { top: 20px; }
+
+      /* Services */
+      .services-head { grid-template-columns: 1fr; gap: 12px; }
+      .services-head .ix { display: none; }
+      .services-head h2 { font-size: 36px; }
+      .service { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+      .service .sno { font-size: 11px; letter-spacing: .1em; color: rgba(255,255,255,.4); }
+      .service .stitle { font-size: 22px; }
       .service ul { columns: 1; }
-      .testi-grid { grid-template-columns: 1fr; }
+
+      /* Testimonials: horizontal scroll-snap carousel */
+      .testi-grid {
+        grid-template-columns: 1fr;
+        display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+        gap: 0; padding-bottom: 4px;
+        scrollbar-width: none;
+      }
+      .testi-grid::-webkit-scrollbar { display: none; }
+      .testi {
+        flex: 0 0 88vw; scroll-snap-align: start;
+        margin-right: 12px; padding: 28px;
+      }
+      .testi:last-child { margin-right: 20px; }
+      .testimonials-head h2 { font-size: 32px; margin-bottom: 0; }
+      .testimonials-head { margin-bottom: 32px; }
+
+      /* Who am I */
+      .aboutme-grid { grid-template-columns: 1fr; gap: 0; }
+      .aboutme-photo {
+        aspect-ratio: 3/2; margin: -72px -20px 0; /* bleed to edges */
+        mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+      }
+      .aboutme h2 { font-size: clamp(56px, 14vw, 88px); margin: 20px 0 24px; }
+      .aboutme p { font-size: 16px; }
+      .aboutme .lesson { margin-top: 24px; }
+      .aboutme .lesson p { font-size: 16px; }
+
+      /* Accreditations: 2-col */
+      .accreds-row { grid-template-columns: repeat(2, 1fr); gap: 28px 0; }
+      .accred { border-left: 0; padding: 12px 8px; }
+      .accred:nth-child(even) { border-left: 1px solid var(--rule); }
+      .accred .mark { width: 72px; height: 72px; }
+
+      /* Contact */
+      .contact .head h2 { font-size: 32px; line-height: 1.1; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact-creds { grid-template-columns: 1fr 1fr; }
       .form .row { grid-template-columns: 1fr; }
-      .pull blockquote { font-size: 36px; }
-      .foot-mark { padding: 48px 24px 16px; }
-      .foot-meta { margin: 16px 24px 0; padding: 16px 0 24px; }
+
+      /* Footer */
+      .foot-mark { padding: 48px 20px 16px; }
+      .foot-meta {
+        margin: 16px 20px 0; padding: 16px 0 28px;
+        flex-direction: column; gap: 8px; text-align: center;
+      }
+      .foot-meta span { display: flex; gap: 16px; align-items: center; justify-content: center; flex-wrap: wrap; }
+
+      /* Pull quote */
+      .pull blockquote { font-size: 32px; }
     }
   </style>
 </head>
@@ -563,13 +669,18 @@ function initials(name: string) {
         <a href="#questions">Is this right for you?</a>
         <a href="#services">Services</a>
         <a href="#testimonials">Testimonials</a>
-        <a href="#aboutme">Who am I</a>
+        <a href="#aboutme">Who I am</a>
       </div>
       <a href={hero.cta_href} class="nav-cta">
         <span class="pill">{hero.cta_label}</span>
       </a>
     </div>
   </nav>
+
+  <!-- Mobile floating CTA (hidden on desktop via CSS) -->
+  <a href="#contact" class="mobile-cta" style="display:none;">
+    <span class="pill">Book a free call →</span>
+  </a>
 
   <!-- HERO -->
   <section class="hero">
@@ -585,7 +696,7 @@ function initials(name: string) {
         <li><a href="#questions">Is this right for you?</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#aboutme">Who am I</a></li>
+        <li><a href="#aboutme">Who I am</a></li>
       </ul>
       <a class="cta" href={hero.cta_href}>{hero.cta_label}</a>
     </nav>
@@ -628,10 +739,6 @@ function initials(name: string) {
           <p class="q-text" id="q-text">{questionsSection.questions[0]}</p>
         </div>
 
-        <div class="q-cta">
-          <a href="#contact" class="btn">If yes — let's talk →</a>
-          <span class="note">Or scroll on and read the rest.</span>
-        </div>
       </div>
 
     </div>
@@ -705,7 +812,7 @@ function initials(name: string) {
           <img src="/images/jasmine-looking-up.jpg" alt="Jasmine Truong" />
         </div>
         <div>
-          <h2>Who am I.</h2>
+          <h2>Who I am.</h2>
           <div set:html={bioParagraphs(aboutme_section.bio)}></div>
           <div class="lesson">
             <span class="micro">{aboutme_section.lesson_label}</span>
@@ -786,17 +893,6 @@ function initials(name: string) {
                   <label for="org">Organisation</label>
                   <input id="org" name="organization" type="text" placeholder="Company name" />
                 </div>
-              </div>
-              <div class="field">
-                <label for="interest">I'm interested in</label>
-                <select id="interest" name="interest">
-                  <option value="">Select…</option>
-                  <option>1:1 Coaching</option>
-                  <option>Team Coaching</option>
-                  <option>Leadership Program</option>
-                  <option>Workshops</option>
-                  <option>Not sure yet</option>
-                </select>
               </div>
               <div class="field">
                 <label for="message">What brings you here?</label>
