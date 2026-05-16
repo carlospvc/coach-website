@@ -52,14 +52,17 @@
       color: var(--mute); font-weight: 500;
     }
 
-    /* ── NAV ───────────────────────────────────────────────── */
+    /* ── NAV (sticky — visible after hero) ────────────────── */
     .nav {
       position: sticky; top: 0; z-index: 30;
       background: rgba(25,25,23,.92);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--rule-dark);
       color: var(--paper);
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s;
     }
+    .nav.visible { opacity: 1; pointer-events: auto; }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
       padding: 18px 48px; max-width: 1500px; margin: 0 auto;
@@ -78,42 +81,84 @@
     /* ── HERO ──────────────────────────────────────────────── */
     .hero {
       position: relative; background: var(--ink); color: var(--paper);
-      overflow: hidden; min-height: 720px; padding: 40px 0 0; isolation: isolate;
+      overflow: hidden; isolation: isolate;
+      aspect-ratio: 1320 / 760; min-height: 600px;
     }
-    .hero-bg {
-      position: absolute; inset: 0; opacity: .35; pointer-events: none;
-      background:
-        linear-gradient(180deg, rgba(25,25,23,.45) 0%, rgba(25,25,23,.8) 70%, var(--ink) 100%),
-        repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 80px),
-        repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 60px);
-    }
-    .hero-stage {
-      position: relative; height: 660px; padding: 0 24px;
-      max-width: 100%; margin: 0; z-index: 2;
-    }
-    .hero-wordmark {
-      position: absolute; left: 24px; right: 24px; bottom: 90px;
-      font-weight: 800; font-size: clamp(96px, 14vw, 175px);
-      line-height: .9; letter-spacing: -.05em;
-      white-space: nowrap; text-align: center;
-      color: var(--paper); pointer-events: none;
-      z-index: 3; mix-blend-mode: difference;
-    }
-    .hero-coaching {
-      position: absolute; left: 53%; bottom: 36px;
-      font-weight: 500; font-size: clamp(32px, 4.5vw, 60px);
-      line-height: 1; letter-spacing: -.015em;
-      text-align: left; color: rgba(255,255,255,.42);
-      z-index: 3; pointer-events: none;
-    }
+    /* Full-bleed photo */
     .hero-photo {
-      position: absolute; top: 20px; left: 53%;
-      width: 440px; aspect-ratio: 3/4; max-height: 580px;
-      z-index: 2; background: var(--soft); overflow: hidden;
+      position: absolute; inset: 0; overflow: hidden;
     }
     .hero-photo img {
-      width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%;
-      filter: grayscale(1) contrast(1.05) brightness(1);
+      width: 100%; height: 100%; object-fit: cover; object-position: 50% 6%;
+      filter: grayscale(1) contrast(1.06) brightness(0.6);
+    }
+    /* Bottom gradient */
+    .hero-grad {
+      position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,.25) 0%,
+        rgba(0,0,0,0)   30%,
+        rgba(0,0,0,0)   45%,
+        rgba(0,0,0,.82) 100%
+      );
+    }
+    /* Film grain */
+    .hero::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      opacity: .035; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+    /* Hero nav (absolute, inside hero) */
+    .hero-nav {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 30;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 36px;
+      border-bottom: 1px solid var(--rule-dark);
+      background: rgba(25,25,23,.6);
+      backdrop-filter: blur(8px);
+      color: var(--paper);
+    }
+    .hero-nav .brand {
+      font-weight: 800; font-size: 13px; letter-spacing: .04em; line-height: 1.2;
+    }
+    .hero-nav ul {
+      list-style: none; display: flex; gap: 26px;
+    }
+    .hero-nav ul a {
+      color: rgba(255,255,255,.65); font-size: 12px;
+      text-decoration: none; transition: color .15s;
+    }
+    .hero-nav ul a:hover { color: var(--paper); }
+    .hero-nav .cta {
+      padding: 7px 14px; border: 1px solid rgba(255,255,255,.3);
+      border-radius: 999px; font-size: 12px; color: var(--paper);
+      text-decoration: none; transition: background .15s, color .15s;
+    }
+    .hero-nav .cta:hover { background: var(--paper); color: var(--ink); }
+    /* Name + tagline stack at bottom */
+    .hero-stack {
+      position: absolute; left: 0; right: 0; bottom: 70px;
+      text-align: center; padding: 0 24px; z-index: 2;
+    }
+    .hero-name {
+      font-weight: 800; font-size: 128px;
+      letter-spacing: -.05em; line-height: .9;
+      color: var(--paper); mix-blend-mode: difference;
+      margin: 0 0 26px;
+    }
+    .hero-tagline {
+      font-weight: 300; font-size: 30px; line-height: 1.25;
+      letter-spacing: -.012em; color: rgba(255,255,255,.92);
+      padding: 0 80px; margin: 0;
+    }
+    .hero-tagline strong { font-weight: 700; color: var(--paper); }
+
+    @media (max-width: 900px) {
+      .hero-nav ul { display: none; }
+      .hero-stack { bottom: 48px; }
+      .hero-name { font-size: clamp(56px, 12vw, 96px); margin-bottom: 18px; }
+      .hero-tagline { font-size: clamp(16px, 3.2vw, 22px); padding: 0 24px; }
     }
 
     /* ── PULL QUOTE ────────────────────────────────────────── */
@@ -416,14 +461,29 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero" id="about" style="padding:40px 0 0;">
-    <div class="hero-bg"></div>
-    <div class="hero-stage">
-      <div class="hero-photo">
-        <img src="/images/jasmine-serious.jpg" alt="Jasmine Truong" />
-      </div>
-      <div class="hero-wordmark">Jasmine Truong</div>
-      <div class="hero-coaching">Coaching</div>
+  <section class="hero" id="about">
+    <div class="hero-photo">
+      <img src="/images/jasmine-serious.jpg" alt="Jasmine Truong" />
+    </div>
+    <div class="hero-grad"></div>
+
+    <nav class="hero-nav">
+      <div class="brand">JASMINE<br>TRUONG</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#questions">Is this for you?</a></li>
+        <li><a href="#services">Coaching</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#aboutme">Who am I</a></li>
+      </ul>
+      <a class="cta" href="#contact">Book a free call →</a>
+    </nav>
+
+    <div class="hero-stack">
+      <h1 class="hero-name">Jasmine Truong</h1>
+      <p class="hero-tagline">
+        Leadership <strong>begins with presence</strong>, and becomes <strong>real in practice</strong>.
+      </p>
     </div>
   </section>
 
@@ -724,6 +784,15 @@
 
   <!-- JS: rotating questions + form -->
   <script>
+    // ── Sticky nav — show after hero ───────────────────────
+    const stickyNav = document.querySelector('.nav');
+    const hero = document.querySelector('.hero');
+    function onScroll() {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      stickyNav.classList.toggle('visible', heroBottom <= 0);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
     // ── Rotating questions ──────────────────────────────────
     const questions = [
       {
