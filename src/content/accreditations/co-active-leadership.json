@@ -1,1 +1,7 @@
-{"name": "Co-Active Leadership Certificate", "initials": "Co·A", "issuer": "Co-Active Training Institute", "photo": "", "order": 3}
+{
+  "name": "Co-Active Leadership Certificate",
+  "initials": "Co·A",
+  "issuer": "Co-Active Training Institute",
+  "photo": "/images/certificate-of-co-active-leadership.png",
+  "order": 3
+}
