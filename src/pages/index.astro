@@ -645,6 +645,66 @@ function initials(name: string) {
       /* Pull quote */
       .pull blockquote { font-size: 32px; }
     }
+
+    /* ── LANDSCAPE MOBILE ──────────────────────────────────── */
+    @media (orientation: landscape) and (max-height: 600px) {
+      /* Hero: shorter, name smaller, tighter stack */
+      .hero { min-height: 100svh; min-height: 100vh; aspect-ratio: unset; }
+      .hero-stack { bottom: 28px; padding: 0 28px; }
+      .hero-name { font-size: clamp(36px, 8vh, 56px); margin-bottom: 10px; }
+      .hero-tagline { font-size: clamp(13px, 2.4vh, 17px); padding: 0 20px; }
+      .hero-nav { display: none; }
+
+      /* Sections: tighter padding */
+      section { padding: 56px 0; }
+      .container { padding: 0 28px; }
+      .nav-inner { padding: 12px 28px; }
+      .nav-brand { display: block; }
+      .nav-links { display: none; }
+
+      /* The How: single column */
+      .what-block { grid-template-columns: 1fr; gap: 24px; }
+      .what-block .left p:empty { display: none; }
+      .what-block .right h2 { font-size: clamp(24px, 5vh, 36px); }
+
+      /* Questions */
+      .q-head { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .q-text { font-size: clamp(28px, 7vh, 48px); }
+
+      /* Services */
+      .services-head { grid-template-columns: 1fr; gap: 12px; }
+      .services-head .ix { display: none; }
+      .service { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
+      .service ul { columns: 1; }
+
+      /* Testimonials: horizontal scroll carousel */
+      .testi-grid {
+        grid-template-columns: 1fr;
+        display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+        gap: 0; padding-bottom: 4px; padding-right: 28px;
+        scrollbar-width: none; margin: 0 -28px; padding-left: 28px;
+      }
+      .testi-grid::-webkit-scrollbar { display: none; }
+      .testi { flex: 0 0 75vw; scroll-snap-align: start; margin-right: 12px; padding: 20px; }
+      .testi:last-child { margin-right: 0; }
+      .swipe-hint { display: flex; }
+
+      /* Who I am */
+      .aboutme-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .aboutme h2 { font-size: clamp(40px, 10vh, 64px); }
+      .aboutme p { font-size: 15px; }
+
+      /* Accreditations */
+      .accred { flex: 0 0 20%; }
+
+      /* Contact */
+      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+      .form .row { grid-template-columns: 1fr 1fr; }
+
+      /* Footer */
+      .foot-mark { padding: 40px 28px 12px; }
+      .foot-meta { margin: 12px 28px 0; padding: 12px 0 24px; }
+    }
   </style>
 </head>
 <body>
