@@ -1,13 +1,13 @@
 {
-  "heading_plain": "No pressure.",
+  "detail_languages_label": "Languages",
   "heading_bold": "Just clarity.",
   "intro": "Every engagement opens with an unhurried call. No agenda, no obligation — just space to find out whether the work we'd do together is the work you actually want done.",
-  "detail_location_label": "Location",
+  "heading_plain": "No pressure.",
   "detail_location_value": "Zürich, Switzerland",
-  "detail_availability_label": "Availability",
-  "detail_availability_value": "By application",
-  "detail_format_label": "Format",
   "detail_format_value": "Remote · In-person",
-  "detail_languages_label": "Languages",
-  "detail_languages_value": "EN · FR · DE"
+  "detail_location_label": "Location",
+  "detail_format_label": "Format",
+  "detail_availability_value": "By application",
+  "detail_availability_label": "Availability",
+  "detail_languages_value": "EN · DE"
 }
