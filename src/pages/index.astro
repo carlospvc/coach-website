@@ -215,7 +215,7 @@ const services = servicesRaw
     }
     .q-head h3 {
       font-weight: 300; font-size: 36px; letter-spacing: -.015em;
-      line-height: 1.15; max-width: 580px;
+      line-height: 1.15; max-width: 820px;
     }
     .pager { display: flex; gap: 14px; align-items: center; }
     .pager .count { font-size: 14px; color: var(--mute-dark); letter-spacing: .04em; }
@@ -267,10 +267,10 @@ const services = servicesRaw
       max-width: 480px; margin: 24px 0 0; line-height: 1.55;
     }
     .service {
-      display: grid; grid-template-columns: 100px 1.2fr 1.8fr 120px;
+      display: grid; grid-template-columns: 100px 1.2fr 1fr;
       gap: 48px; padding: 40px 0;
       border-top: 1px solid var(--rule-dark);
-      align-items: start; transition: padding-left .25s; cursor: pointer;
+      align-items: start; transition: padding-left .25s;
     }
     .service:hover { padding-left: 16px; background: rgba(255,255,255,.02); }
     .service:last-child { border-bottom: 1px solid var(--rule-dark); }
@@ -567,7 +567,6 @@ const services = servicesRaw
               </ul>
             )}
           </div>
-          <div class="arrow">→</div>
         </div>
       ))}
     </div>
