@@ -86,11 +86,13 @@ collections:
     format: "json"
     identifier_field: "name"
     fields:
+      - { label: "Testimonial — Published (tick to show on website)", name: "published", widget: "boolean", default: false }
       - { label: "Testimonial — Quote text (what the person said)", name: "quote", widget: "markdown" }
       - { label: "Testimonial — First and last name", name: "name", widget: "string" }
       - { label: "Testimonial — Position / Role (e.g. CEO)", name: "position", widget: "string" }
       - { label: "Testimonial — Company / Organisation", name: "company", widget: "string" }
-      - { label: "Testimonial — Display order (1 = top left, 2 = top right, 3 = bottom left, 4 = bottom right)", name: "order", widget: "number", default: 1 }
+      - { label: "Testimonial — Photo (optional, shown in B&W — leave empty to show initials instead)", name: "photo", widget: "image", required: false }
+      - { label: "Testimonial — Display order (1 = top left, 2 = top right, etc.)", name: "order", widget: "number", default: 1 }
 
   # ── 6. WHO AM I ────────────────────────────────────────────────────────────
   - name: "who-am-i"

@@ -3,5 +3,6 @@
   "name": "Marcus Yeoh",
   "position": "COO",
   "company": "Northbright Health",
-  "order": 2
+  "order": 2,
+  "published": true
 }

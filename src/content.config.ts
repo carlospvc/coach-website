@@ -20,6 +20,8 @@ const testimonials = defineCollection({
     name: z.string(),
     position: z.string(),
     company: z.string(),
+    photo: z.string().optional(),
+    published: z.boolean().default(false),
     order: z.number().default(1),
   }),
 });

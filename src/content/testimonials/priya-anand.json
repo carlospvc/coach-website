@@ -3,5 +3,6 @@
   "name": "Priya Anand",
   "position": "CPO",
   "company": "Lattice Bio",
-  "order": 3
+  "order": 3,
+  "published": true
 }
