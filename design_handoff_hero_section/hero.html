@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hero — Jasmine Truong (final design reference)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" />
+
+<style>
+  /* =====================================================================
+     HERO — Jasmine Truong (variant 05a-1b, final)
+     Full-bleed B&W portrait. Name centered with mix-blend-difference
+     so it inverts against the photo. Tagline sits directly below,
+     same centerline, mixed case, light weight with bold emphasis.
+
+     Design tokens (B&W only):
+       --ink   #191917  (page bg, used as fallback while img loads)
+       --paper #ffffff  (text on dark)
+       grain   subtle SVG noise overlay at 3.5% opacity
+     ===================================================================== */
+
+  :root {
+    --ink: #191917;
+    --paper: #ffffff;
+    --rule: rgba(255, 255, 255, 0.14);
+    --mute: rgba(255, 255, 255, 0.5);
+  }
+
+  html, body { margin: 0; padding: 0; background: var(--ink); }
+  body {
+    font-family: "Manrope", system-ui, -apple-system, sans-serif;
+    color: var(--paper);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- Layout shell ---------- */
+  .hero {
+    position: relative;
+    width: 100%;
+    /* Match the design reference aspect (1320 × 760 ≈ 1.74:1). On smaller
+       viewports it stays full-bleed via min-height. */
+    aspect-ratio: 1320 / 760;
+    min-height: 600px;
+    overflow: hidden;
+    isolation: isolate; /* contain mix-blend-mode against page bg */
+  }
+
+  /* ---------- Photo (full bleed, B&W, raised crop) ---------- */
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    /* 6% from the top — keeps her face in the upper third so the name
+       below sits in negative space and never crosses her mouth. */
+    object-position: 50% 6%;
+    /* B&W with a small contrast bump; brightness 0.6 darkens the photo
+       enough for the white name and tagline to remain legible. */
+    filter: grayscale(1) contrast(1.06) brightness(0.6);
+  }
+
+  /* Subtle bottom gradient so the text block has enough contrast even on
+     lighter parts of the photo. */
+  .hero-grad {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.25) 0%,
+      rgba(0, 0, 0, 0)    30%,
+      rgba(0, 0, 0, 0)    45%,
+      rgba(0, 0, 0, 0.82) 100%
+    );
+  }
+
+  /* Optional film-grain overlay — 3.5% opacity, helps the dark areas
+     feel photographic rather than flat-black. Safe to omit. */
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* ---------- Top navigation ---------- */
+  .nav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 36px;
+    border-bottom: 1px solid var(--rule);
+    background: rgba(25, 25, 23, 0.6);
+    backdrop-filter: blur(8px);
+  }
+  .nav .brand {
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  .nav ul {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; gap: 26px;
+  }
+  .nav ul a {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 12px;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav ul a:hover { color: var(--paper); }
+  .nav .cta {
+    padding: 7px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--paper);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav .cta:hover { background: var(--paper); color: var(--ink); }
+
+  /* ---------- Centered name + tagline stack (bottom) ---------- */
+  .hero-stack {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 70px;          /* distance from frame bottom */
+    text-align: center;
+    padding: 0 24px;
+  }
+
+  /* Name — large, heavy, mix-blend-difference so it inverts against the
+     portrait (light over dark areas, dark over bright areas). */
+  .hero-name {
+    font-weight: 800;
+    font-size: 128px;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    color: var(--paper);
+    mix-blend-mode: difference;
+    margin: 0 0 26px;
+  }
+
+  /* Tagline — light weight with bold emphasis spans, mixed case (NOT uppercase). */
+  .hero-tagline {
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.25;
+    letter-spacing: -0.012em;
+    color: rgba(255, 255, 255, 0.92);
+    padding: 0 80px;
+    margin: 0;
+  }
+  .hero-tagline strong {
+    font-weight: 700;
+    color: var(--paper);
+  }
+
+  /* ---------- Responsive: tighter scale on narrow viewports ---------- */
+  @media (max-width: 900px) {
+    .nav { padding: 14px 20px; }
+    .nav ul { display: none; }
+    .hero-stack { bottom: 48px; }
+    .hero-name    { font-size: clamp(56px, 12vw, 96px); margin-bottom: 18px; }
+    .hero-tagline { font-size: clamp(16px, 3.2vw, 22px); padding: 0 24px; }
+  }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-photo">
+      <img src="assets/jasmine-serious.jpg" alt="Jasmine Truong" />
+    </div>
+    <div class="hero-grad"></div>
+
+    <nav class="nav">
+      <div class="brand">JASMINE TRUONG</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#questions">Is this for you?</a></li>
+        <li><a href="#services">Coaching</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#aboutme">Who am I</a></li>
+      </ul>
+      <a class="cta" href="#contact">Book a free call →</a>
+    </nav>
+
+    <div class="hero-stack">
+      <h1 class="hero-name">Jasmine Truong</h1>
+      <p class="hero-tagline">
+        Leadership <strong>begins with presence</strong>, and becomes <strong>real in practice</strong>.
+      </p>
+    </div>
+  </section>
+</body>
+</html>
