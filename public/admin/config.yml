@@ -23,10 +23,10 @@ collections:
 
   # ── 2. THE HOW ─────────────────────────────────────────────────────────────
   - name: "the-how"
-    label: "The How"
+    label: "How I work"
     files:
       - name: "the-how"
-        label: "The How"
+        label: "How I work"
         file: "src/content/site/the-how.json"
         fields:
           - { label: "The How — Section heading (displayed large, e.g. THE HOW)", name: "label", widget: "string" }
