@@ -121,6 +121,7 @@ function initials(name: string) {
     .nav-links { display: flex; gap: 32px; }
     .nav-links a { font-size: 13px; color: rgba(255,255,255,.65); transition: color .15s; }
     .nav-links a:hover { color: var(--paper); }
+    .nav-brand { display: none; font-weight: 700; font-size: 14px; letter-spacing: -.01em; color: var(--paper); }
     .nav-cta { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer; }
     .nav-cta .pill {
       padding: 8px 14px; border: 1px solid rgba(255,255,255,.3);
@@ -361,6 +362,8 @@ function initials(name: string) {
     .testi .author .name strong { display: block; font-size: 14px; font-weight: 600; }
     .testi .author .name span { font-size: 13px; color: var(--mute-dark); }
 
+    .swipe-hint { display: none; }
+
     /* ── WHO AM I ──────────────────────────────────────────── */
     .aboutme { background: var(--paper); }
     .aboutme-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 80px; align-items: center; }
@@ -560,29 +563,15 @@ function initials(name: string) {
       .container { padding: 0 20px; }
       .nav-inner { padding: 14px 20px; }
       .nav-links { display: none; }
+      .nav-brand { display: block; } /* show name on mobile */
       section { padding: 72px 0; }
       .contact { padding-top: 72px; }
 
-      /* Hero */
-      .hero-photo { width: 220px; left: 50%; transform: translateX(-50%); opacity: .55; }
-      .hero-wordmark { font-size: 52px; }
-      .hero-stack { padding: 0 20px 56px; }
-
-      /* Mobile floating CTA — replaces hidden nav links */
-      .nav-cta { display: none; }
-      .mobile-cta {
-        display: flex !important;
-        position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-        z-index: 200;
-      }
-      .mobile-cta .pill {
-        background: var(--ink); color: var(--paper);
-        padding: 14px 28px; font-size: 12px; font-weight: 700;
-        letter-spacing: .1em; text-transform: uppercase;
-        border-radius: 100px;
-        box-shadow: 0 8px 32px rgba(0,0,0,.22);
-        white-space: nowrap;
-      }
+      /* Hero — keep full-bleed photo, make it taller on mobile */
+      .hero { aspect-ratio: unset; min-height: 100svh; min-height: 100vh; }
+      .hero-stack { bottom: 72px; padding: 0 20px; }
+      .hero-name { font-size: clamp(44px, 11vw, 72px); margin-bottom: 16px; }
+      .hero-tagline { font-size: clamp(15px, 3.5vw, 20px); padding: 0 12px; }
 
       /* The How */
       .what-block { grid-template-columns: 1fr; gap: 28px; }
@@ -609,17 +598,23 @@ function initials(name: string) {
       .testi-grid {
         grid-template-columns: 1fr;
         display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
-        gap: 0; padding-bottom: 4px;
-        scrollbar-width: none;
+        gap: 0; padding-bottom: 4px; padding-right: 20px;
+        scrollbar-width: none; margin: 0 -20px; padding-left: 20px;
       }
       .testi-grid::-webkit-scrollbar { display: none; }
       .testi {
-        flex: 0 0 88vw; scroll-snap-align: start;
-        margin-right: 12px; padding: 28px;
+        flex: 0 0 82vw; scroll-snap-align: start;
+        margin-right: 12px; padding: 24px;
       }
-      .testi:last-child { margin-right: 20px; }
-      .testimonials-head h2 { font-size: 32px; margin-bottom: 0; }
+      .testi:last-child { margin-right: 0; }
+      .testimonials-head h2 { font-size: 32px; }
       .testimonials-head { margin-bottom: 32px; }
+      /* Swipe hint — visible only on mobile */
+      .swipe-hint {
+        display: flex; align-items: center; gap: 8px; margin-top: 20px;
+        font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+        color: var(--mute); font-weight: 500;
+      }
 
       /* Who am I */
       .aboutme-grid { grid-template-columns: 1fr; gap: 0; }
@@ -663,7 +658,7 @@ function initials(name: string) {
   <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner">
-      <div></div>
+      <a href="/" class="nav-brand">Jasmine Truong</a>
       <div class="nav-links">
         <a href="#the-how">The How</a>
         <a href="#questions">Is this right for you?</a>
@@ -800,6 +795,10 @@ function initials(name: string) {
             </div>
           </div>
         ))}
+      </div>
+      <div class="swipe-hint">
+        <span>Swipe</span>
+        <svg width="24" height="10" viewBox="0 0 24 10" fill="none"><path d="M1 5h22M17 1l6 4-6 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
     </div>
   </section>
