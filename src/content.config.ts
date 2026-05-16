@@ -5,8 +5,11 @@ const services = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/services' }),
   schema: z.object({
     title: z.string(),
+    title_de: z.string().optional(),
     tagline: z.string(),
+    tagline_de: z.string().optional(),
     description: z.string(),
+    description_de: z.string().optional(),
     details: z.array(z.string()).optional(),
     icon: z.string().optional(),
     order: z.number().default(0),
