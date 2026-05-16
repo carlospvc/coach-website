@@ -188,7 +188,7 @@ function initials(name: string) {
       letter-spacing: -.012em; color: rgba(255,255,255,.92);
       padding: 0 80px; margin: 0;
     }
-    .hero-tagline strong { font-weight: 700; color: var(--paper); }
+    .hero-tagline :global(strong) { font-weight: 700; color: var(--paper); }
 
     @media (max-width: 900px) {
       .hero-nav ul { display: none; }
@@ -219,12 +219,12 @@ function initials(name: string) {
       line-height: .96; letter-spacing: -.035em; text-transform: uppercase; margin: 0 0 28px;
     }
     .what-block .left p { font-size: 16px; color: var(--mute-dark); line-height: 1.6; max-width: 460px; }
-    .what-block .left p strong { color: var(--ink); font-weight: 700; }
+    .what-block .left p :global(strong) { color: var(--ink); font-weight: 700; }
     .what-block .right h2 {
       font-weight: 400; font-size: 38px; line-height: 1.2;
       letter-spacing: -.015em; margin: 0 0 24px;
     }
-    .what-block .right h2 strong { font-weight: 800; }
+    .what-block .right h2 :global(strong) { font-weight: 800; }
     .what-block .right p { font-size: 15.5px; line-height: 1.65; color: var(--mute-dark); max-width: 560px; }
 
     .questions-merged {
@@ -323,7 +323,7 @@ function initials(name: string) {
       font-weight: 400; font-size: 48px; line-height: 1.1;
       letter-spacing: -.02em; margin: 16px 0 0;
     }
-    .testimonials-head h2 strong { font-weight: 800; }
+    .testimonials-head h2 :global(strong) { font-weight: 800; }
     .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
     .testi {
       padding: 40px; border: 1px solid var(--rule);
@@ -361,7 +361,7 @@ function initials(name: string) {
       margin: 24px 0 32px; text-transform: uppercase;
     }
     .aboutme p { font-size: 17px; line-height: 1.65; margin: 0 0 18px; max-width: 520px; }
-    .aboutme p strong { font-weight: 700; }
+    .aboutme p :global(strong) { font-weight: 700; }
     .aboutme .mute { color: var(--mute-dark); }
     .aboutme .lesson {
       margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--rule);
