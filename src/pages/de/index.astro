@@ -993,7 +993,7 @@ function initials(name: string) {
   </footer>
 
   <!-- JS: rotating questions + form -->
-  <script define:vars={{ questionsData: questionsSection.questions_de }}>
+  <script define:vars={{ questionsData: questionsSection.questions_de, formSuccessLabel: contact_section.form_success_label_de, formSuccessThanks: contact_section.form_success_thanks_de }}>
     // ── Sticky nav — show after hero ───────────────────────
     const stickyNav = document.querySelector('.nav');
     const hero = document.querySelector('.hero');
@@ -1053,8 +1053,8 @@ function initials(name: string) {
         } catch (_) {}
         wrap.innerHTML = `
           <div class="submitted-msg">
-            <div class="recv">Nachricht erhalten</div>
-            <div class="thanks">Danke, dass du dich gemeldet hast.<br><strong>Ich melde mich innerhalb von zwei Werktagen.</strong><br><br>Gönne dir in der Zwischenzeit einen Moment der Stille.</div>
+            <div class="recv">${formSuccessLabel}</div>
+            <div class="thanks">${formSuccessThanks}</div>
           </div>`;
       });
     }

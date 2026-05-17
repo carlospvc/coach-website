@@ -160,6 +160,10 @@ collections:
           - { label: "Contact — Languages label EN", name: "detail_languages_label", widget: "string" }
           - { label: "Contact — Languages label DE", name: "detail_languages_label_de", widget: "string" }
           - { label: "Contact — Languages value (e.g. EN · FR · DE)", name: "detail_languages_value", widget: "string" }
+          - { label: "Contact — Form success label EN (e.g. Message received)", name: "form_success_label", widget: "string" }
+          - { label: "Contact — Form success message EN", name: "form_success_thanks", widget: "string" }
+          - { label: "Contact — Form success label DE", name: "form_success_label_de", widget: "string" }
+          - { label: "Contact — Form success message DE", name: "form_success_thanks_de", widget: "string" }
 
   # ── 8. FOOTER ──────────────────────────────────────────────────────────────
   - name: "footer"

@@ -14,5 +14,9 @@
   "detail_location_label_de": "Standort",
   "detail_format_label": "Format",
   "detail_format_label_de": "Format",
-"detail_languages_value": "EN · DE"
+  "detail_languages_value": "EN · DE",
+  "form_success_label": "Message received",
+  "form_success_thanks": "Thank you for reaching out.",
+  "form_success_label_de": "Nachricht erhalten",
+  "form_success_thanks_de": "Danke, dass du dich gemeldet hast."
 }
