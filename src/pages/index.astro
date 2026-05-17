@@ -1111,8 +1111,8 @@ function initials(name: string) {
       const t = TESTI[tIdx];
       elQuote.innerHTML = boldMdJS(t.quote);
       elAvatarWrap.innerHTML = t.photo
-        ? `<img class="testi-avatar-photo" src="${t.photo}" alt="${t.name}" />`
-        : `<div class="testi-avatar">${t.initials}</div>`;
+        ? `<img src="${t.photo}" alt="${t.name}" style="width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:center top;filter:grayscale(1) contrast(1.1);flex-shrink:0;">`
+        : `<div style="width:48px;height:48px;border-radius:50%;background:#191917;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;letter-spacing:.02em;flex-shrink:0;">${t.initials}</div>`;
       elTName.textContent = t.name;
       elTRole.textContent = t.role;
       elPagerCur.textContent = String(tIdx + 1).padStart(2, '0');
