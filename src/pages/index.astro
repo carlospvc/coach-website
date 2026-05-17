@@ -346,22 +346,22 @@ function initials(name: string) {
     .testi-head .ix { font-size: 11px; letter-spacing: .12em; color: var(--mute); font-weight: 500; }
     .testi-rotator {
       display: grid; grid-template-columns: 1fr 240px;
-      gap: 64px; align-items: end; height: 300px;
+      gap: 64px; align-items: stretch; height: 300px;
     }
-    .rstage { position: relative; height: 100%; display: flex; flex-direction: column; }
+    .rstage { position: relative; height: 100%; display: flex; flex-direction: column; min-height: 0; }
     .qmark-big {
       position: absolute; left: -8px; top: -64px;
       font-size: 140px; font-weight: 800; line-height: 1;
       color: rgba(25,25,23,.07); pointer-events: none; user-select: none;
     }
-    .quote-wrap { position: relative; flex: 1 1 auto; overflow: hidden; max-width: 860px; }
+    .quote-wrap { position: relative; flex: 1 1 auto; overflow: hidden; max-width: 860px; min-height: 0; }
     .quote-wrap::after {
       content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 64px;
       background: linear-gradient(to bottom, rgba(243,243,243,0), var(--soft));
       pointer-events: none;
     }
     .rstage blockquote {
-      font-size: 22px; line-height: 1.4; letter-spacing: -.014em;
+      font-size: 15px; line-height: 1.5; letter-spacing: -.014em;
       font-weight: 400; margin: 0; color: var(--ink);
       transition: opacity .35s ease, transform .35s ease;
     }
@@ -389,6 +389,7 @@ function initials(name: string) {
     .testi-controls {
       display: flex; flex-direction: column; gap: 24px;
       align-items: flex-end; align-self: end; padding-bottom: 4px;
+      justify-content: flex-end;
     }
     .ctrl-pager { font-size: 11px; letter-spacing: .14em; color: var(--mute); text-transform: uppercase; font-weight: 500; }
     .ctrl-pager strong {
@@ -658,8 +659,8 @@ function initials(name: string) {
       .testimonials { padding: 64px 0 72px; }
       .testi-head h2 { font-size: 32px; }
       .testi-rotator { grid-template-columns: 1fr; gap: 24px; height: auto; }
-      .rstage { height: 280px; }
-      .rstage blockquote { font-size: 18px; }
+      .rstage { height: 260px; }
+      .rstage blockquote { font-size: 13px; }
       .testi-controls { flex-direction: row; align-items: center; justify-content: space-between; width: 100%; }
       .testi-progress { display: none; }
 
@@ -740,7 +741,7 @@ function initials(name: string) {
       /* Testimonials rotator — landscape */
       .testimonials { padding: 48px 0 56px; }
       .testi-rotator { grid-template-columns: 1fr 180px; gap: 40px; height: 260px; }
-      .rstage blockquote { font-size: 19px; }
+      .rstage blockquote { font-size: 13px; }
 
       /* Who I am */
       .aboutme-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
