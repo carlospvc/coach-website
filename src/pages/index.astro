@@ -268,7 +268,10 @@ function initials(name: string) {
       transition: transform .6s cubic-bezier(.4,0,.2,1);
       transform-origin: left;
     }
-    .q-stage { position: relative; padding-left: 56px; max-width: 1100px; padding-bottom: 8px; }
+    .q-stage {
+      position: relative; padding-left: 56px; max-width: 1100px; padding-bottom: 8px;
+      height: calc(3 * 0.98 * 70px + 40px); overflow: hidden;
+    }
     .q-bullet {
       position: absolute; left: 0; top: 32px;
       width: 14px; height: 14px; border-radius: 50%; background: var(--ink);
@@ -278,7 +281,6 @@ function initials(name: string) {
       line-height: .98; letter-spacing: -.035em; text-transform: uppercase;
       margin: 0 0 32px; transition: opacity .45s, transform .45s;
     }
-    .q-stage { min-height: calc(3 * 0.98 * 70px); }
     .q-fade-out .q-text { opacity: 0; transform: translateY(16px); }
     .q-fade-in .q-text { opacity: 1; transform: translateY(0); }
 
@@ -601,7 +603,7 @@ function initials(name: string) {
       /* Questions */
       .q-head { flex-direction: column; align-items: flex-start; gap: 12px; }
       .q-head h3 { font-size: 19px; }
-      .q-stage { padding-left: 24px; }
+      .q-stage { padding-left: 24px; height: calc(4 * 0.98 * 56px + 40px); }
       .q-text { font-size: clamp(36px, 9vw, 56px); }
       .q-bullet { top: 20px; }
 
@@ -701,6 +703,7 @@ function initials(name: string) {
 
       /* Questions */
       .q-head { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .q-stage { height: calc(3 * 0.98 * 38px + 32px); }
       .q-text { font-size: clamp(28px, 5.6vh, 38px); }
 
       /* Services */
