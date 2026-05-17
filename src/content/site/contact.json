@@ -14,9 +14,5 @@
   "detail_location_label_de": "Standort",
   "detail_format_label": "Format",
   "detail_format_label_de": "Format",
-  "detail_availability_value": "By application",
-  "detail_availability_value_de": "Auf Anfrage",
-  "detail_availability_label": "Availability",
-  "detail_availability_label_de": "Verfügbarkeit",
-  "detail_languages_value": "EN · DE"
+"detail_languages_value": "EN · DE"
 }

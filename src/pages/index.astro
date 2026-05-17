@@ -55,8 +55,8 @@ function initials(name: string) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Jasmine Truong — Executive Leadership Coach. PhD, CPCC, ACC. Zürich · Worldwide." />
-  <title>Jasmine Truong — Executive Leadership Coach</title>
+  <meta name="description" content="Jasmine Truong — Executive Coaching. PhD, CPCC, ACC. Zürich · Worldwide." />
+  <title>Jasmine Truong — Executive Coaching</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="canonical" href="https://jtruong.com/" />
   <link rel="alternate" hreflang="en" href="https://jtruong.com/" />
@@ -238,13 +238,13 @@ function initials(name: string) {
     .what-questions { background: var(--paper); }
     .what-block { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
     .what-block .left .label {
-      font-weight: 800; font-size: clamp(56px, 6vw, 88px);
+      font-weight: 800; font-size: clamp(45px, 4.8vw, 70px);
       line-height: .96; letter-spacing: -.035em; text-transform: uppercase; margin: 0 0 28px;
     }
     .what-block .left p { font-size: 16px; color: var(--mute-dark); line-height: 1.6; max-width: 460px; }
     .what-block .left p :global(strong) { color: var(--ink); font-weight: 700; }
     .what-block .right h2 {
-      font-weight: 400; font-size: 38px; line-height: 1.2;
+      font-weight: 400; font-size: 30px; line-height: 1.2;
       letter-spacing: -.015em; margin: 0 0 24px;
     }
     .what-block .right h2 :global(strong) { font-weight: 800; }
@@ -258,7 +258,7 @@ function initials(name: string) {
       margin-bottom: 64px; gap: 40px;
     }
     .q-head h3 {
-      font-weight: 300; font-size: 36px; letter-spacing: -.015em;
+      font-weight: 300; font-size: 30px; letter-spacing: -.015em;
       line-height: 1.15; max-width: 1100px;
     }
     .pager { display: flex; gap: 14px; align-items: center; }
@@ -275,10 +275,11 @@ function initials(name: string) {
       width: 14px; height: 14px; border-radius: 50%; background: var(--ink);
     }
     .q-text {
-      font-weight: 800; font-size: clamp(42px, 5.5vw, 78px);
+      font-weight: 800; font-size: clamp(45px, 4.8vw, 70px);
       line-height: .98; letter-spacing: -.035em; text-transform: uppercase;
       margin: 0 0 32px; transition: opacity .45s, transform .45s;
     }
+    .q-stage { min-height: calc(3 * 0.98 * 70px); }
     .q-fade-out .q-text { opacity: 0; transform: translateY(16px); }
     .q-fade-in .q-text { opacity: 1; transform: translateY(0); }
 
@@ -378,8 +379,8 @@ function initials(name: string) {
       filter: grayscale(1) contrast(1.02);
     }
     .aboutme h2 {
-      font-weight: 800; font-size: clamp(80px, 9vw, 132px);
-      line-height: .92; letter-spacing: -.04em;
+      font-weight: 800; font-size: clamp(45px, 4.8vw, 70px);
+      line-height: .96; letter-spacing: -.04em;
       margin: 24px 0 32px; text-transform: uppercase;
     }
     .aboutme p { font-size: 17px; line-height: 1.65; margin: 0 0 18px; max-width: 520px; }
@@ -468,9 +469,9 @@ function initials(name: string) {
       max-width: 380px; margin: 0 0 32px;
     }
     .contact-creds {
-      display: grid; grid-template-columns: 1fr 1fr;
+      display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 24px 32px; padding-top: 28px;
-      border-top: 1px solid var(--rule-dark); max-width: 400px;
+      border-top: 1px solid var(--rule-dark); max-width: 520px;
     }
     .contact-creds div .lbl {
       font-size: 11px; color: rgba(255,255,255,.5); letter-spacing: .12em;
@@ -501,8 +502,10 @@ function initials(name: string) {
     }
     .submit:hover { background: var(--soft); }
     .submitted-msg { padding: 40px 0; }
-    .submitted-msg .recv { font-size: 13px; color: rgba(255,255,255,.5); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; }
-    .submitted-msg .thanks { font-weight: 800; font-size: 32px; letter-spacing: -.01em; text-transform: uppercase; line-height: 1.2; }
+    .submitted-msg .recv { font-size: 12px; color: rgba(255,255,255,.45); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .submitted-msg .recv::before { content: ''; display: block; width: 24px; height: 1px; background: rgba(255,255,255,.3); }
+    .submitted-msg .thanks { font-weight: 300; font-size: 26px; letter-spacing: -.01em; line-height: 1.45; color: rgba(255,255,255,.92); max-width: 420px; }
+    .submitted-msg .thanks strong { font-weight: 700; color: #fff; }
 
     /* ── FOOTER ────────────────────────────────────────────── */
     .foot-mark { color: var(--paper); padding: 64px 48px 0; }
@@ -577,13 +580,13 @@ function initials(name: string) {
       /* The How */
       .what-block { grid-template-columns: 1fr; gap: 28px; }
       .what-block .left p:empty { display: none; } /* block1 may be empty — hide blank p */
-      .what-block .right h2 { font-size: clamp(28px, 7vw, 44px); }
+      .what-block .right h2 { font-size: clamp(22px, 5.6vw, 35px); }
 
       /* Questions */
       .q-head { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .q-head h3 { font-size: 24px; }
+      .q-head h3 { font-size: 19px; }
       .q-stage { padding-left: 24px; }
-      .q-text { font-size: clamp(32px, 9vw, 56px); }
+      .q-text { font-size: clamp(36px, 9vw, 56px); }
       .q-bullet { top: 20px; }
 
       /* Services */
@@ -624,7 +627,7 @@ function initials(name: string) {
         mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
         -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
       }
-      .aboutme h2 { font-size: clamp(56px, 14vw, 88px); margin: 20px 0 24px; }
+      .aboutme h2 { font-size: clamp(36px, 9vw, 56px); margin: 20px 0 24px; }
       .aboutme p { font-size: 16px; }
 
 /* Accreditations: 2 per row on mobile */
@@ -678,11 +681,11 @@ function initials(name: string) {
       /* The How: single column */
       .what-block { grid-template-columns: 1fr; gap: 24px; }
       .what-block .left p:empty { display: none; }
-      .what-block .right h2 { font-size: clamp(24px, 5vh, 36px); }
+      .what-block .right h2 { font-size: clamp(19px, 4vh, 29px); }
 
       /* Questions */
       .q-head { flex-direction: column; align-items: flex-start; gap: 10px; }
-      .q-text { font-size: clamp(28px, 7vh, 48px); }
+      .q-text { font-size: clamp(28px, 5.6vh, 38px); }
 
       /* Services */
       .services-head { grid-template-columns: 1fr; gap: 12px; }
@@ -704,7 +707,7 @@ function initials(name: string) {
 
       /* Who I am */
       .aboutme-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .aboutme h2 { font-size: clamp(40px, 10vh, 64px); }
+      .aboutme h2 { font-size: clamp(28px, 5.6vh, 38px); }
       .aboutme p { font-size: 15px; }
 
       /* Accreditations */
@@ -931,10 +934,6 @@ function initials(name: string) {
               <div class="val">{contact_section.detail_location_value}</div>
             </div>
             <div>
-              <div class="lbl">{contact_section.detail_availability_label}</div>
-              <div class="val">{contact_section.detail_availability_value}</div>
-            </div>
-            <div>
               <div class="lbl">{contact_section.detail_format_label}</div>
               <div class="val">{contact_section.detail_format_value}</div>
             </div>
@@ -1055,8 +1054,8 @@ function initials(name: string) {
         } catch (_) {}
         wrap.innerHTML = `
           <div class="submitted-msg">
-            <div class="recv">Received</div>
-            <div class="thanks">Thank you.<br>I'll reply within two business days.</div>
+            <div class="recv">Message received</div>
+            <div class="thanks">Thank you for reaching out.<br><strong>I'll be in touch within two business days.</strong><br><br>In the meantime, I hope you find a moment of stillness.</div>
           </div>`;
       });
     }
