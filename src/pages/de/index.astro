@@ -826,11 +826,10 @@ function initials(name: string) {
         margin: 0;
       }
 
-      /* ── Tagline ── */
+      /* ── Tagline — flows inside hero-stack, not absolute ── */
       .hero-tagline {
-        position: absolute;
-        top: calc(var(--photo-h) + 100px);
-        left: 20px; right: 20px;
+        position: static;
+        margin: 20px 0 0;
         font-family: "Archivo", "Manrope", sans-serif;
         font-size: 15px;
         line-height: 1.38;
