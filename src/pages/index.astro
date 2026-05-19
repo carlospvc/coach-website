@@ -764,7 +764,7 @@ function initials(name: string) {
         --photo-h: clamp(380px, 52vh, 520px);
         background: #0a0907;
         aspect-ratio: unset;
-        min-height: 100svh; min-height: 100vh;
+        min-height: calc(var(--photo-h) + 280px);
       }
 
       /* ── Photo band ── */
