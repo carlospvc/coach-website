@@ -1,7 +1,7 @@
 {
-  "name": "Associate Certified Coach",
-  "initials": "ACC",
+  "name": "Professional Certified Coach",
+  "initials": "PCC",
   "issuer": "International Coach Federation",
-  "photo": "/images/associate-certified-coach-acc.png",
+  "photo": "/images/professional-certified-coach-pcc.png",
   "order": 1
 }
